@@ -86,7 +86,7 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{additional_info}} - champ additionnel
 {{department}} - département/compagnie - les champs sont id, nom, type ... par ex: {{department.id}} {{department.name}}
 
-{{#each positions}}  - ligne des tableaux 
+{{#each positions}}  - ligne des tableaux :
   {{no}} - numéro de ligne
   {{item}} - nom du produit
   {{additional_info}} - champ additionnel 
@@ -97,15 +97,15 @@ Les variables qui peuvent être utilisées dans les formats sont:
   {{unit_price_gross}} - prix unitaire ttc
   {{total_price_net}} - total HT
   {{total_price_gross}} - total ttc
-  {{tax}} - taux de tax
-  {{tax_value}} - montant de tax
+  {{tax}} - taux de taxe
+  {{tax_value}} - montant de taxe
 {{/each}}
 
-{{#each summary}} : 
-  {{total_price_net}}
-  {{total_price_gross}}
-  {{tax}}
-  {{tax_value}} 
+{{#each summary}} - résumé des totaux :
+  {{total_price_net}} - total HT
+  {{total_price_gross}} - total TTC
+  {{tax}} - taux de taxe
+  {{tax_value}} - montant de taxe
 {{/each}}
 
 {{footer}}
@@ -114,41 +114,41 @@ Les variables qui peuvent être utilisées dans les formats sont:
 
 
 
-Szablony e-maili
+Format des emails
 ---------------
-Można tworzyć szablony e-maili które będą wysyłane do klientów. Są 2 szablony dla standardowego wysyłania faktury oraz
-do wysyłania przypomnień o niezapłaconych fakturyach. Tworząc szablony używa się tych samych zmiennych co przy szablonach 
-faktrur i korzysta się także z [Handlebars](http://handlebarsjs.com/).
+Vous pouvez créer des formats pour les e-mails qui seront envoyés aux clients. Il ya deux formats standards pour l'envoi de factures et envoyer des rappels pour fakturyach non rémunéré. Création de modèles utilisent les mêmes variables que dans les modèles faktrur et utilise aussi [Handlebars](http://handlebarsjs.com/).
 
-Domyślne szablon wysyłania faktur:
+Le modèle par défaut l'envoi de factures:
 ```shell
-Dzień dobry,
+Bonjour,
 
-dziękujemy za skorzystanie z naszych usług. 
-Załączam dokument {{document_type}} {{number}} na kwotę {{total_price_gross}} brutto.
+Veuillez trouver le document suivant: {{document_type}} numéro {{number}} d’un montant total de {{total_price_gross_with_currency}}.
+Vous pouvez visualiser le document en cliquant sur le lien: {{{view_link}}}
 
-Link do podglądu {{view_url}}
+{{footer}}
 
+```
+
+Le modèle par défaut pour les rappels de factures impayées:
+```shell
+Bonjour,
+
+Veuillez trouver la {{document_type}} numéro {{number}} d’un montant de {{total_price_gross_with_currency}} qui reste à ce jour impayée.
+
+Vous pouvez visualiser la facture en cliquant sur le lien suivant: {{{view_link}}}
+
+Dans l’attente de votre prompt règlement,
+
+Bien cordialement,
 
 {{footer}}
 ```
 
-Domyślne szablon przypomnienia o niezapłaconej fakturze:
-```shell
-Dzień dobry,
 
-przypominamy o zaległej płatności za {{document_type}} {{number}} na kwotę {{total_price_gross}} brutto.
-
-Link do podglądu: {{view_url}}
-
-{{footer}}
-```
-
-
-Funkcje dostępne w szablonach faktur i e-maili
+Fonctions disponibles en modèles factures et des e-mails
 ---------------
 
-w szablonach dostepne są następujące funkcje:
+Les modèles sont disponibles dans les fonctions suivantes:
 
 ```shell
   if
@@ -164,7 +164,7 @@ w szablonach dostepne są następujące funkcje:
   not_in
 ```
 
-Przykład wywołania funkcji:
+exemple d'un appel de fonction:
 
 ```shell  
 {{#if val1 }}
@@ -184,9 +184,9 @@ Przykład wywołania funkcji:
 }}
 
 {{#eq department_id "123"}}
-  info dla danego departamento
+  information sur le département
 {{else}}
-  info dla innych departamentow
+  info sur les autres département
 {{/eq}}
 
 
@@ -196,19 +196,17 @@ Przykład wywołania funkcji:
 ```
 
 
-Import danych
+Importation de données
 ---------------
 
 Możliwy jest import danych z dowolnych programów które zapiszą dane do plików  .TXT, .CSV, .XLS, .ODS, .XLSX, .TSV, .XML
-Podczas importu samodzienie można ustawiać jakie kolumny i wiersze są importowane.
+Podczas importu samodzienie można ustawiać jakie kolumny i wiersze są importowane. Il est possible d'importer des données depuis ne importe quel programme qui permettra de sauver les données dans un fichier .TXT, .CSV, .XLS, .ods, XLSX, .tsv, .xml bure Lorsque vous importez, vous pouvez définir quelles colonnes et les lignes sont importés.
 
-Można importować Faktury, Klientów, Produkty
-
-Dodatkowo dostępne są opcje importu: Sprzedaż na ALLEGRO.PL (XML), Zakupy w ACTION S.A. (CSV), Zakupy w ABC DATA S.A. (XML), Faktury, klienci i produkty z CDN optima 
+Vous pouvez importer des factures, clients, produits
 
 
 API
 ---------------
 
-Opis API znajduje się tu: [Fakturownia API](https://github.com/radgost/fakturownia-api)
+Description de l'[API de VosFactures](https://github.com/radgost/vosfactures-api)
 
