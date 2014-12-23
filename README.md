@@ -4,7 +4,7 @@
 Format (template) des factures
 ---------------
 
-En utilisant notre logiciel de facturation, vous avez accès à un certain nombre de formats de factures. Si l'un d'eux ne répond pas à vos attentes, vous pouvez créer votre propre modèle. Il vous suffit de vous connecter à votre compte (si vous n'êtes pas encore inscrit, [vous pouvez ouvrir un compte gratuitement] (https://app.vosfactures.fr/signup) ) et de cliquer sur Paramètres > Paramètres du compte > Formats d'impression. Cliquez sur le bouton "Ajouter un nouveau format".
+En utilisant notre logiciel de facturation, vous avez accès à un certain nombre de formats de factures. Si l'un d'eux ne répond pas à vos attentes, vous pouvez créer votre propre modèle. Il vous suffit de vous connecter à votre compte (si vous n'êtes pas encore inscrit, [vous pouvez ouvrir un compte gratuitement] (https://app.vosfactures.fr/signup) ), de cliquer sur Paramètres > Paramètres du compte > Formats d'impression puis de cliquer sur le bouton "Ajouter un nouveau format".
 
 
 
@@ -199,8 +199,7 @@ exemple d'un appel de fonction:
 Importation de données
 ---------------
 
-Możliwy jest import danych z dowolnych programów które zapiszą dane do plików  .TXT, .CSV, .XLS, .ODS, .XLSX, .TSV, .XML
-Podczas importu samodzienie można ustawiać jakie kolumny i wiersze są importowane. Il est possible d'importer des données depuis ne importe quel programme qui permettra de sauver les données dans un fichier .TXT, .CSV, .XLS, .ods, XLSX, .tsv, .xml bure Lorsque vous importez, vous pouvez définir quelles colonnes et les lignes sont importés.
+Il est possible d'importer des données depuis ne importe quel programme qui permettra de sauver les données dans un fichier .TXT, .CSV, .XLS, .ods, XLSX, .tsv, .xml bure Lorsque vous importez, vous pouvez définir quelles colonnes et les lignes sont importés.
 
 Vous pouvez importer des factures, clients, produits
 
