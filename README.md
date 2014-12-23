@@ -1,68 +1,66 @@
-[Fakturownia.pl](http://fakturownia.pl/) - faktury online
+[VosFactures.fr](http://vosfactures.fr/) - Logiciel de facturation en ligne
 ===========
 
-Szablony faktur
+Format (template) des factures
 ---------------
 
-Korzystając z naszego systemu do fakturownia, masz dostęp do kilku wzorów faktur. Jeśli któryś z nich nie spełnia twoich oczekiwań możesz 
-przygotować własny szablon. Wystarczy zalogować się do swojego konta (jeśli go jeszcze nie masz to
-[tu możesz założyć darmowe konto](https://app.fakturownia.pl/signup) ) i wejść w Ustawienia > Ustawienia konta > Szablony. Następnie kliknij "dodaj nowy szablon" i otworzy się okno do edycji kodu, dzięki któremu możesz przygotować indywidualny szablon.
+En utilisant notre logiciel de facturation, vous avez accès à un certain nombre de formats de factures. Si l'un d'eux ne répond pas à vos attentes, vous pouvez créer votre propre modèle. Il vous suffit de vous connecter à votre compte (si vous n'êtes pas encore inscrit, [vous pouvez ouvrir un compte gratuitement] (https://app.vosfactures.fr/signup) ) et de cliquer sur Paramètres > Paramètres du compte > Formats d'impression. Cliquez sur le bouton "Ajouter un nouveau format".
 
 
 
-Przykładowe szablony Faktur:
+Quelques exemples de formats de factures:
 
 HTML: https://github.com/fakturownia/szablony/blob/master/default.hbs.html
 
 CSS: https://github.com/fakturownia/szablony/blob/master/default.css
 
-Szablony są tworzone przy wykorzystaniu znaczników  [Handlebars](http://handlebarsjs.com/)
+Les modèles sont créés en HTML et CSS en utilisant [Handlebars](http://handlebarsjs.com/)
 
-Zmienne których można używać w szablonach:
+Les variables qui peuvent être utilisées dans les formats sont:
 
 ```shell
-{{document_type}}
-{{kind}} - typ
-{{number}} - numer
-{{title}} - tytuł
-{{issue_date}} - data wystawienia
-{{issue_place}}
-{{print_option}}
-{{sell_date}} - data sprzedaży
-{{company}}
-{{post_code}}
+{{document_type}} type de document
+{{kind}} - type
+{{number}} - numéro
+{{title}} - titre
+{{issue_date}} - date de création
+{{issue_place}} - lieu de création
+{{print_option}} 
+{{sell_date}} - data de vente
+{{company}} - nom de la compagnie/département
+{{post_code}} - code postal
 {{place}} - miejsce wystawienia
-{{street}}
-{{tax_no}} - nip
-{{country}}
+{{street}} - numéro et nom de rue
+{{tax_no}} - numéro de taxe
+{{country}} - pays
 {{www}}
 {{email}}
 {{fax}}
 {{phone}}
-{{bank}}
+{{bank}} - domciliation bancaire
 {{person}}
-{{bank_account}}
-{{buyer}} - nabywca
-{{buyer_post_code}} - kod pocztowy
+{{bank_account}} - numéro de compte
+{{buyer}} - nom de l'acheteur
+{{buyer_post_code}} - code postal de l'acheteur
 {{buyer_place}}
-{{buyer_street}} - ulica i nr
-{{buyer_country}} - kraj
-{{buyer_tax_no}} - nip
+{{buyer_street}} - numéro et nom de rue de l'acheteur
+{{buyer_country}} - pays de l'acheteur
+{{buyer_tax_no}} - numéro de tax de l'acheteur
 {{buyer_person}} - imię i nazwisko odbiorcy
-{{buyer_company}}
-{{total_price_net}} - wartość netto
-{{total_price_net_with_currency}}
-{{total_price_gross}} - wartość brutto
-{{total_price_gross_with_currency}}
-{{tax_value}}
-{{tax_value_with_currency}}
-{{notes}}
-{{outstanding}}
-{{outstanding_in_words}}
-{{all_in_words}}
+{{buyer_company}} - nom de la compagnie de l'acheteur
+{{total_price_net}} - total net (HT)
+{{total_price_net_with_currency}} - total net (HT) avec devise
+{{total_price_gross}} - total brut (TTC) 
+{{total_price_gross_with_currency}} - total brut (TTC) avec devise
+{{tax_value}} - montant de la taxe
+{{tax_value_with_currency}} - montant de la taxe avec devise
+{{notes}} - informations spécifiques
+{{outstanding}} - montant à payer (en chiffres)
+{{outstanding_in_words}} - montant à payer (en lettres)
+{{all_in_words}} 
 {{payment_to}} - termin płatności
-{{type_of_payment}}
-{{paid}} - kwota opłacona
+{{type_of_payment}} - Moyen de paiement
+{{paid}} - montant payé
 {{logo_url}}
 {{stamp_url}}
 {{token}}
