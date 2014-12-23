@@ -33,7 +33,7 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{street}} - numéro et nom de rue
 {{tax_no}} - numéro de taxe
 {{country}} - pays
-{{www}}
+{{www}} 
 {{email}}
 {{fax}}
 {{phone}}
@@ -46,59 +46,59 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{buyer_street}} - numéro et nom de rue de l'acheteur
 {{buyer_country}} - pays de l'acheteur
 {{buyer_tax_no}} - numéro de tax de l'acheteur
-{{buyer_person}} - imię i nazwisko odbiorcy
+{{buyer_person}} - nom (et prénom) de l'acheteur
 {{buyer_company}} - nom de la compagnie de l'acheteur
-{{total_price_net}} - total net (HT)
-{{total_price_net_with_currency}} - total net (HT) avec devise
-{{total_price_gross}} - total brut (TTC) 
-{{total_price_gross_with_currency}} - total brut (TTC) avec devise
+{{total_price_net}} - total HT
+{{total_price_net_with_currency}} - total HT avec devise
+{{total_price_gross}} - total TTC 
+{{total_price_gross_with_currency}} - total TTC avec devise
 {{tax_value}} - montant de la taxe
 {{tax_value_with_currency}} - montant de la taxe avec devise
 {{notes}} - informations spécifiques
 {{outstanding}} - montant à payer (en chiffres)
 {{outstanding_in_words}} - montant à payer (en lettres)
 {{all_in_words}} 
-{{payment_to}} - termin płatności
-{{type_of_payment}} - Moyen de paiement
+{{payment_to}} - date limite de règlement
+{{type_of_payment}} - Mode de règlement
 {{paid}} - montant payé
-{{logo_url}}
-{{stamp_url}}
-{{token}}
-{{oid}} - nr zamówienia
-{{description_long}} - dodatkowe uwagi (drukowane na drugiej stronie)
-{{description_footer}} - dodatkowe uwagi (drukowane na dole strony)
+{{logo_url}} - logo
+{{stamp_url}} - tampon
+{{token}} - code
+{{oid}} - numéro de commande
+{{description_long}} - texte additionnel (imprimé sur la page suivante)
+{{description_footer}} - Bas de page
 {{view_url}}
 {{payment_url}}
-{{tax_name}}
-{{currency}} - waluta
-{{currency_symbol}}
-{{currency_short}}
-{{exchange_currency}} - przeliczanie na walutę
-{{use_delivery_address}} - inny adres korespondencyjny
-{{delivery_address}} - adresat
-{{lang}} - język
-{{discount}} - rabat
-{{show_discount}}
-{{income}} - przychód
-{{exchange_rate}} - kurs
-{{total_price_net_in_main_currency}}
-{{total_price_gross_in_main_currency}}
-{{additional_info}}
-{{department}} - dział / oddział firmy - dostępne są pola id, name, kind ... np {{department.id}} {{department.name}}
+{{tax_name}} - nom de la taxe
+{{currency}} - devise
+{{currency_symbol}} - devise (symbole)
+{{currency_short}} - devise (abrégé)
+{{exchange_currency}} - convertir en
+{{use_delivery_address}} - afficher l'adresse de livraison
+{{delivery_address}} - adresse de livraison
+{{lang}} - langue
+{{discount}} - réduction
+{{show_discount}} - afficher réduction
+{{income}} - revenu
+{{exchange_rate}} - taux de change
+{{total_price_net_in_main_currency}} - total HT avec devise principale
+{{total_price_gross_in_main_currency}} - total TTC avec devise principale
+{{additional_info}} - champ additionnel
+{{department}} - département/compagnie - les champs sont id, nom, type ... par ex: {{department.id}} {{department.name}}
 
-{{#each positions}} : 
-  {{no}}
-  {{item}} - nazwa produktu/usługi
-  {{additional_info}} - dodatkowe pole na pozycjach faktury
-  {{discount}}
-  {{quantity}} - ilość
-  {{unit_price_net}}
-  {{unit_price_net_with_discount}}
-  {{unit_price_gross}}
-  {{total_price_net}} - wartość netto
-  {{total_price_gross}} - wartość brutto
-  {{tax}} - stawka vat
-  {{tax_value}} - wartość vat 
+{{#each positions}}  - ligne des tableaux 
+  {{no}} - numéro de ligne
+  {{item}} - nom du produit
+  {{additional_info}} - champ additionnel 
+  {{discount}} - réduction
+  {{quantity}} - quantité
+  {{unit_price_net}} - prix unitaire ht
+  {{unit_price_net_with_discount}} - prix unitaire ht après réduction
+  {{unit_price_gross}} - prix unitaire ttc
+  {{total_price_net}} - total HT
+  {{total_price_gross}} - total ttc
+  {{tax}} - taux de tax
+  {{tax_value}} - montant de tax
 {{/each}}
 
 {{#each summary}} : 
