@@ -38,7 +38,7 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{fax}} - numéro de fax
 {{phone}} - numéro de téléphone
 {{bank}} - domciliation bancaire
-{{person}}
+{{person}} - nom du vendeur
 {{bank_account}} - numéro de compte
 {{buyer}} - nom de l'acheteur
 {{buyer_post_code}} - code postal de l'acheteur
@@ -105,10 +105,10 @@ Les variables qui peuvent être utilisées dans les formats sont:
   {{total_price_net}} - total HT
   {{total_price_gross}} - total TTC
   {{tax}} - taux de taxe
-  {{tax_value}} - montant de taxe
+  {{tax_value}} - total taxe
 {{/each}}
 
-{{footer}}
+{{footer}} - bas de page
 ```
 
 
@@ -116,9 +116,9 @@ Les variables qui peuvent être utilisées dans les formats sont:
 
 Format des emails
 ---------------
-Vous pouvez créer des formats pour les e-mails qui seront envoyés aux clients. Il ya deux formats standards pour l'envoi de factures et envoyer des rappels pour fakturyach non rémunéré. Création de modèles utilisent les mêmes variables que dans les modèles faktrur et utilise aussi [Handlebars](http://handlebarsjs.com/).
+Le système propose par défaut un contenu pour l'envoi des documents de facturation, et un contenu pour l'envoi de relances en cas de factures impayées. Vous pouvez personnaliser le contenu des e-mails envoyés aux clients. Le texte des emails utilisent les mêmes variables que les formats (voir ci-dessus) et utilise aussi [Handlebars](http://handlebarsjs.com/).
 
-Le modèle par défaut l'envoi de factures:
+Contenu par défaut de l'email accompagnant l'envoi des factures:
 ```shell
 Bonjour,
 
@@ -129,7 +129,7 @@ Vous pouvez visualiser le document en cliquant sur le lien: {{{view_link}}}
 
 ```
 
-Le modèle par défaut pour les rappels de factures impayées:
+Contenu par défaut de l'email de relances en cas de factures impayées:
 ```shell
 Bonjour,
 
@@ -145,7 +145,7 @@ Bien cordialement,
 ```
 
 
-Fonctions disponibles en modèles factures et des e-mails
+Fonctions disponibles pour les formats de factures et des e-mails
 ---------------
 
 Les modèles sont disponibles dans les fonctions suivantes:
@@ -164,7 +164,7 @@ Les modèles sont disponibles dans les fonctions suivantes:
   not_in
 ```
 
-exemple d'un appel de fonction:
+Exemple d'un appel de fonction:
 
 ```shell  
 {{#if val1 }}
@@ -186,7 +186,7 @@ exemple d'un appel de fonction:
 {{#eq department_id "123"}}
   information sur le département
 {{else}}
-  info sur les autres département
+  info sur les autres départements
 {{/eq}}
 
 
@@ -199,9 +199,9 @@ exemple d'un appel de fonction:
 Importation de données
 ---------------
 
-Il est possible d'importer des données depuis ne importe quel programme qui permettra de sauver les données dans un fichier .TXT, .CSV, .XLS, .ods, XLSX, .tsv, .xml bure Lorsque vous importez, vous pouvez définir quelles colonnes et les lignes sont importés.
+Il vous est possible d'importer dans votre compte VosFactures des données existantes depuis n'importe quel programme si celles-ci sont dans un fichier .TXT, .CSV, .XLS, .ods, XLSX, .tsv, .xml bure. L'importation de fichier se fait depuis l'onglet Paramètres > Importation. Vous pouvez importer des factures (et autres documents de facturation), des clients et fournisseurs, vos catalogues produits, et des relevés bancaires. Durant l'importation, vous pouvez choisir quelles colonnes et lignes à importer. 
 
-Vous pouvez importer des factures, clients, produits
+
 
 
 API
