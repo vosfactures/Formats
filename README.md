@@ -129,7 +129,7 @@ Vous pouvez visualiser le document en cliquant sur le lien: {{{view_link}}}
 
 ```
 
-Contenu par défaut de l'email de relances en cas de factures impayées:
+Contenu par défaut de l'email de relance en cas de factures impayées:
 ```shell
 Bonjour,
 
@@ -145,10 +145,10 @@ Bien cordialement,
 ```
 
 
-Fonctions disponibles pour les formats de factures et des e-mails
+Fonctions disponibles dans les formats de factures et des e-mails
 ---------------
 
-Les modèles sont disponibles dans les fonctions suivantes:
+Les formats peuvent inclure les fonctions suivantes:
 
 ```shell
   if
@@ -164,7 +164,7 @@ Les modèles sont disponibles dans les fonctions suivantes:
   not_in
 ```
 
-Exemple d'un appel de fonction:
+Exemple:
 
 ```shell  
 {{#if val1 }}
@@ -184,14 +184,14 @@ Exemple d'un appel de fonction:
 }}
 
 {{#eq department_id "123"}}
-  information sur le département
+  info sur le département
 {{else}}
   info sur les autres départements
 {{/eq}}
 
 
 {{#for size_from size_to}}
-    no: {{no}}
+    numéro: {{no}}
 {{/for}}
 ```
 
@@ -207,5 +207,5 @@ Il vous est possible d'importer dans votre compte VosFactures des données exist
 API
 ---------------
 
-Description de l'[API de VosFactures](https://github.com/radgost/vosfactures-api)
+Description de l'[API de VosFactures](https://app.vosfactures.fr/api) 
 
