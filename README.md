@@ -29,20 +29,20 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{sell_date}} - data de vente
 {{company}} - nom de la compagnie/département
 {{post_code}} - code postal
-{{place}} - miejsce wystawienia
+{{place}} - ville
 {{street}} - numéro et nom de rue
 {{tax_no}} - numéro de taxe
 {{country}} - pays
-{{www}} 
-{{email}}
-{{fax}}
-{{phone}}
+{{www}} - adresse internet
+{{email}} - adresse email
+{{fax}} - numéro de fax
+{{phone}} - numéro de téléphone
 {{bank}} - domciliation bancaire
 {{person}}
 {{bank_account}} - numéro de compte
 {{buyer}} - nom de l'acheteur
 {{buyer_post_code}} - code postal de l'acheteur
-{{buyer_place}}
+{{buyer_place}} - ville de l'acheteur
 {{buyer_street}} - numéro et nom de rue de l'acheteur
 {{buyer_country}} - pays de l'acheteur
 {{buyer_tax_no}} - numéro de tax de l'acheteur
@@ -57,7 +57,7 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{notes}} - informations spécifiques
 {{outstanding}} - montant à payer (en chiffres)
 {{outstanding_in_words}} - montant à payer (en lettres)
-{{all_in_words}} 
+{{all_in_words}} - montant total TTC (en lettres)
 {{payment_to}} - date limite de règlement
 {{type_of_payment}} - Mode de règlement
 {{paid}} - montant payé
