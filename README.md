@@ -17,7 +17,7 @@ CSS: https://github.com/fakturownia/szablony/blob/master/default.css
 Les modèles sont créés en HTML et CSS en utilisant [Handlebars](http://handlebarsjs.com/)
 
 Les variables qui peuvent être utilisées dans les formats sont:
-
+ 
 ```shell
 {{document_type}} type de document
 {{kind}} - type
