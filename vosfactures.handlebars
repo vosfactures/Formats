@@ -1,31 +1,22 @@
-<div class="invoice_outline" {{#if status_paid}}{{#not_in kind "proforma,estimate"}}style="background:transparent url('{{paid_mark_url}}') no-repeat 60% 50%"{{/not_in}}{{/if}} >
+<div class="invoice_outline" {{#if status_paid}}{{#if show_paid_logo}}{{#not_in kind "proforma,estimate"}}style="background:transparent url('{{paid_mark_url}}') no-repeat 60% bottom;"{{/not_in}}{{/if}}{{/if}} >
 
- 
 {{#if stamp_url}}
 	<div style="background:transparent url('{{stamp_url}}') no-repeat  94% 82%"  id="custom_stamp">
 {{/if}}
-
 
 	{{#if payment_url}}
 		<a class="payment_button" href="{{payment_url}}"><img src="{{payment_button_url}}" alt="online payment"/></a>
 	{{/if}}
 
 	<table   class="full_width">
-
-
-
 		<tr>
 			<td class="vert_align_top  text_left" >
-				
 				<p>
-
 					<strong class="big_text">{{document_type}}</strong> 
 					<br/>
 					<strong class="medium_text">{{tt "invoice.number"}} {{number}}</strong>
-				
 				</p>
 				<p>
-				
 					<strong class="medium_text">{{print_option}}</strong>
 					<br/>
 					{{#if issue_place}}
@@ -41,43 +32,31 @@
 						{{/if}}
 					{{/if}}
 				</p>
-
-				
 				{{#if oid}}
 				<p>
 					{{tt 'invoice.oid'}}: {{oid}}
 				</p>
 				{{/if}}
-						
-	
 				{{#if correction}}
 				<p>
 					{{ correction }}
 				</p>
 				{{/if}}
-
 			</td>
 
 			<td class="vert_align_top text_right">
 
 				{{#if logo_url}}
-		
-					
-						<img src="{{logo_url}}" alt="logo"/>
-					
-		
+                    <img src="{{logo_url}}" alt="logo"/>
 				{{/if}}
-				
 
 			</td>
 		</tr>
 	</table>
 
-
 	<table   class="seller_buyer full_width">
 		<tr>
 			<td style="width:70%"  class="vert_align_top">
-
 				<strong>{{tt "invoice.seller"}}:</strong><br/>
 				{{company}}<br/>
 				{{{address}}}<br/>
@@ -85,7 +64,6 @@
 				{{#if tax_no}}
 					{{tax_no}}<br/>
 				{{/if}}
-				
 
 				{{#if bank}}<br/>{{bank}} {{bank_account}}<br/>{{/if}}
 				{{#if email}}<br/>{{email}}{{/if}}
@@ -95,12 +73,8 @@
 				<br/>
 				{{#if phone}}T: {{phone}}{{/if}}
 				{{#if fax}}, F: {{fax}}{{/if}}
-
 			</td>
-
 			<td  style="width:30%"  class="vert_align_top">
-
-
 				<strong>{{tt "invoice.buyer"}}:</strong><br/>
 
 				{{#if buyer_company}} {{else}} {{buyer_title}} {{/if}}
@@ -129,34 +103,24 @@
 	</table>
 
 	{{#if title}}
-	
 	<table class="full_width">
-
-
-
-			<tbody><tr>
-				<td class="small_text text_center">
-				
-					<span>
-						<h4>{{title}}</h4>					
-					</span>
-				</td>
-
-			</tr>
-
-		</tbody></table>
-	
-	
-		
+        <tbody>
+        <tr>
+            <td class="small_text text_center">
+                <span>
+                    <h4>{{title}}</h4>
+                </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 	{{/if}}
 
 	<!-- si vous souhaitez personnaliser le tableau, vous pouvez le remplacer par https://github.com/vosfactures/templates/blob/master/partials/positions.hbs.html  -->
 	{{>positions}}
-		
-		
+
 	<!-- si vous souhaitez personnaliser les totaux, vous pouvez les remplacer par https://github.com/vosfactures/templates/blob/master/partials/totals.hbs.html  -->
 	{{>totals}}
-
 
 	<table class="full_width" style="margin-top:20px">
 		<tr>
@@ -205,18 +169,27 @@
 					{{/if}}
 				{{/not_eq}}
 
+				{{#if additional_field_name}}
+					{{#if additional_field_value}}
+						<strong>{{additional_field_name}}: </strong> {{additional_field_value}}
+					{{/if}}
+				{{/if}}
+
 				{{#not_eq additional_fields.advanced_payment_discount 'Néant'}}
 					{{#if additional_fields.advanced_payment_discount}}
 						<strong>{{tt "invoice.discount_on_advanced_payment_note"}}:</strong> {{additional_fields.advanced_payment_discount}} %<br/>
 					{{/if}}
 				{{/not_eq}}
+				
 				{{#if notes}}
 					<br/>
-					<strong>{{tt "invoice.description"}}:</strong> {{{notes}}}
+					<strong>{{tt "invoice.description"}}:</strong> 
+					<span id="notes">
+						{{{notes}}}
+					</span>
 				{{/if}}
 
 			</td>
-
 		</tr>
 	</table>
 
@@ -257,104 +230,93 @@
 				<hr>
 				<span>{{description_footer}}</span>
 			</td>
-
 		</tr>
-
-	</table>			
-
+	</table>
 {{/if}}
-
 </div>
 
 <div id="company_info_footer">
+
 {{#if department.name}}
-	
 	<br/>
 	<br/><br/>
-	
+
 	<table  class="full_width" >
-
-
-
 		<tr>
 			<td class="small_text text_center">
-				
 				<span>
-					{{department.kind}} {{department.name}}, 
-					{{#if street}}
-						{{street}}, 
-					{{/if}}
+                    {{#if department.own_footer}}
+                        {{department.footer_content}}
+                    {{else}}
+                        {{department.kind}} {{department.name}},
+                        {{#if street}}
+                            {{street}},
+                        {{/if}}
 
-					{{post_code}} 
+                        {{post_code}}
 
-					{{#if place}}
-						{{place}},  
-					{{/if}}
+                        {{#if place}}
+                            {{place}},
+                        {{/if}}
 
-					<br>
+	                    <br>
 
-					{{#eq department.capital_kind 'amount'}}
-						Capital: {{department.capital}} {{department.capital_currency}}, 
-					{{/eq}}
-					
-					{{#eq department.capital_kind 'variable'}}
-						Capital {{department.capital_kind}}, 
-					{{/eq}}
+                        {{#eq department.capital_kind 'amount'}}
+		                    Capital: {{department.capital}} {{department.capital_currency}},
+                        {{/eq}}
 
+                        {{#eq department.capital_kind 'variable'}}
+		                    Capital {{department.capital_kind}},
+                        {{/eq}}
 
-					{{#eq department.register1_status 'yes'}} {{!-- Immatriculé --}}	
+                        {{#eq department.register1_status 'yes'}} {{!-- Immatriculé --}}
 
-						{{#if department.register1_number2}} {{!-- NAF (ou NACE) --}}
-							NAF: {{department.register1_number2}},
-						{{/if}}
+                            {{#if department.register1_number2}} {{!-- NAF (ou NACE) --}}
+			                    NAF: {{department.register1_number2}},
+                            {{/if}}
 
-						{{#eq department.register2_status '1'}}
-							{{department.register2_number1}} RM {{department.register2_number2}}, 
-						{{/eq}}
+                            {{#eq department.register2_status '1'}}
+                                {{department.register2_number1}} RM {{department.register2_number2}},
+                            {{/eq}}
 
-						{{#eq department.register3_status '1'}}
-							RCS  {{department.register3_number1}} {{department.register3_number2}}  {{department.register3_number3}}, 
-						{{/eq}}
+                            {{#eq department.register3_status '1'}}
+			                    RCS  {{department.register3_number1}} {{department.register3_number2}}  {{department.register3_number3}},
+                            {{/eq}}
 
-						{{#eq department.register4_status '1'}}
-							{{department.register1_number3}} {{department.register1_number1}} {{department.register4_number3}} {{department.register4_number1}} Dispensé d’immatriculation au RM et RCS, 
-						{{/eq}}
+                            {{#eq department.register4_status '1'}}
+                                {{department.register1_number3}} {{department.register1_number1}} {{department.register4_number3}} {{department.register4_number1}} Dispensé d’immatriculation au RM et RCS,
+                            {{/eq}}
 
-					{{/eq}}
+                        {{/eq}}
 
-					{{#eq department.register1_status 'pending'}} {{!-- En cours d'immatriculation --}}						
-						En cours d’immatriculation,
-					{{/eq}}
+                        {{#eq department.register1_status 'pending'}} {{!-- En cours d'immatriculation --}}
+		                    En cours d’immatriculation,
+                        {{/eq}}
 
+                        {{#if department.tax_kind}}
 
-					{{#if department.tax_kind}}
-						
-						{{#eq department.tax_kind 'yes'}}
-							<!-- {{tt "department.tax_kind"}}:  -->
-							{{department.tax_no}}
-						{{/eq}}
+                            {{#eq department.tax_kind 'yes'}}
+			                    <!-- {{tt "department.tax_kind"}}:  -->
+                                {{department.tax_no}}
+                            {{/eq}}
 
-						{{#eq department.tax_kind 'no'}}
-							TVA non applicable, art. 293B du CGI.
-						{{/eq}}
+                            {{#eq department.tax_kind 'no'}}
+			                    TVA non applicable, art. 293B du CGI.
+                            {{/eq}}
 
-						{{#eq department.tax_kind 'exempt'}}
-							<!-- {{tt "department.tax_kind"}}:  -->
-							{{department.tax_no}}
-						{{/eq}}
+                            {{#eq department.tax_kind 'exempt'}}
+			                    <!-- {{tt "department.tax_kind"}}:  -->
+                                {{department.tax_no}}
+                            {{/eq}}
 
-					{{/if}}
+                        {{/if}}
+                    {{/if}}
 				</span>
 			</td>
-
 		</tr>
-
 	</table>
-	
-
 {{/if}}
 </div>
-
 
 {{#if description_long}}
 	<div style="page-break-after:always !important;"></div>
@@ -362,34 +324,18 @@
 	<br/>
 	<br/>
 	<div class="invoice_outline">
-	
 		<table  class="full_width" >
-
-
-
 			<tr>
 				<td class="small_text">
-				
 					<span>{{{description_long}}}</span>
 				</td>
-
 			</tr>
-
 		</table>
-	
 	</div>
 {{/if}}	
-
 
 {{#if stamp_url}}
 </div> <!-- custom_stamp -->
 {{/if}}
 
-
-
-
 </div> <!-- invoice_outline -->
-
-
-
-	
