@@ -1,5 +1,5 @@
 <div class="invoice_outline" {{#if status_paid}}{{#if show_paid_logo}}{{#not_in kind "proforma,estimate"}}style="background:transparent url('{{paid_mark_url}}') no-repeat 60% bottom;"{{/not_in}}{{/if}}{{/if}} >
- 
+
 {{#if stamp_url}}
 	<div style="background:transparent url('{{stamp_url}}') no-repeat  94% 82%"  id="custom_stamp">
 {{/if}}
@@ -78,7 +78,7 @@
 				<strong>{{tt "invoice.buyer"}}:</strong><br/>
 
 				{{#if buyer_company}} {{else}} {{buyer_title}} {{/if}}
-				{{buyer}}<br/>
+				{{{buyer}}}<br/>
 				{{{buyer_address}}}<br/>
 				{{#if buyer_company}}
 					{{#if buyer_tax_no}}
@@ -159,7 +159,7 @@
 
 				{{#not_eq additional_fields.interest_rate 'Néant'}}
 					{{#if additional_fields.interest_rate}}
-						<strong>{{tt "invoice.interest_note"}}:</strong> {{additional_fields.interest_rate}} % par an<br/>
+						<strong>{{tt "invoice.interest_note"}}:</strong> {{additional_fields.interest_rate}} <br/>
 					{{/if}}
 				{{/not_eq}}
 						
