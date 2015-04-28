@@ -207,5 +207,5 @@ Il vous est possible d'importer dans votre compte VosFactures des données exist
 API
 ---------------
 
-Description de l'[API de VosFactures](https://app.vosfactures.fr/api) 
+Description de l'[API de VosFactures](https://github.com/vosfactures/API) 
 
