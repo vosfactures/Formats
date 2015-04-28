@@ -19,6 +19,14 @@
 
 	<table   class="full_width">
 		<tr>
+			<td class="vert_align_top text_left" style="width:60%"  >
+
+				{{#if logo_url}}
+                    <img src="{{logo_url}}" alt="logo"/>
+				{{/if}}
+
+			</td>
+
 			<td class="vert_align_top  text_left" >
 				<p>
 					<strong class="big_text">{{document_type}}</strong> 
@@ -53,19 +61,12 @@
 				{{/if}}
 			</td>
 
-			<td class="vert_align_top text_right">
-
-				{{#if logo_url}}
-                    <img src="{{logo_url}}" alt="logo"/>
-				{{/if}}
-
-			</td>
 		</tr>
 	</table>
 
 	<table   class="seller_buyer full_width">
 		<tr>
-			<td style="width:70%"  class="vert_align_top">
+			<td style="width:60%"  class="vert_align_top">
 				<strong>{{tt "invoice.seller"}}:</strong><br/>
 				{{company}}<br/>
 				{{{address}}}<br/>
@@ -83,7 +84,7 @@
 				{{#if phone}}T: {{phone}}{{/if}}
 				{{#if fax}}, F: {{fax}}{{/if}}
 			</td>
-			<td  style="width:30%"  class="vert_align_top">
+			<td  style="width:40%"  class="vert_align_top">
 				<strong>{{tt "invoice.buyer"}}:</strong><br/>
 
 				{{#if buyer_company}} {{else}} {{buyer_title}} {{/if}}
