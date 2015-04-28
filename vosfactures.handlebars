@@ -1,8 +1,21 @@
 <div class="invoice_outline" {{#if status_paid}}{{#if show_paid_logo}}{{#not_in kind "proforma,estimate"}}style="background:transparent url('{{paid_mark_url}}') no-repeat 60% bottom;"{{/not_in}}{{/if}}{{/if}} >
- 
-{{#if stamp_url}}
-	<div style="background:transparent url('{{stamp_url}}') no-repeat  94% 82%"  id="custom_stamp">
-{{/if}}
+
+
+
+{{#unless stamp_below_sign_url}}
+
+	{{#if stamp_url}}
+		<div style="background:transparent url('{{stamp_url}}') no-repeat  94% 82%"  id="custom_stamp">
+	{{/if}}
+
+
+{{/unless}}
+
+
+
+
+
+
 
 	{{#if payment_url}}
 		<a class="payment_button" href="{{payment_url}}"><img src="{{payment_button_url}}" alt="online payment"/></a>
@@ -20,7 +33,7 @@
 					<strong class="medium_text">{{print_option}}</strong>
 					<br/>
 					{{#if issue_place}}
-						{{tt "invoice.place"}}: {{issue_place}}, le {{issue_date}} <br/>	
+						{{tt "invoice.place"}}: {{issue_place}}, {{tt "invoice.on_date"}} {{issue_date}} <br/>	
 					{{else}}
 						{{tt "invoice.issue_date"}}: {{issue_date}} <br/>	
 					{{/if}}
@@ -108,7 +121,7 @@
         <tr>
             <td class="small_text text_center">
                 <span>
-                    <h4>{{title}}</h4>
+                    <h4>{{{title}}}</h4>
                 </span>
             </td>
         </tr>
@@ -125,13 +138,18 @@
 	<table class="full_width" style="margin-top:20px">
 		<tr>
 			<td class="empty">
-				<strong class="medium_text">{{tt "invoice.to_pay"}}: {{outstanding}} <span class="hidden vosfactures3_visible"> {{#if tax_visible}} {{tt "invoice_template.gross"}} {{else}} {{tt "invoice_template.net"}} {{/if}} </span></strong> 
-				{{#if outstanding_in_words}}
-				<strong>{{tt "invoice.in_words"}}:</strong> {{{outstanding_in_words}}} <br/>
+				<strong class="medium_text">
+					{{#if negative_outstanding}} {{tt "invoice.to_receive"}}: {{else}} {{tt "invoice.to_pay"}}: {{/if}}
+					{{absolute_outstanding}}
+					<span class="hidden vosfactures3_visible"> {{#if tax_visible}} {{tt "invoice_template.gross"}} {{else}} {{tt "invoice_template.net"}} {{/if}} </span>
+				</strong> 
+				{{#if absolute_outstanding_in_words}}
+					<strong>{{tt "invoice.in_words"}}:</strong> {{{absolute_outstanding_in_words}}} <br/>
 				{{/if}}
+				
 				<br/>
-				{{#if paid}}
 
+				{{#if paid}}
 				<strong>{{tt "invoice.paid"}}:</strong> {{paid}}
 					{{#if show_paid_date}}
 						{{tt 'invoice.paid_on'}} {{paid_date}}
@@ -202,8 +220,27 @@
 				<strong>{{tt "invoice.seller_person"}}</strong>
 				<br/>
 				<i>{{person}}</i>
-
 				{{/if}}
+
+
+				        
+
+
+				{{#if stamp_below_sign_url}}
+
+				<br />
+				<img src="{{stamp_url}}" alt="stamp" style="display:block;margin:auto;max-width:40%"/>
+
+
+
+				{{else}}
+
+		
+
+				{{/if}}				
+
+
+
 			</td>
 
 			<td   class="text_center half_width">
@@ -246,7 +283,7 @@
 			<td class="small_text text_center">
 				<span>
                     {{#if department.own_footer}}
-                        {{department.footer_content}}
+                        {{{department.footer_content}}}
                     {{else}}
                         {{department.kind}} {{department.name}},
                         {{#if street}}
@@ -334,8 +371,20 @@
 	</div>
 {{/if}}	
 
-{{#if stamp_url}}
-</div> <!-- custom_stamp -->
-{{/if}}
+
+
+
+
+{{#unless stamp_below_sign_url}}
+
+	{{#if stamp_url}}
+	</div> <!-- custom_stamp -->
+	{{/if}}
+
+
+{{/unless}}
+
+
+
 
 </div> <!-- invoice_outline -->
