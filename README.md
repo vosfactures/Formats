@@ -29,6 +29,7 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{sell_date}} - data de vente
 {{sell_date_kind}} - 
 {{company}} - nom de la compagnie/département
+{{person}} - nom du vendeur
 {{post_code}} - code postal
 {{place}} - ville
 {{street}} - numéro et nom de rue
@@ -39,18 +40,22 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{email}} - adresse email
 {{fax}} - numéro de fax
 {{phone}} - numéro de téléphone
-{{bank}} - domciliation bancaire
-{{person}} - nom du vendeur
-{{bank_account}} - numéro de compte
+{{bank}} - domiciliation bancaire et numéro
+{{bank_account}} - numéro de compte bancaire (RIB ou IBAN)
+{{department.bank_swift}} - numéro BIC 
+{{department.bank_name}} - domiciliation bancaire
 {{buyer}} - nom de l'acheteur
 {{buyer_post_code}} - code postal de l'acheteur
 {{buyer_place}} - ville de l'acheteur
 {{buyer_street}} - numéro et nom de rue de l'acheteur
 {{buyer_country}} - pays de l'acheteur
-{{buyer_tax_no}} - numéro de tax de l'acheteur
+{{buyer_tax_no}} - numéro de taxe de l'acheteur
 {{buyer_person}} - nom (et prénom) de l'acheteur
 {{buyer_company}} - nom de la compagnie de l'acheteur
+{{use_delivery_address}} - afficher l'adresse de livraison
+{{delivery_address}} - adresse de livraison
 {{buyer_note}} - description additionnelle
+{{show_buyer_note}} - afficher la description additionnelle
 {{total_price_net}} - total HT
 {{total_price_net_with_currency}} - total HT avec devise
 {{total_price_gross}} - total TTC 
@@ -59,7 +64,13 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{tax_value_with_currency}} - montant de la taxe avec devise
 {{notes}} - informations spécifiques
 {{outstanding}} - montant à payer (en chiffres)
+{{outstanding_in_exchange_currency}} - montant converti à payer (en chiffres)
 {{outstanding_in_words}} - montant à payer (en lettres)
+{{outstanding_in_words_in_exchange_currency}} - montant converti à payer (en lettres)
+{{negative_outstanding}} - solde en votre faveur (en chiffres)
+{{absolute_outstanding}}
+{{absolute_outstanding_in_words}}
+{{all_in_words_in_exchange_currency}}
 {{all_in_words}} - montant total TTC (en lettres)
 {{payment_to}} - date limite de règlement
 {{type_of_payment}} - Mode de règlement
@@ -83,8 +94,6 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{currency_symbol}} - devise (symbole)
 {{currency_short}} - devise (abrégé)
 {{exchange_currency}} - convertir en
-{{use_delivery_address}} - afficher l'adresse de livraison
-{{delivery_address}} - adresse de livraison
 {{lang}} - langue
 {{discount}} - réduction
 {{show_discount}} - afficher réduction
@@ -101,11 +110,48 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{tax_value_in_exchange_currency}} - montant de taxe avec devise de conversion
 {{additional_info}} - colonne additionnelle
 {{additional_fields}} - champ additionnel 
+{{additional_field_name}} - 
+{{additional_field_value}} - 
 {{department}} - département/compagnie - les champs sont id, nom, type ... par ex: {{department.id}} {{department.name}}
+{{client}}
+{{client_panel_view_url}} - url de l'accès client
+{{client_panel_view_link}}
+{{additional_info_desc}} - Titre de la colonne additionnelle
+{{use_product_code}} - afficher la colonne Référence
+{{tax_visible}} - afficher colonne taxe
+{{tax2_visible}} - afficher deuxième colonne taxe
+{{long_exchange_note}} - taux de change appliqué
+{{positions_total_price_net}}
+{{positions_total_price_gross}}
+{{positons_total_tax}}
+{{correction}}
+{{corrected_content_before}}
+{{corrected_content_after}}
+{{seller_tax_no_kind}} - Numéro d'identification du vendeur
+{{buyer_tax_no_kind}} - Numéro d'identification de l'acheteur
+{{show_totals}} - afficher un résumé du total net, brut et de la TVA
+{{hide_tax}} - afficher les montants TTC uniquement 
+{{show_tax_split}} - afficher le résumé des différents taux de taxe
+{{show_paid_date}} - afficher la date de paiement
+{{paid_date}} - date de paiement
+{{show_date_and_sign}} - afficher la mention " Date et signature du client..."
+{{show_product_description}} - afficher la description des produits
+{{paid_mark_url}}
+{{sales_code}}
+{{show_unit_price_gross}} - afficher le prix unitaire TTC
+{{total_discount}} - réduction globale
+{{transaction_id}} - ID de la transaction
+{{show_paid_logo}} - afficher le tampon "Payé"
+{{client_external_id}} - Réf/code client
+{{locale}}
+{{final}} - facture de solde
+{{advanced}}
+{{advanced_num}}
+{{total_tax_inscription}}
 
 {{#each positions}}  - ligne des tableaux :
   {{no}} - numéro de ligne
-  {{code}}
+  {{code}} - référence du produit
   {{item}} - nom du produit
   {{description}} - description du produit
   {{additional_info}} - champ additionnel 
@@ -113,7 +159,7 @@ Les variables qui peuvent être utilisées dans les formats sont:
   {{quantity}} - quantité
   {{unit_price_net}} - prix unitaire ht
   {{unit_price_net_with_discount}} - prix unitaire ht après réduction
-  {{unit_price_gross_with_discount}} - - prix unitaire ttc après réduction
+  {{unit_price_gross_with_discount}} - prix unitaire ttc après réduction
   {{unit_price_gross}} - prix unitaire ttc
   {{total_price_net}} - total HT
   {{total_price_gross}} - total ttc
