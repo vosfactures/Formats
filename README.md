@@ -52,17 +52,46 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{buyer_tax_no}} - numéro de taxe de l'acheteur
 {{buyer_person}} - nom (et prénom) de l'acheteur
 {{buyer_company}} - nom de la compagnie de l'acheteur
+{{seller_tax_no_kind}} - Numéro d'identification du vendeur
+{{buyer_tax_no_kind}} - Numéro d'identification de l'acheteur
+{{client_external_id}} - Réf/code client
 {{use_delivery_address}} - afficher l'adresse de livraison
 {{delivery_address}} - adresse de livraison
 {{buyer_note}} - description additionnelle
 {{show_buyer_note}} - afficher la description additionnelle
+{{buyer_tax_no_kind}} - Numéro d'identification de l'acheteur
+{{use_product_code}} - afficher la colonne Référence
+{{additional_info}} - colonne additionnelle
+{{additional_info_desc}} - Titre de la colonne additionnelle
+{{discount}} - réduction
+{{show_discount}} - afficher réduction
 {{total_price_net}} - total HT
 {{total_price_net_with_currency}} - total HT avec devise
 {{total_price_gross}} - total TTC 
 {{total_price_gross_with_currency}} - total TTC avec devise
 {{tax_value}} - montant de la taxe
 {{tax_value_with_currency}} - montant de la taxe avec devise
-{{notes}} - informations spécifiques
+{{tax_name}} - nom de la taxe
+{{tax2_name}} - nom de la deuxième taxe
+{{tax_value_name}} -
+{{tax_visible}} - afficher colonne taxe
+{{tax2_visible}} - afficher deuxième colonne taxe
+{{currency}} - devise
+{{currency_symbol}} - devise (symbole)
+{{currency_short}} - devise (abrégé)
+{{exchange_currency}} - convertir en
+{{lang}} - langue
+{{exchange_rate}} - taux de change
+{{exchange_note}} - note sur le taux
+{{exchange_date}} - date de la conversion
+{{exchange_currency}} - devise (conversion)
+{{exchange_currency_rate}} - 
+{{long_exchange_note}} - taux de change appliqué
+{{total_price_net_in_main_currency}} - total HT avec devise principale
+{{total_price_gross_in_main_currency}} - total TTC avec devise principale
+{{total_price_net_in_exchange_currency}} - total HT avec devise de conversion
+{{total_price_gross_in_exchange_currency}} - total TTC avec devise de conversion
+{{tax_value_in_exchange_currency}} - montant de taxe avec devise de conversion
 {{outstanding}} - montant à payer (en chiffres)
 {{outstanding_in_exchange_currency}} - montant converti à payer (en chiffres)
 {{outstanding_in_words}} - montant à payer (en lettres)
@@ -70,45 +99,23 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{negative_outstanding}} - solde en votre faveur (en chiffres)
 {{absolute_outstanding}}
 {{absolute_outstanding_in_words}}
-{{all_in_words_in_exchange_currency}}
-{{all_in_words}} - montant total TTC (en lettres)
+{{all_in_words_in_exchange_currency}} montant total converti (en lettres)
+{{all_in_words}} - montant total (en lettres)
+{{paid}} - montant payé
+{{status_paid}} - Etat Payé
+{{oid}} - numéro de commande
 {{payment_to}} - date limite de règlement
 {{type_of_payment}} - Mode de règlement
-{{paid}} - montant payé
+{{notes}} - informations spécifiques
 {{logo_url}} - logo
 {{stamp_url}} - tampon
-{{stamp_below_sign_url}}
-{{status_paid}} - 
+{{stamp_below_sign_url}} - tampon sous le nom du vendeur
 {{token}} - code
-{{oid}} - numéro de commande
-{{description_long}} - texte additionnel (imprimé sur la page suivante)
-{{description_footer}} - Bas de page
 {{view_url}}
 {{view_link}}
 {{payment_url}}
 {{payment_button_url}}
-{{tax_name}} - nom de la taxe
-{{tax2_name}} - nom de la deuxième taxe
-{{tax_value_name}} -
-{{currency}} - devise
-{{currency_symbol}} - devise (symbole)
-{{currency_short}} - devise (abrégé)
-{{exchange_currency}} - convertir en
-{{lang}} - langue
-{{discount}} - réduction
-{{show_discount}} - afficher réduction
 {{income}} - revenu
-{{exchange_rate}} - taux de change
-{{exchange_note}} - note sur le taux
-{{exchange_date}} - date de la conversion
-{{exchange_currency}} - devise (conversion)
-{{exchange_currency_rate}} - 
-{{total_price_net_in_main_currency}} - total HT avec devise principale
-{{total_price_gross_in_main_currency}} - total TTC avec devise principale
-{{total_price_net_in_exchange_currency}} - total HT avec devise de conversion
-{{total_price_gross_in_exchange_currency}} - total TTC avec devise de conversion
-{{tax_value_in_exchange_currency}} - montant de taxe avec devise de conversion
-{{additional_info}} - colonne additionnelle
 {{additional_fields}} - champ additionnel 
 {{additional_field_name}} - 
 {{additional_field_value}} - 
@@ -116,19 +123,12 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{client}}
 {{client_panel_view_url}} - url de l'accès client
 {{client_panel_view_link}}
-{{additional_info_desc}} - Titre de la colonne additionnelle
-{{use_product_code}} - afficher la colonne Référence
-{{tax_visible}} - afficher colonne taxe
-{{tax2_visible}} - afficher deuxième colonne taxe
-{{long_exchange_note}} - taux de change appliqué
 {{positions_total_price_net}}
 {{positions_total_price_gross}}
 {{positons_total_tax}}
 {{correction}}
 {{corrected_content_before}}
 {{corrected_content_after}}
-{{seller_tax_no_kind}} - Numéro d'identification du vendeur
-{{buyer_tax_no_kind}} - Numéro d'identification de l'acheteur
 {{show_totals}} - afficher un résumé du total net, brut et de la TVA
 {{hide_tax}} - afficher les montants TTC uniquement 
 {{show_tax_split}} - afficher le résumé des différents taux de taxe
@@ -136,18 +136,19 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{paid_date}} - date de paiement
 {{show_date_and_sign}} - afficher la mention " Date et signature du client..."
 {{show_product_description}} - afficher la description des produits
-{{paid_mark_url}}
-{{sales_code}}
 {{show_unit_price_gross}} - afficher le prix unitaire TTC
 {{total_discount}} - réduction globale
-{{transaction_id}} - ID de la transaction
 {{show_paid_logo}} - afficher le tampon "Payé"
-{{client_external_id}} - Réf/code client
+{{paid_mark_url}}
+{{sales_code}}
+{{transaction_id}} - ID de la transaction
 {{locale}}
 {{final}} - facture de solde
 {{advanced}}
 {{advanced_num}}
 {{total_tax_inscription}}
+{{description_long}} - texte additionnel (imprimé sur la page suivante)
+{{description_footer}} - Bas de page
 
 {{#each positions}}  - ligne des tableaux :
   {{no}} - numéro de ligne
@@ -158,10 +159,10 @@ Les variables qui peuvent être utilisées dans les formats sont:
   {{discount}} - réduction
   {{quantity}} - quantité
   {{unit_price_net}} - prix unitaire ht
+  {{unit_price_gross}} - prix unitaire ttc
   {{unit_price_net_with_discount}} - prix unitaire ht après réduction
   {{unit_price_gross_with_discount}} - prix unitaire ttc après réduction
-  {{unit_price_gross}} - prix unitaire ttc
-  {{total_price_net}} - total HT
+  {{total_price_net}} - total ht
   {{total_price_gross}} - total ttc
   {{tax}} - taux de taxe
   {{tax2}} - taux de la deuxième taxe
