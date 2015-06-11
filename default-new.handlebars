@@ -1,0 +1,310 @@
+{{! ------------------- DO NOT MODIFY ------------------- }}
+<div class="invoice_outline" {{#if status_paid}}{{#if show_paid_logo}}{{#not_in kind "proforma,estimate"}}style="background-image:url('{{paid_mark_url}}');"{{/not_in}}{{/if}}{{/if}} >
+
+
+	{{#if payment_url}}
+		<a class="pull-right btn btn-default btn-print" style="margin-bottom:10px;" href="{{payment_url}}">{{tt "account.pay_online_button"}}&nbsp;&raquo;</a>
+	{{/if}}
+{{! ----------------- end DO NOT MODIFY ----------------- }}
+
+	<section id="invoice_header">
+		<div id="info">
+			<p>
+				<span id="document_type">{{document_type}} {{tt "invoice.number"}}</span> <span id="document_number">{{number}}</span>
+			</p>
+			<p>
+				{{#if print_option}}
+					<p>{{print_option}}</p>
+				{{/if}}
+				{{#if issue_place}}
+					<p><span>{{tt "invoice.place"}}:</span> {{issue_place}}</p>	
+				{{/if}}
+
+				<p><span>
+				{{#if accounting_doc}}
+					{{tt "invoice.issue_date"}}:
+				{{else}}
+					{{tt "invoice.print_date"}}:
+				{{/if}}</span>
+				{{issue_date}}</p>
+
+				{{#if accounting_doc}}
+					{{#if sell_date}}
+						{{#if sell_date_kind}}
+							<p><span>{{{sell_date_kind}}}:</span> {{sell_date}}</p>
+						{{else}}
+							<p><span>{{tt "invoice.sell_date"}}:</span> {{sell_date}}</p>
+						{{/if}}
+					{{/if}}
+				{{/if}}
+				{{#if type_of_payment}}
+						<p>	
+						<span>{{tt "invoice.payment_type"}}:</span>
+						{{type_of_payment}}
+						</p>
+				{{/if}}
+
+				{{#if payment_to}}
+						<p>	
+						<span>{{tt "invoice.payment_date"}}:</span>
+						{{payment_to}}
+						</p>
+				{{/if}}
+
+				{{#if additional_field_name}}
+					{{#if additional_field_value}}
+						<p>
+						<span>{{additional_field_name}}:</span> {{additional_field_value}}<p>
+					{{/if}}
+				{{/if}}
+			</p>
+		</div>
+		<div id="logo">
+			<div id="logo_place">
+				{{#if logo_url}}
+						<img src="{{logo_url}}" alt="logo" />
+				{{/if}}
+			</div>
+		</div>
+	</section>
+
+
+	<section id="invoice_traders">
+		<div id="seller">
+			<p><span>{{tt "invoice.seller"}}</span></p>
+			<p>{{{company}}}</p>
+			<p>{{{address}}}</p>
+			<p style="margin-bottom: 0.5em;">{{seller_tax_no_kind}} {{tax_no}}</p>
+		
+			{{#if email}}
+				<p>{{email}}</p>
+			{{/if}}
+		
+			{{#if www}}
+				<p>{{www}}</p>
+			{{/if}}
+		
+			{{#if phone}}
+				<p>{{tt 'department.phone'}}: {{phone}}</p>
+			{{/if}}
+			{{#if fax}}
+				<p>{{tt 'department.fax'}}: {{fax}}</p>
+			{{/if}}
+			{{#if bank}}
+				<p style="margin-top: 0.5em;">{{bank}}</p>
+          		{{#if bank_account}}<p class="nowrap-lines">{{bank_account}}</p>{{/if}}
+			{{/if}}
+		</div>
+
+		<div id="buyer">
+			<p><span>{{tt "invoice.buyer"}}</span></p>
+			<p>{{{buyer}}}</p>
+			<p>{{{buyer_address}}}</p>
+			{{#if buyer_company}}
+				{{#if buyer_tax_no}}
+					<p>{{buyer_tax_no_kind}} {{buyer_tax_no}}</p>
+				{{/if}}
+			{{/if}}
+			
+			{{#if use_delivery_address}}
+				{{#if delivery_address}}
+					<p style="margin-top: 0.5em;"><strong>{{tt "client.delivery_address"}}:</strong><br/>
+					{{{delivery_address}}}</p>
+				{{/if}}
+			{{/if}}
+			
+			{{#if show_buyer_note }}
+				<p style="margin-top: 0.5em;">{{{buyer_note}}}</p>
+			{{/if}}
+		</div>
+	</section>
+
+
+
+
+	{{#if title}}
+		<div id="title">
+			{{{title}}}
+		</div>
+	{{/if}}
+
+
+	
+	{{#eq kind 'correction'}}
+		<!-- if you want to customize 'positions_correction', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/positions_correction.hbs.html  -->
+		{{>positions_correction}}
+	{{else}}
+		<!-- if you want to customize 'positions', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/positions.hbs.html  -->
+		{{>positions}}
+	{{/eq}}
+		
+	{{#if final}}
+		<!-- if you want to customize 'positions', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/positions.hbs.html  -->
+		{{>advanced}}
+	{{/if}}
+
+	<!-- if you want to customize 'totals', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/totals.hbs.html  -->
+	{{>totals}}
+	
+
+
+	<section id="summary">
+
+		{{#if notes}}
+			<p>
+			<span>{{tt "invoice.description"}}:</span>
+			{{{notes}}}
+			</p>
+		{{/if}}
+		
+		<p>
+		<span>{{tt "invoice.to_pay"}}:</span>
+		{{outstanding}}
+		</p>
+
+		{{#if outstanding_in_words}}
+			<p>
+			<span>{{tt "invoice.in_words"}}:</span>
+			{{{outstanding_in_words}}}
+			</p>			
+		{{/if}}
+	
+		{{#if paid}}
+			<p>
+			<span>{{tt "invoice.paid"}}:</span>
+			{{paid}}
+			</p>
+		{{/if}}
+
+	</section>
+
+	{{#if status_paid}}{{#if show_paid_logo}}{{#not_in kind "proforma,estimate"}}
+			<img id="paid_mark" src="{{paid_mark_url}}" alt="" />
+	{{/not_in}}{{/if}}{{/if}}
+
+
+	<section id="invoice_signatures">
+		<div id="buyer_sign">
+			{{#not_eq locale 'fr'}}
+				{{#if buyer_person}}
+					<p><span>{{tt "invoice.buyer_person"}}</span></p>
+					<p>{{buyer_person}}</p>
+				{{/if}}
+			{{/not_eq}}
+		</div>
+		<div id="seller_sign">
+			{{#if person}}
+				<p><span>{{tt "invoice.seller_person"}}</span></p>
+				<p>{{person}}</p>
+			{{else}}
+				{{#if stamp_below_sign_url}}
+				<p><span>{{tt "invoice.seller_person"}}</span></p>
+				{{/if}}
+			{{/if}}
+
+			{{#if stamp_below_sign_url}}
+				<img src="{{stamp_url}}" alt="stamp" style="max-width:40%"/>
+			{{/if}}	
+		</div>
+	</section>
+
+{{! ------------------- DO NOT MODIFY ------------------- }}
+	
+	{{#eq locale 'fr'}}
+		{{#if department.name}}
+			<section id="description_footer">
+				<div id="company_info_footer"><span>
+                {{#if department.own_footer}}
+                    {{{department.footer_content}}}
+                {{else}}
+                    {{department.kind}} {{department.name}},
+                    {{#if street}}
+                        {{street}},
+                    {{/if}}
+
+                    {{post_code}}
+
+                    {{#if place}}
+                        {{place}},
+                    {{/if}}
+
+                    <br />
+
+                    {{#eq department.capital_kind 'amount'}}
+	                    Capital: {{department.capital}} {{department.capital_currency}},
+                    {{/eq}}
+
+                    {{#eq department.capital_kind 'variable'}}
+	                    Capital {{department.capital_kind}},
+                    {{/eq}}
+
+                    {{#eq department.register1_status 'yes'}} {{!-- Immatriculé --}}
+
+                        {{#if department.register1_number2}} {{!-- NAF (ou NACE) --}}
+		                    NAF: {{department.register1_number2}},
+                        {{/if}}
+
+                        {{#eq department.register2_status '1'}}
+                            {{department.register2_number1}} RM {{department.register2_number2}},
+                        {{/eq}}
+
+                        {{#eq department.register3_status '1'}}
+		                    RCS  {{department.register3_number1}} {{department.register3_number2}}  {{department.register3_number3}},
+                        {{/eq}}
+
+                        {{#eq department.register4_status '1'}}
+                            {{department.register1_number3}} {{department.register1_number1}} {{department.register4_number3}} {{department.register4_number1}} Dispensé d’immatriculation au RM et RCS,
+                        {{/eq}}
+
+                    {{/eq}}
+
+                    {{#eq department.register1_status 'pending'}} {{!-- En cours d'immatriculation --}}
+	                    En cours d’immatriculation,
+                    {{/eq}}
+
+                    {{#if department.tax_kind}}
+
+                        {{#eq department.tax_kind 'yes'}}
+		                    <!-- {{tt "department.tax_kind"}}:  -->
+                            {{department.tax_no}}
+                        {{/eq}}
+
+                        {{#eq department.tax_kind 'no'}}
+		                    TVA non applicable, art. 293B du CGI.
+                        {{/eq}}
+
+                        {{#eq department.tax_kind 'exempt'}}
+		                    <!-- {{tt "department.tax_kind"}}:  -->
+                            {{department.tax_no}}
+                        {{/eq}}
+
+                    {{/if}}
+                {{/if}}
+                </span></div>
+			</section>
+		{{/if}}
+	{{else}}
+		{{#if description_footer}}
+			<section id="description_footer">
+				{{description_footer}}
+			</section>
+		{{/if}}
+	{{/eq}}
+
+	{{#if description_long}}
+		<div style="page-break-after:always !important;"></div>
+		<div class="invoice_outline">
+
+			<hr class="noprint" />
+		
+			<section id="#last_page">
+
+				<span>{{description_long}}</span>
+
+			</section>
+		
+		</div>
+	{{/if}}	
+
+</div> <!-- invoice_outline -->
+{{! ----------------- end DO NOT MODIFY ----------------- }}
