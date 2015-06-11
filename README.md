@@ -27,7 +27,7 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{issue_place}} - lieu de création
 {{print_option}} 
 {{sell_date}} - data de vente
-{{sell_date_kind}} - 
+{{sell_date_kind}} - date de vente ou validité
 {{company}} - nom de la compagnie/département
 {{person}} - nom du vendeur
 {{post_code}} - code postal
@@ -73,7 +73,7 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{tax_value_with_currency}} - montant de la taxe avec devise
 {{tax_name}} - nom de la taxe
 {{tax2_name}} - nom de la deuxième taxe
-{{tax_value_name}} -
+{{tax_value_name}} - nom de la taxe 
 {{tax_visible}} - afficher colonne taxe
 {{tax2_visible}} - afficher deuxième colonne taxe
 {{currency}} - devise
@@ -81,11 +81,11 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{currency_short}} - devise (abrégé)
 {{exchange_currency}} - convertir en
 {{lang}} - langue
-{{exchange_rate}} - taux de change
+{{exchange_currency_rate}} - taux de change (sur les documents)
 {{exchange_note}} - note sur le taux
 {{exchange_date}} - date de la conversion
 {{exchange_currency}} - devise (conversion)
-{{exchange_currency_rate}} - 
+{{exchange_rate}} - taux de change (utilisé dans les rapports)
 {{long_exchange_note}} - taux de change appliqué
 {{total_price_net_in_main_currency}} - total HT avec devise principale
 {{total_price_gross_in_main_currency}} - total TTC avec devise principale
@@ -97,28 +97,27 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{outstanding_in_words}} - montant à payer (en lettres)
 {{outstanding_in_words_in_exchange_currency}} - montant converti à payer (en lettres)
 {{negative_outstanding}} - solde en votre faveur (en chiffres)
-{{absolute_outstanding}}
-{{absolute_outstanding_in_words}}
+{{absolute_outstanding}} -  montant à payer en valeur absolue (en chiffres)
+{{absolute_outstanding_in_words}} - montant à payer en valeur absolue (en lettres)
 {{all_in_words_in_exchange_currency}} montant total converti (en lettres)
 {{all_in_words}} - montant total (en lettres)
 {{paid}} - montant payé
-{{status_paid}} - Etat Payé
+{{status_paid}} - Etat Payé ou non
 {{oid}} - numéro de commande
 {{payment_to}} - date limite de règlement
 {{type_of_payment}} - Mode de règlement
 {{notes}} - informations spécifiques
-{{logo_url}} - logo
-{{stamp_url}} - tampon
-{{stamp_below_sign_url}} - tampon sous le nom du vendeur
+{{additional_field_name}} - titre du champ additionnel
+{{additional_field_value}} - contenu du champ additionnel
+{{logo_url}} - url du logo
+{{stamp_url}} - url du tampon
+{{stamp_below_sign_url}} - url du tampon sous le nom du vendeur
 {{token}} - code
 {{view_url}}
-{{view_link}}
-{{payment_url}}
+{{view_link}} - lien vers l'aperçu du document
+{{payment_url}} - url pour effectuer le paiement
 {{payment_button_url}}
 {{income}} - revenu
-{{additional_fields}} - champ additionnel 
-{{additional_field_name}} - 
-{{additional_field_value}} - 
 {{department}} - département/compagnie - les champs sont id, nom, type ... par ex: {{department.id}} {{department.name}}
 {{client}}
 {{client_panel_view_url}} - url de l'accès client
@@ -126,9 +125,6 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{positions_total_price_net}}
 {{positions_total_price_gross}}
 {{positons_total_tax}}
-{{correction}}
-{{corrected_content_before}}
-{{corrected_content_after}}
 {{show_totals}} - afficher un résumé du total net, brut et de la TVA
 {{hide_tax}} - afficher les montants TTC uniquement 
 {{show_tax_split}} - afficher le résumé des différents taux de taxe
@@ -139,14 +135,13 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{show_unit_price_gross}} - afficher le prix unitaire TTC
 {{total_discount}} - réduction globale
 {{show_paid_logo}} - afficher le tampon "Payé"
-{{paid_mark_url}}
+{{paid_mark_url}} - url du tampon vert "Payé"
 {{sales_code}}
 {{transaction_id}} - ID de la transaction
 {{locale}}
 {{final}} - facture de solde
-{{advanced}}
-{{advanced_num}}
-{{total_tax_inscription}}
+{{advanced}} - acompte
+{{advanced_num}} - nombre des acomptes liés à une facture finale
 {{description_long}} - texte additionnel (imprimé sur la page suivante)
 {{description_footer}} - Bas de page
 
@@ -167,7 +162,7 @@ Les variables qui peuvent être utilisées dans les formats sont:
   {{tax}} - taux de taxe
   {{tax2}} - taux de la deuxième taxe
   {{tax_value}} - montant de taxe
-  {{kind}}
+  {{kind}} - type de document
 {{/each}}
 
 {{#each summary}} - résumé des totaux :
