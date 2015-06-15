@@ -26,16 +26,16 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{issue_date}} - date de création
 {{issue_place}} - lieu de création
 {{print_option}} 
-{{sell_date}} - data de vente
-{{sell_date_kind}} - date de vente ou validité
+{{place}} - lieu de vente
+{{sell_date}} - date de vente
+{{sell_date_kind}} - date de vente ou validité (ou autre)
 {{company}} - nom de la compagnie/département
 {{person}} - nom du vendeur
-{{post_code}} - code postal
-{{place}} - ville
-{{street}} - numéro et nom de rue
-{{tax_no}} - numéro de taxe
-{{country}} - pays
-{{address}} -
+{{post_code}} - code postal du vendeur
+{{street}} - numéro et nom de rue du vendeur
+{{tax_no}} - numéro de taxe du vendeur
+{{country}} - pays du vendeur
+{{address}} - adresse complète du vendeur
 {{www}} - adresse internet
 {{email}} - adresse email
 {{fax}} - numéro de fax
@@ -138,7 +138,7 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{paid_mark_url}} - url du tampon vert "Payé"
 {{sales_code}}
 {{transaction_id}} - ID de la transaction
-{{locale}}
+{{locale}} - 
 {{final}} - facture de solde
 {{advanced}} - acompte
 {{advanced_num}} - nombre des acomptes liés à une facture finale
@@ -147,6 +147,7 @@ Les variables qui peuvent être utilisées dans les formats sont:
 
 {{#each positions}}  - ligne des tableaux :
   {{no}} - numéro de ligne
+  {{kind}} - type de ligne (ligne de produit ou ligne de texte)
   {{code}} - référence du produit
   {{item}} - nom du produit
   {{description}} - description du produit
@@ -162,7 +163,7 @@ Les variables qui peuvent être utilisées dans les formats sont:
   {{tax}} - taux de taxe
   {{tax2}} - taux de la deuxième taxe
   {{tax_value}} - montant de taxe
-  {{kind}} - type de document
+  {{kind}} - type
 {{/each}}
 
 {{#each summary}} - résumé des totaux :
