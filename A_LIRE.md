@@ -133,7 +133,8 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{show_date_and_sign}} - afficher la mention " Date et signature du client..."
 {{show_product_description}} - afficher la description des produits
 {{show_unit_price_gross}} - afficher le prix unitaire TTC
-{{total_discount}} - réduction globale
+{{total_discount}} - réduction globale 
+{{global_discount_percent}} - réduction globale (oui ou non)
 {{show_paid_logo}} - afficher le tampon "Payé"
 {{paid_mark_url}} - url du tampon vert "Payé"
 {{sales_code}}
@@ -163,7 +164,6 @@ Les variables qui peuvent être utilisées dans les formats sont:
   {{tax}} - taux de taxe
   {{tax2}} - taux de la deuxième taxe
   {{tax_value}} - montant de taxe
-  {{kind}} - type
 {{/each}}
 
 {{#each summary}} - résumé des totaux :
@@ -171,6 +171,10 @@ Les variables qui peuvent être utilisées dans les formats sont:
   {{total_price_gross}} - total TTC
   {{tax}} - taux de taxe
   {{tax_value}} - total taxe
+  {{total_price_gross_without_discount}} - sous-total TTC avant réduction
+  {{total_price_net_without_discount}} - sous-total HT avant réduction
+  {{global_discount_net}} - montant total HT de la réduction
+  {{global_discount_gross}} - montant total TTC de la réduction
 {{/each}}
 
 {{footer}} - bas de page
@@ -264,7 +268,7 @@ Exemple:
 Importation de données
 ---------------
 
-Il vous est possible d'importer dans votre compte VosFactures des données existantes depuis n'importe quel programme si celles-ci sont dans un fichier .TXT, .CSV, .XLS, .ods, XLSX, .tsv, .xml bure. L'importation de fichier se fait depuis l'onglet Paramètres > Importation. Vous pouvez importer des factures (et autres documents de facturation), des clients et fournisseurs, vos catalogues produits, et des relevés bancaires. Durant l'importation, vous pouvez choisir quelles colonnes et lignes à importer. 
+Il vous est possible d'importer dans votre compte VosFactures des données existantes depuis n'importe quel programme si celles-ci sont dans un fichier .TXT, .CSV, .XLS, .ods, XLSX, .tsv, .xml bure. L'importation de fichier se fait depuis l'onglet Paramètres > Importation. Vous pouvez importer des factures d'achat et de vente (et autres documents de facturation), des clients et fournisseurs, vos catalogues produits, et des relevés bancaires. Durant l'importation, vous pouvez choisir quelles colonnes et lignes à importer. 
 
 
 
