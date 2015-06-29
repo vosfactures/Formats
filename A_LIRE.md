@@ -63,7 +63,7 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{use_product_code}} - afficher la colonne Référence
 {{additional_info}} - colonne additionnelle
 {{additional_info_desc}} - Titre de la colonne additionnelle
-{{discount}} - réduction
+{{discount}} - réduction (montant)
 {{show_discount}} - afficher réduction
 {{total_price_net}} - total HT
 {{total_price_net_with_currency}} - total HT avec devise
@@ -133,8 +133,8 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{show_date_and_sign}} - afficher la mention " Date et signature du client..."
 {{show_product_description}} - afficher la description des produits
 {{show_unit_price_gross}} - afficher le prix unitaire TTC
-{{total_discount}} - réduction globale 
-{{global_discount_percent}} - réduction globale (oui ou non)
+{{total_discount}} - réduction globale (montant)
+{{global_discount_percent}} - réduction globale (en %)
 {{show_paid_logo}} - afficher le tampon "Payé"
 {{paid_mark_url}} - url du tampon vert "Payé"
 {{sales_code}}
