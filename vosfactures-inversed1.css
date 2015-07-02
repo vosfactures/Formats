@@ -65,7 +65,14 @@
     text-align: left;
 	}	
 	
-	
+	.totals_inv_table {
+		margin-top: 0px !important;
+		line-height: 1em;
+	}
+
+	.medium_text {margin-top:0px !important;margin-bottom:7px !important;}
+
+	.full_width {margin-top:0px;margin-bottom:0px;}
 	
 	.hidden{display:none;}	
 	
