@@ -1,4 +1,4 @@
-{{! ------------------- DO NOT MODIFY ------------------- }} 
+{{! ------------------- DO NOT MODIFY ------------------- }}
 <div class="invoice_outline" {{#if status_paid}}{{#if show_paid_logo}}{{#not_in kind "proforma,estimate"}}style="background-image:url('{{paid_mark_url}}');"{{/not_in}}{{/if}}{{/if}} >
 
 
@@ -12,6 +12,11 @@
 			<p>
 				<span id="document_type">{{document_type}} {{tt "invoice.number"}}</span> <span id="document_number">{{number}}</span>
 			</p>
+			{{#if correction}}
+				<p style="margin-bottom: 0.5em;">
+					{{ correction }}
+				</p>
+			{{/if}}
 			<p>
 				{{#if print_option}}
 					<p>{{print_option}}</p>
@@ -46,7 +51,7 @@
 
 				{{#if payment_to}}
 						<p>	
-						<span>{{tt "invoice.payment_date"}}:</span>
+						<span>{{tt "invoice.payment_to"}}:</span>
 						{{payment_to}}
 						</p>
 				{{/if}}
@@ -74,8 +79,10 @@
 			<p><span>{{tt "invoice.seller"}}</span></p>
 			<p>{{{company}}}</p>
 			<p>{{{address}}}</p>
-			<p style="margin-bottom: 0.5em;">{{seller_tax_no_kind}} {{tax_no}}</p>
-		
+			{{#if tax_no}}
+				<p style="margin-bottom: 0.5em;">{{seller_tax_no_kind}} {{tax_no}}</p>
+			{{/if}}
+
 			{{#if email}}
 				<p>{{email}}</p>
 			{{/if}}
@@ -106,16 +113,14 @@
 				{{/if}}
 			{{/if}}
 			
-			{{#if use_delivery_address}}
-				{{#if delivery_address}}
-					<p style="margin-top: 0.5em;"><strong>{{tt "client.delivery_address"}}:</strong><br/>
-					{{{delivery_address}}}</p>
-				{{/if}}
-			{{/if}}
+			{{#and use_delivery_address delivery_address}}
+				<p style="margin-top: 0.5em;"><strong>{{tt "client.delivery_address"}}:</strong><br/>
+				{{{delivery_address}}}</p>
+			{{/and}}
 			
-			{{#if show_buyer_note }}
+			{{#and show_buyer_note buyer_note}}
 				<p style="margin-top: 0.5em;">{{{buyer_note}}}</p>
-			{{/if}}
+			{{/and}}
 		</div>
 	</section>
 
@@ -132,7 +137,11 @@
 	
 	{{#eq kind 'correction'}}
 		<!-- if you want to customize 'positions_correction', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/positions_correction.hbs.html  -->
-		{{>positions_correction}}
+		{{#eq locale 'pl'}}
+			{{>positions_correction}}
+		{{else}}
+			{{>positions}}
+		{{/eq}}
 	{{else}}
 		<!-- if you want to customize 'positions', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/positions.hbs.html  -->
 		{{>positions}}
@@ -169,12 +178,19 @@
 			</p>			
 		{{/if}}
 	
-		{{#if paid}}
+		{{#or paid show_paid_when_zero}}
 			<p>
-			<span>{{tt "invoice.paid"}}:</span>
-			{{paid}}
+				<span>{{tt "invoice.paid"}}:</span>
+				{{#if paid}}
+					{{paid}}
+				{{else}}
+					0.00 {{currency}}
+				{{/if}}
+				{{#and show_paid_date paid_date}}
+					{{tt 'invoice.paid_on'}} {{paid_date}}
+				{{/and}}
 			</p>
-		{{/if}}
+		{{/or}}
 
 	</section>
 
@@ -305,6 +321,6 @@
 		
 		</div>
 	{{/if}}	
- 
+
 </div> <!-- invoice_outline -->
 {{! ----------------- end DO NOT MODIFY ----------------- }}
