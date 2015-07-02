@@ -1,0 +1,57 @@
+	<table class="main_inv_table" id="rel_adv_table">
+		<thead>
+			<tr>
+				<th colspan="100" class="text_left advanced_header">{{tt "invoice.related_advance"}} 
+				{{#eq advanced_num 0}}
+					<br />{{tt "invoice.have_none"}}
+				{{/eq}}</th>
+			</tr>
+		<tbody>
+			{{#each advanced}}
+			<tr>
+				<td class="nr_col related_advance">
+					{{no}}
+				</td>
+				<td class="name_col related_advance" >
+					{{number}} {{tt "invoice.advance_day"}} {{issue_date}}
+				</td>
+
+				{{#if ../tax_visible}}
+
+					<td class="text_right number total_price_net_col related_advance">
+						{{price_net}}
+					</td>			
+
+					<td class="text_right number tax_col related_advance">
+						
+					</td>
+					{{#if ../../tax2_visible}}
+						<td class="text_right number tax2_col related_advance">
+							
+						</td>
+					{{/if}}
+					<td class="text_right number tax_value_col related_advance">
+						{{price_tax}}
+					</td>
+				{{/if}}				
+	
+				<td class="text_right number total_price_gross_col related_advance">
+					{{price_gross}}
+				</td>
+
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+
+	<script>
+
+		var columns = ['nr_col', 'total_price_net_col', 'tax_col', 'tax2_col', 'tax_value_col', 'total_price_gross_col'];
+
+		$.each(columns, function() {
+			var wid = $('#pos_table tbody tr:first-of-type td.'+this).innerWidth();
+			;
+			$('#rel_adv_table tbody tr:first-of-type td.'+this).css('width', wid);
+		});
+
+	</script>
