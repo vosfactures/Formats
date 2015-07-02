@@ -135,7 +135,7 @@
 	<!-- si vous souhaitez personnaliser les totaux, vous pouvez les remplacer par https://github.com/vosfactures/templates/blob/master/partials/totals.hbs.html  -->
 	{{>totals}}
 
-	<table class="full_width" style="margin-top:20px">
+	<table class="full_width">
 		<tr>
 			<td class="empty">
 				<strong class="medium_text">
@@ -147,7 +147,6 @@
 					<strong>{{tt "invoice.in_words"}}:</strong> {{{absolute_outstanding_in_words}}} <br/>
 				{{/if}}
 				
-				<br/>
 
 				{{#if paid}}
 				<strong>{{tt "invoice.paid"}}:</strong> {{paid}}
@@ -159,11 +158,9 @@
 			</td>
 		</tr>
 	</table>
-
-	<br/>
 		  
 <div style="page-break-inside: avoid !important;">
-	<table  class="full_width" style="margin-top:20px">
+	<table  class="full_width">
 		<tr>
 			<td class="empty">
 				
@@ -172,7 +169,7 @@
 				{{/if}}
 
 				{{#if payment_to}}
-					<strong>{{tt "invoice.payment_date"}}:</strong> {{payment_to}}	<br/>
+					<strong>{{tt "invoice.payment_to"}}:</strong> {{payment_to}}	<br/>
 				{{/if}}
 
 				{{#not_eq additional_fields.interest_rate 'Néant'}}
@@ -211,12 +208,12 @@
 		</tr>
 	</table>
 
-	<br/><br/>
 
 	<table  class="full_width">
 		<tr>
 			<td class="text_center half_width">
 				{{#if person}}
+				<br/><br/>
 				<strong>{{tt "invoice.seller_person"}}</strong>
 				<br/>
 				<i>{{person}}</i>
@@ -228,7 +225,6 @@
 
 				{{#if stamp_below_sign_url}}
 
-				<br />
 				<img src="{{stamp_url}}" alt="stamp" style="display:block;margin:auto;max-width:40%"/>
 
 
@@ -248,7 +244,6 @@
 				{{#if show_date_and_sign}}
 				<strong>{{tt "invoice.date_and_signature_etc"}}</strong><br/>
 				<!-- Date et signature du client précédée de la mention ‘Bon pour accord’ --> 
-				<br/>
 				{{/if}}
 				{{/in}}
 			</td>
@@ -384,7 +379,7 @@
 
 {{/unless}}
 
- 
+
 
 
 </div> <!-- invoice_outline -->
