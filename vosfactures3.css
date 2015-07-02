@@ -1,4 +1,4 @@
- 
+
 	@media all{ 
 	.invoice_outline{font-family:helvetica,"lucida grande","lucida sans unicode";}
 	/*@page{size:A4 ;}
@@ -54,7 +54,7 @@
 	hr{margin:10px auto;}
 	.to_pay th{width:120px;}
 	.to_pay td,
-	.to_pay th{padding:10px 5px;}
+	.to_pay th{padding:0px 5px;}
 	table th,table td{margin:0;padding:5px;}
 	#exchange_currency{margin-top:20px;}
 	#exchange_currency td{border-top:1px solid #ddd;padding-top:10px !important;}
@@ -79,6 +79,16 @@
 	.hidden{display:none;}
 	.vosfactures3_visible{display: inline !important}
 	strong.medium_text {display:block;}
+
+	.totals_inv_table {
+		margin-top: 0px !important;
+		line-height: 1em;
+	}
+
+	.medium_text {margin-top:0px !important;margin-bottom:7px !important;}
+
+	.full_width {margin-top:0px;margin-bottom:0px;}
+
 }
 
 @media print {		
