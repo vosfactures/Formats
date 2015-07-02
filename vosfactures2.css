@@ -1,5 +1,5 @@
 @media all{
- 	
+	
 	.invoice.invoice_preview b,
 	.invoice.invoice_preview strong{color:#000;}
 
@@ -39,8 +39,8 @@
 	.no_border,
 	.no_border td,
 	.invoice_outline table.main_inv_table td.no_border{border:0;}
-	.seller_buyer{margin:20px 0 20px 0;}
-	.main_inv_table{margin-top:20px}
+	.seller_buyer{margin:10px 0 10px 0;}
+	.main_inv_table{margin-top:10px}
 	.invoice_outline .main_inv_table th,
 	.invoice_outline .main_inv_table td{font-size:11px;}
 	table.full_width{width:100%;}
@@ -56,16 +56,22 @@
 	.digit{white-space:nowrap;text-align:right;}
 	.no_wrap{white-space:nowrap;}
 	 .invoice_outline h4 {
-    color: #000000;
-    font-family: helvetica,serif;
-    font-size: 1.4em;
-    font-style: normal;
-    margin: 5px auto !important;
-    padding: 0;
-    text-align: left;
+	    color: #000000;
+	    font-family: helvetica,serif;
+	    font-size: 1.4em;
+	    font-style: normal;
+	    margin: 5px auto !important;
+	    padding: 0;
+	    text-align: left;
 	}	
-	
-	
+
+	.totals_inv_table {
+		margin-top: 0px !important;
+		line-height: 1.15em;
+	}
+
+	.medium_text {margin-top:0px !important;margin-bottom:7px !important;}
+
 	
 	.hidden{display:none;}	
 	
