@@ -1,15 +1,42 @@
 	{{#if show_totals }}
 	{{#unless exchange_currency}}
-	<table class="clean to_right" style="page-break-inside: avoid !important;">
+	<table class="clean to_right totals_inv_table" style="page-break-inside: avoid !important;">
 		{{#unless hide_tax}}
-		<tr>
-			<th>
-				{{tt "invoice.total_price_net" }}
-			</th>
-			<td class="number">
-			    {{ total_price_net }}
-			</td>
-		</tr>
+			{{#if global_discount_percent}}
+				<tr>
+					<th>
+						{{tt "invoice.total_price_net" }}
+					</th>
+					<td class="number">
+					    {{ total_price_net_without_discount }}
+					</td>
+				</tr>
+				<tr>
+					<th>
+						{{tt "invoice.global_discount"}}({{global_discount_percent}})
+					</th>
+					<td class="number">
+					    {{ global_discount_net }}
+					</td>
+				</tr>
+				<tr>
+					<th>
+						{{tt "invoice.total_price_net_with_discount" }}
+					</th>
+					<td class="number">
+					    {{ total_price_net }}
+					</td>
+				</tr>
+			{{else}}
+				<tr>
+					<th>
+						{{tt "invoice.total_price_net" }}
+					</th>
+					<td class="number">
+					    {{ total_price_net }}
+					</td>
+				</tr>
+			{{/if}}
 		{{/unless}}
 		{{#if tax_visible}}
 		{{#unless hide_tax}}
