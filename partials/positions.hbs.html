@@ -1,4 +1,4 @@
-	<table class="main_inv_table full_width">
+	<table class="main_inv_table full_width" id="pos_table">
 
 		<thead>
 			<tr>
@@ -84,8 +84,13 @@
 					{{no}}
 				</td>
 				<td class="name_col">
-					{{{item}}}
-					<span id="product_description">
+					{{#if item_url }}
+						<a href="{{{item_url}}}" class="hidden-print show-screen">{{{item}}}</a>
+						<span class="show-print hidden-screen">{{{item}}}</span>
+					{{else}}
+						{{{item}}}
+					{{/if}}
+					<span id="product_description" class="item_description">
 						{{#if ../../show_product_description}}
 					 		{{{description}}}
 					 	{{/if}}
@@ -124,11 +129,11 @@
 							</td>			
 
 							<td class="text_right number tax_col">
-								{{tax}}%
+								{{tax}}{{#not_eq tax 'N/A'}}%{{/not_eq}}
 							</td>
 							{{#if ../../../../../tax2_visible}}
 								<td class="text_right number tax2_col">
-									{{tax2}}%
+									{{tax2}}{{#not_eq tax2 'N/A'}}%{{/not_eq}}
 								</td>
 							{{/if}}
 							<td class="text_right number tax_value_col">
@@ -165,29 +170,29 @@
 			
 		
 			{{#not_eq kind 'advance'}}
-				<tr class="clean no_border">	
-					<td class="nr_col footer"></td>
-					<td class="name_col footer"></td> 
+				<tr class="clean no_border summary_row">	
+					<td class="empty nr_col footer total"></td>
+					<td class="empty name_col footer total"></td> 
 					{{#if use_product_code}}
-						<td class="code_col footer"></td>
+						<td class="empty code_col footer total"></td>
 					{{/if}}
 					{{#if additional_info}}				
-						<td class="additional_info_col footer"></td>
+						<td class="empty additional_info_col footer total"></td>
 					{{/if}}
 					{{#if discount}}
-						<td class="discount_col footer"></td>
+						<td class="empty discount_col footer total"></td>
 					{{/if}}
-					<td class="quantity_col quantity_footer"></td>	
+					<td class="empty quantity_col quantity_footer footer total"></td>	
 					
 
-					<td class="empty price_net_col price_gross_col-hide_tax footer" style="display: none;"></td>
+					<td class="empty price_net_col price_gross_col-hide_tax footer total" style="display: none;"></td>
 					
-					<td  class="text_right no_border total footer">
+					<td  class="text_right no_border total footer total">
 						<strong>{{tt "invoice.total"}}</strong>
 					</td>		
 					{{#if tax_visible}}
 						{{#unless hide_tax }}
-              			<td class="text_right number total_price_net_col footer">
+              			<td class="text_right number total_price_net_col footer total">
                           {{#not_eq kind 'final'}}
                               {{total_price_net}}
                           {{/not_eq}}
@@ -195,12 +200,12 @@
                               {{positions_total_price_net}}
                           {{/eq}}
                         </td>
-						<td class="tax_col footer"></td>
+						<td class="tax_col footer total"></td>
 						{{#if ../tax2_visible}}
-							<td class="tax2_col footer"></td>
+							<td class="tax2_col footer total"></td>
 						{{/if}}
 
-						<td class="text_right number tax_value_col footer">
+						<td class="text_right number tax_value_col footer total">
 							{{#not_eq kind 'final'}}
 								{{tax_value}}
 							{{/not_eq}}
@@ -211,7 +216,7 @@
 						</td>
 						{{/unless}}
 					{{/if}}
-					<td class="width3 text_right number total_price_gross_col footer">
+					<td class="width3 text_right number total_price_gross_col footer total">
 					{{#not_eq kind 'final'}}
 						{{total_price_gross}}
 					{{/not_eq}}
@@ -227,39 +232,39 @@
 				{{#unless hide_tax}}
 				{{#each summary}}
 				<tr class="no_border">
-					<td class="nr_col footer"></td>
-					<td class="name_col footer"></td>
+					<td class="nr_col footer subtotal"></td>
+					<td class="name_col footer subtotal"></td>
 					{{#if ../../use_product_code}}
-						<td class="code_col footer"></td>
+						<td class="code_col footer subtotal"></td>
 					{{/if}}
 					{{#if ../../additional_info}}				
-						<td class="additional_info_col footer"></td>
+						<td class="additional_info_col footer subtotal"></td>
 					{{/if}}
 					{{#if ../../discount}}
-						<td class="discount_col footer"></td>
+						<td class="discount_col footer subtotal"></td>
 					{{/if}}
-					<td class="quantity_col footer"></td>
-					<td class="empty price_net_col footer" style="display: none;"></td>
-					<td class="text_right number including footer">
+					<td class="quantity_col footer subtotal"></td>
+					<td class="empty price_net_col footer subtotal" style="display: none;"></td>
+					<td class="text_right number including footer subtotal">
 						<strong>{{tt "invoice.including"}}</strong>
 					</td>
 
-					<td class="text_right number total_price_net_col footer">
+					<td class="text_right number total_price_net_col footer subtotal">
 						{{total_price_net}}
 					</td>
 
-					<td class="text_right number tax_col footer">
-						{{tax}}%
+					<td class="text_right number tax_col footer subtotal">
+						{{tax}}{{#not_eq tax 'N/A'}}%{{/not_eq}}
 					</td>
 					{{#if ../../../tax2_visible}}
-						<td class="text_right number tax2_col footer">
-							{{tax2}}%
+						<td class="text_right number tax2_col footer subtotal">
+							{{tax2}}{{#not_eq tax2 'N/A'}}%{{/not_eq}}
 						</td>
 					{{/if}}
-					<td class="text_right number tax_value_col footer">
+					<td class="text_right number tax_value_col footer subtotal">
 						{{tax_value}}
 					</td>
-					<td class="width3 text_right number total_price_gross_col footer">
+					<td class="width3 text_right number total_price_gross_col footer subtotal">
 						{{total_price_gross}}
 					</td>					
 				</tr>
@@ -273,7 +278,7 @@
 	</table>
 
 	{{#eq kind 'advance'}}
-		<table class="clean to_right" style="width:auto">
+		<table class="clean to_right" style="width:auto;" id="positions_summary" align="right">
 			{{#if show_tax_split}}
 
 			{{#if tax_visible}}
