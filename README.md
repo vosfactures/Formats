@@ -1,7 +1,7 @@
 [VosFactures.fr](http://vosfactures.fr/) - Logiciel de facturation en ligne
 ===========
 
-Format (template) des factures
+Format (template) des factures 
 ---------------
 
 En utilisant notre logiciel de facturation, vous avez accès à un certain nombre de formats de factures. Si l'un d'eux ne répond pas à vos attentes, vous pouvez créer votre propre modèle. Il vous suffit de vous connecter à votre compte (si vous n'êtes pas encore inscrit, [vous pouvez ouvrir un compte gratuitement] (https://app.vosfactures.fr/signup) ), de cliquer sur Paramètres > Paramètres du compte > Formats d'impression puis de cliquer sur le bouton "Ajouter un nouveau format".
