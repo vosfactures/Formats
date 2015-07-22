@@ -20,7 +20,7 @@ Les variables qui peuvent être utilisées dans les formats sont:
  
 ```shell
 {{document_type}} type de document
-{{kind}} - type
+{{kind}} - type ("vat" pour facture, "estimate" pour devis, "proforma" pour facture proforma, "correction" pour avoir, "client_order" pour bon de commande de client, "advance" pour facture d'acompte", "final" pour facture de solde, "invoice_other" pour autre type de document)
 {{number}} - numéro
 {{title}} - titre
 {{issue_date}} - date de création
@@ -29,6 +29,7 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{place}} - lieu de vente
 {{sell_date}} - date de vente
 {{sell_date_kind}} - date de vente ou validité (ou autre)
+{{today_date}} - date du jour
 {{company}} - nom de la compagnie/département
 {{person}} - nom du vendeur
 {{post_code}} - code postal du vendeur
