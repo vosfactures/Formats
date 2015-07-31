@@ -55,7 +55,7 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{buyer_company}} - nom de la compagnie de l'acheteur
 {{seller_tax_no_kind}} - Numéro d'identification du vendeur
 {{buyer_tax_no_kind}} - Numéro d'identification de l'acheteur
-{{client_external_id}} - Réf/code client
+{{client.external_id}} - Réf/code client
 {{use_delivery_address}} - afficher l'adresse de livraison
 {{delivery_address}} - adresse de livraison
 {{buyer_note}} - description additionnelle
