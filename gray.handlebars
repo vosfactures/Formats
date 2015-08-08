@@ -129,19 +129,32 @@
 
 
 	
-	<!-- si vous souhaitez personnaliser le tableau, vous pouvez le remplacer par https://github.com/vosfactures/templates/blob/master/positions.hbs.html -->
-	{{>positions}}
+	{{#eq kind 'correction'}}
+		<!-- if you want to customize 'positions_correction', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/positions_correction.hbs.html  -->
+		{{#eq locale 'pl'}}
+			{{>positions_correction}}
+		{{else}}
+			{{>positions}}
+		{{/eq}}
+	{{else}}
+		<!-- if you want to customize 'positions', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/positions.hbs.html  -->
+		{{>positions}}
+	{{/eq}}
 		
 	{{#if final}}
-		<!-- si vous souhaitez personnaliser la liste des acomptes liés, vous pouvez les remplacer par https://github.com/vosfactures/templates/blob/master/advances.hbs.html -->
+		<!-- if you want to customize 'advances', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/advances.hbs.html  -->
 		{{>advances}}
 	{{/if}}
 
 
-	<!-- si vous souhaitez personnaliser les totaux, vous pouvez les remplacer par https://github.com/vosfactures/templates/blob/master/totals.hbs.html -->
+	<div class="clean space-top"></div>
+	<!-- if you want to customize 'totals', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/totals.hbs.html  -->
+
+	
 	{{#eq locale 'fr'}}
 			{{#if show_totals }}
 				{{#unless exchange_currency}}
+				{{#if tax_visible}}
 				<table class="clean to_right totals_inv_table">
 					{{#unless hide_tax}}
 					<tr>
@@ -179,6 +192,7 @@
 				</table>
 
 				<div class="clear"></div>
+				{{/if}}
 				{{/unless}}
 				{{/if}}  
 
@@ -242,6 +256,7 @@
 		{{>totals}}
 	{{/eq}}
 	
+
 	<div class="no-page-break">
 	
 	<section id="summary">
@@ -249,12 +264,18 @@
 		<p>
 			<span>{{tt "invoice.to_pay"}}:</span>
 			<span class="to-pay">{{outstanding}}</span>
+			{{#if exchange_currency}}
+			 &nbsp;|&nbsp; {{outstanding_in_exchange_currency}}
+			{{/if}}
 		</p>	
 
 		{{#if outstanding_in_words}}
 			<p>
 				<span>{{tt "invoice.in_words"}}:</span>
 				{{{outstanding_in_words}}}
+				{{#if outstanding_in_words_in_exchange_currency}}
+				 &nbsp;|&nbsp; {{{outstanding_in_words_in_exchange_currency}}}
+				{{/if}}
 			</p>			
 		{{/if}}
 	
@@ -454,7 +475,7 @@
 	{{else}}
 		{{#if description_footer}}
 			<section id="description_footer">
-				{{description_footer}}
+				{{{description_footer}}}
 			</section>
 		{{/if}}
 	{{/eq}}
@@ -467,7 +488,7 @@
 		
 			<section id="#last_page">
 
-				<span>{{description_long}}</span>
+				<span>{{{description_long}}}</span>
 
 			</section>
 		
