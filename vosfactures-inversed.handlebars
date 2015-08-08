@@ -14,7 +14,7 @@
 
 
 	{{#if payment_url}}
-		<a class="payment_button" href="{{payment_url}}"><img src="{{payment_button_url}}" alt="online payment"/></a>
+		<a class="pull-right btn btn-default btn-print" style="margin-bottom:10px;" href="{{payment_url}}">{{tt "account.pay_online_button"}}&nbsp;&raquo;</a>
 	{{/if}}
 
 	<table   class="full_width">
@@ -97,7 +97,7 @@
 				{{/if}}
 				{{#if show_buyer_note }}
 					{{#if buyer_note}}
-						{{buyer_note}}<br/>
+						{{{buyer_note}}}<br/>
 					{{/if}}
 				{{/if}}
 				<br>
@@ -129,10 +129,15 @@
 	<!-- si vous souhaitez personnaliser le tableau, vous pouvez le remplacer par https://github.com/vosfactures/templates/blob/master/partials/positions.hbs.html  -->
 	{{>positions}}
 
+	{{#if final}}
+		<!-- if you want to customize 'positions', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/positions.hbs.html  -->
+		{{>advances}}
+	{{/if}}
+
 	<!-- si vous souhaitez personnaliser les totaux, vous pouvez les remplacer par https://github.com/vosfactures/templates/blob/master/partials/totals.hbs.html  -->
 	{{>totals}}
 
-	<table class="full_width" style="margin-top:20px">
+	<table class="full_width">
 		<tr>
 			<td class="empty">
 				<strong class="medium_text">
@@ -144,7 +149,6 @@
 					<strong>{{tt "invoice.in_words"}}:</strong> {{{absolute_outstanding_in_words}}} <br/>
 				{{/if}}
 				
-				<br/>
 
 				{{#if paid}}
 				<strong>{{tt "invoice.paid"}}:</strong> {{paid}}
@@ -157,10 +161,9 @@
 		</tr>
 	</table>
 
-	<br/>
 		  
 <div style="page-break-inside: avoid !important;">
-	<table  class="full_width" style="margin-top:20px">
+	<table  class="full_width">
 		<tr>
 			<td class="empty">
 				
@@ -208,12 +211,12 @@
 		</tr>
 	</table>
 
-	<br/><br/>
 
 	<table  class="full_width">
 		<tr>
 			<td class="text_center half_width">
 				{{#if person}}
+				<br/><br/>
 				<strong>{{tt "invoice.seller_person"}}</strong>
 				<br/>
 				<i>{{person}}</i>
@@ -235,11 +238,10 @@
 
 			<td   class="text_center half_width">
 				{{#in kind "estimate,client_order"}}
-				{{#if show_date_and_sign}}
-				<strong>{{tt "invoice.date_and_signature_etc"}}</strong><br/>
-				<!-- Date et signature du client précédée de la mention ‘Bon pour accord’ --> 
-				<br/>
-				{{/if}}
+					{{#if show_date_and_sign}}
+						<strong>{{tt "invoice.date_and_signature_etc"}}</strong><br/>
+						<!-- Date et signature du client précédée de la mention ‘Bon pour accord’ --> 
+					{{/if}}
 				{{/in}}
 			</td>
 		</tr>
@@ -255,7 +257,7 @@
 			<td class="small_text text_center">
 				<br/><br/><br/>
 				<hr>
-				<span>{{description_footer}}</span>
+				<span>{{{description_footer}}}</span>
 			</td>
 		</tr>
 	</table>
@@ -273,7 +275,7 @@
 			<td class="small_text text_center">
 				<span>
                     {{#if department.own_footer}}
-                        {{department.footer_content}}
+                        {{{department.footer_content}}}
                     {{else}}
                         {{department.kind}} {{department.name}},
                         {{#if street}}
@@ -372,7 +374,7 @@
 
 {{/unless}}
 
- 
+
 
 
 </div> <!-- invoice_outline -->
