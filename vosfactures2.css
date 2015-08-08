@@ -43,7 +43,7 @@
 	.main_inv_table{margin-top:10px}
 	.invoice_outline .main_inv_table th,
 	.invoice_outline .main_inv_table td{font-size:11px;}
-	table.full_width{width:100%;}
+	table.full_width{width:100%;clear: both;}
 	td.half_width{width:50%;}
 	table.clean.to_right{margin-top:20px;}
 	table.to_right{float:right;width:99%;}
@@ -79,6 +79,20 @@
 	.seller_buyer .vert_align_top > strong {display:none;}
 
 	.seller_buyer .vert_align_top > br + strong {display:inline-block;}
+
+	.advanced_header, .advanced_header_titles th {
+		padding-top: 3px !important;
+		padding-bottom: 1px !important;
+		border-left: 1px solid #ddd !important;
+		border-right: 1px solid #ddd !important;
+	} 
+	.advanced_header_titles th {
+		font-weight: normal !important;
+	}
+
+	.advanced_header {
+		white-space: nowrap;
+	}
 
 }
 
