@@ -87,7 +87,22 @@
 
 	.medium_text {margin-top:0px !important;margin-bottom:7px !important;}
 
-	.full_width {margin-top:0px;margin-bottom:0px;}
+	.full_width {margin-top:0px;margin-bottom:0px;clear: both;}
+
+	.advanced_header {
+		padding-top: 0px !important;
+		padding-bottom: 0px !important;
+		padding-left: 3px !important;
+		background-color: #ffffff !important;
+		border: 0px !important;
+	} 
+	.advanced_header_titles {
+		display: none;
+	}
+	.related_advance {
+		padding-top: 4px !important;
+		padding-bottom: 2px !important;
+	}
 
 }
 
