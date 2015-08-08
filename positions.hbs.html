@@ -22,23 +22,23 @@
 						</th>				
 					{{/if}}
 					{{#if discount}}				
-						<th class="width2 text_center discount_col">
+						<th class="width2 text_center no_wrap discount_col">
 							{{tt "invoice_position.discount_percent"}}
 						</th>				
 					{{/if}}
 
-					<th class="width2 text_center quantity_col">
+					<th class="width2 text_center no_wrap quantity_col">
 						{{tt "invoice_position.quantity"}}
 					</th>
 					{{#if tax_visible}}
 						{{#unless hide_tax}}
-							<th class="width3 text_right price_net_col">
+							<th class="width3 text_right no_wrap price_net_col">
 								{{tt "invoice_position.price_net"}}
 							</th>
 							<th class="width3 text_right total_price_net_col">
 								{{tt "invoice_position.total_price_net"}}
 							</th>
-							<th class="width1 text_center tax_col">
+							<th class="width1 text_center no_wrap tax_col">
 								{{tax_name}}
 							</th>
 							{{#if tax2_visible}}
@@ -50,23 +50,23 @@
 								{{tax_value_name}}					
 							</th>
 						{{else}}
-							<th class="width3 text_right price_gross_col-hide_tax">
+							<th class="width3 no_wrap text_right price_gross_col-hide_tax">
 								{{tt "invoice_position.price_gross"}}
 							</th>
 						{{/unless}}
-						<th class="width3 text_right total_price_gross_col">
+						<th class="width3 no_wrap text_right total_price_gross_col">
 							{{tt "invoice_position.total_price_gross"}}
 						</th>
 					{{else}}
-						<th class="width3 text_right price_net_col">
+						<th class="width3 no_wrap text_right price_net_col">
 							{{tt "invoice_position.bill_price_net"}}
 						</th>
-						<th class="width3 text_right total_price_gross_col">
+						<th class="width3 no_wrap text_right total_price_gross_col">
 							 {{tt "invoice_position.bill_total_price_gross"}}
 						</th>
 					{{/if}}
 				{{else}}
-					<th class="width3 text_right total_price_net_col-advance">
+					<th class="width3 no_wrap text_right total_price_net_col-advance">
 						{{tt "invoice_position.total_price_net"}}
 					</th>
 				{{/not_eq}}
@@ -121,37 +121,37 @@
 
 					{{#if ../../../tax_visible}}
 						{{#unless ../../../../hide_tax}}
-							<td class="text_right number price_net_col">
+							<td class="text_right no_wrap number price_net_col">
 								{{unit_price_net}}
 							</td>
-							<td class="text_right number total_price_net_col">
+							<td class="text_right no_wrap number total_price_net_col">
 								{{total_price_net}}
 							</td>			
 
-							<td class="text_right number tax_col">
+							<td class="text_right no_wrap number tax_col">
 								{{tax}}{{#not_eq tax 'N/A'}}%{{/not_eq}}
 							</td>
 							{{#if ../../../../../tax2_visible}}
-								<td class="text_right number tax2_col">
+								<td class="text_right no_wrap number tax2_col">
 									{{tax2}}{{#not_eq tax2 'N/A'}}%{{/not_eq}}
 								</td>
 							{{/if}}
-							<td class="text_right number tax_value_col">
+							<td class="text_right number no_wrap tax_value_col">
 								{{tax_value}}
 							</td>
 						{{else}}
-							<td class="text_right number price_gross_col-hide_tax">
+							<td class="text_right no_wrap number price_gross_col-hide_tax">
 								{{unit_price_gross}}
 							</td>
 						{{/unless}}
-						<td class="text_right number total_price_gross_col">
+						<td class="text_right no_wrap number total_price_gross_col">
 							{{total_price_gross}}
 						</td>
 						{{!-- <th class="width3 text_right total_price_gross_col">
 						{{tt "invoice_position.total_price_gross"}}
 						</th> --}}
 					{{else}}
-						<td class="text_right number price_gross_col">
+						<td class="text_right number no_wrap price_gross_col">
 							{{unit_price_gross}}
 						</td>
 						<td class="text_right number total_price_gross_col">
@@ -159,7 +159,7 @@
 						</td>
 					{{/if}}				
 				{{else}}
-					<td class="text_right number total_price_net_col-advance">
+					<td class="text_right number no_wrap total_price_net_col-advance">
 						{{total_price_net}}
 					</td>
 				{{/not_eq}}
@@ -313,7 +313,7 @@
 					{{total_price_gross}}
 				</td>						
 			</tr>
-		</table>  
+		</table>
 	{{/eq}}
 
-	<div class="clear"></div> 
+	<div class="clear"></div>
