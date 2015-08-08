@@ -63,6 +63,7 @@
 	html body table tr:hover{background-color:transparent;}
 	table.main_inv_table th.text_left,
 	table.main_inv_table td.text_left,
+	table.full_width {clear:both;}
 	th.text_left,
 	td.text_left{text-align:left;padding-left:10px;}
 	td b,td.row1,td.row2,td.row3{white-space:nowrap}
@@ -87,6 +88,29 @@
 	.medium_text {margin-top:0px !important;margin-bottom:7px !important;}
 
 	.full_width {margin-top:0px;margin-bottom:0px;}
+
+	.advanced_header {
+		text-align: left !important;
+		padding-top: 0px !important;
+		padding-bottom: 0px !important;
+		padding-left: 3px !important;
+		background-color: #ffffff !important;
+		border: 0px !important;
+	} 
+	.advanced_header_titles {
+		display: none;
+	}
+	.related_advance {
+		padding-top: 4px !important;
+		padding-bottom: 2px !important;
+	}
+	.related_advance.name_col {
+		text-align: left !important;
+	}
+
+	.no_wrap {
+		white-space: nowrap !important;
+	}
 }
 
 @media print {		
@@ -126,4 +150,4 @@
 	}
 	 
 	
-}	 
+}	
