@@ -42,7 +42,7 @@
 	.invoice_outline .main_inv_table{margin-top:10px}
 	.invoice_outline .main_inv_table th,
 	.invoice_outline .main_inv_table td{font-size:11px;}
-	table.full_width{width:100%;}
+	table.full_width{width:100%;clear:both;}
 	td.half_width{width:50%;}
 	table.clean.to_right{margin-top:20px;}
 	table.to_right{float:right;width:99%;}
@@ -66,23 +66,37 @@
 	.full_width {margin-top:0px;margin-bottom:0px;}
   
   
-  .payment_button {
-    display: block;
-    float: none;
-    height: 43px;
-    text-align: right;
-    width: 100%;
-    z-index: 999;
-}
-  
-  .payment_button img {
-    display: inline;
-    float: none;
-    height: 43px;
-    text-align: right;
-    width: 190px;
-    z-index: 999;
-}
+	.payment_button {
+	    display: block;
+	    float: none;
+	    height: 43px;
+	    text-align: right;
+	    width: 100%;
+	    z-index: 999;
+	}
+	  
+	  .payment_button img {
+	    display: inline;
+	    float: none;
+	    height: 43px;
+	    text-align: right;
+	    width: 190px;
+	    z-index: 999;
+	}
+
+	.advanced_header, .advanced_header_titles th {
+		padding-top: 3px !important;
+		padding-bottom: 1px !important;
+		border-left: 1px solid #ddd !important;
+		border-right: 1px solid #ddd !important;
+	} 
+	.advanced_header_titles th {
+		font-weight: normal !important;
+	}
+
+	.advanced_header {
+		white-space: nowrap;
+	}
   
 }
 
@@ -106,4 +120,3 @@
 	.invoice_outline table{font-size:10% !important;margin-top:30px}
 
 }
-
