@@ -18,7 +18,7 @@
 
 
 	{{#if payment_url}}
-		<a class="payment_button" href="{{payment_url}}"><img src="{{payment_button_url}}" alt="online payment"/></a>
+		<a class="pull-right btn btn-default btn-print" style="margin-bottom:10px;" href="{{payment_url}}">{{tt "account.pay_online_button"}}&nbsp;&raquo;</a>
 	{{/if}}
 
 	<table   class="full_width">
@@ -100,7 +100,7 @@
 				{{/if}}
 				{{#if show_buyer_note }}
 					{{#if buyer_note}}
-						{{buyer_note}}<br/>
+						{{{buyer_note}}}<br/>
 					{{/if}}
 				{{/if}}
 				<br>
@@ -129,10 +129,15 @@
     </table>
 	{{/if}}
 
-	<!-- si vous souhaitez personnaliser le tableau, vous pouvez le remplacer par https://github.com/vosfactures/templates/blob/master/positions.hbs.html -->
+	<!-- si vous souhaitez personnaliser le tableau, vous pouvez le remplacer par https://github.com/vosfactures/templates/blob/master/positions.hbs.html  -->
 	{{>positions}}
 
-	<!-- si vous souhaitez personnaliser les totaux, vous pouvez les remplacer par https://github.com/vosfactures/templates/blob/master/totals.hbs.html -->
+	{{#if final}}
+		<!-- if you want to customize 'positions', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/positions.hbs.html  -->
+		{{>advances}}
+	{{/if}}
+
+	<!-- si vous souhaitez personnaliser les totaux, vous pouvez les remplacer par https://github.com/vosfactures/templates/blob/master/totals.hbs.html  -->
 	{{>totals}}
 
 	<table class="full_width">
@@ -260,7 +265,7 @@
 			<td class="small_text text_center">
 				<br/><br/><br/>
 				<hr>
-				<span>{{description_footer}}</span>
+				<span>{{{description_footer}}}</span>
 			</td>
 		</tr>
 	</table>
