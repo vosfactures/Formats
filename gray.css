@@ -19,7 +19,7 @@
 	.nobreak {
 	    page-break-inside: avoid;
 	}
-	.nowrap {
+	.nowrap, .no_wrap {
 		white-space:nowrap;
 	}
 	.nowrap-lines {
@@ -331,6 +331,10 @@
 		padding-bottom:3px !important;
 	}
 
+	.advances_header_titles {
+		display: none;
+	}
+
 
 	#rel_adv_table th.advanced_header {
 		border-left: 0px;
@@ -550,7 +554,10 @@
 		padding:0;
 	}
 /* ------------------------------------------------- */
-
+	
+	.advanced_header_titles {
+		display: none;
+	}
 
 }
 @media print {	
@@ -570,9 +577,6 @@
 	}
 /* ------------------------------------------------- */
 
-
-	.main_inv_table td { }
-	
 
 	#paid_mark {
 		clear:both;
@@ -632,6 +636,7 @@
 	.name_col a {
    		color: inherit;
 	}
+
 /* ------------------------------------------------- */
 
 
