@@ -1,5 +1,5 @@
 @media all{
- 	
+	
 	.invoice_outline b,
 	.invoice_outline strong{color:#00a6f0;}
 
@@ -38,11 +38,11 @@
 	.no_border,
 	.no_border td,
 	.invoice_outline table.main_inv_table td.no_border{border:0;}
-	.seller_buyer{margin:30px 0;}
+	.seller_buyer{margin:10px 0;}
 	.invoice_outline .main_inv_table{margin-top:10px}
 	.invoice_outline .main_inv_table th,
 	.invoice_outline .main_inv_table td{font-size:11px;}
-	table.full_width{width:100%;}
+	table.full_width{width:100%;clear: both;}
 	td.half_width{width:50%;}
 	table.clean.to_right{margin-top:20px;}
 	table.to_right{float:right;width:99%;}
@@ -55,6 +55,25 @@
 	.digit{white-space:nowrap;text-align:right;}
 	.no_wrap{white-space:nowrap;}
 	.hidden{display:none;}
+
+	.totals_inv_table {
+		margin-top: 0px !important;
+		line-height: 1em;
+	}
+
+	.medium_text {margin-top:0px !important;margin-bottom:7px !important;}
+
+	.full_width {margin-top:0px;margin-bottom:0px;}
+
+	.advanced_header, .advanced_header_titles th {
+		padding-top: 2px !important;
+		padding-bottom: 1px !important;
+		border-left: 1px solid #ddd !important;
+		border-right: 1px solid #ddd !important;
+	} 
+	.advanced_header_titles th {
+		font-weight: normal !important;
+	}
 }
 
 @media screen {	
