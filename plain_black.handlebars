@@ -59,7 +59,7 @@
 				{{#if additional_field_name}}
 					{{#if additional_field_value}}
 						<p>
-						<span>{{additional_field_name}}:</span> {{additional_field_value}}<p>
+						<span>{{additional_field_name}}:</span> {{additional_field_value}}</p>
 					{{/if}}
 				{{/if}}
 			</p>
@@ -134,19 +134,30 @@
 	{{/if}}
 
 
-	<!-- si vous souhaitez personnaliser le tableau, vous pouvez le remplacer par https://github.com/vosfactures/templates/blob/master/positions.hbs.html -->
-	{{>positions}}
+	
+	{{#eq kind 'correction'}}
+		<!-- if you want to customize 'positions_correction', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/positions_correction.hbs.html  -->
+		{{#eq locale 'pl'}}
+			{{>positions_correction}}
+		{{else}}
+			{{>positions}}
+		{{/eq}}
+	{{else}}
+		<!-- if you want to customize 'positions', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/positions.hbs.html  -->
+		{{>positions}}
+	{{/eq}}
 		
 	{{#if final}}
-		<!-- si vous souhaitez personnaliser la liste des acomptes liés, vous pouvez les remplacer par https://github.com/vosfactures/templates/blob/master/advances.hbs.html -->
+		<!-- if you want to customize 'advances', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/advances.hbs.html  -->
 		{{>advances}}
 	{{/if}}
 
-	<!-- si vous souhaitez personnaliser les totaux, vous pouvez les remplacer par https://github.com/vosfactures/templates/blob/master/totals.hbs.html -->
+	<div class="clean space-top"></div>
+	<!-- if you want to customize 'totals', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/totals.hbs.html  -->
 	{{>totals}}
-	
 
 
+	<div class="nobreak">
 	<section id="summary">
 
 		{{#if notes}}
@@ -197,6 +208,12 @@
 					<p>{{buyer_person}}</p>
 				{{/if}}
 			{{/not_eq}}
+			{{#in kind "estimate,client_order"}}
+				{{#if show_date_and_sign}}
+					<p style="margin: 0% 10%;"><span>{{tt "invoice.date_and_signature_etc"}}</span></p>
+					<!-- Date et signature du client précédée de la mention ‘Bon pour accord’ --> 
+				{{/if}}
+			{{/in}}
 		</div>
 		<div id="seller_sign">
 			{{#if person}}
@@ -213,6 +230,8 @@
 			{{/if}}	
 		</div>
 	</section>
+	</div>
+	
 
 {{! ------------------- DO NOT MODIFY ------------------- }}
 	
@@ -292,7 +311,7 @@
 	{{else}}
 		{{#if description_footer}}
 			<section id="description_footer">
-				{{description_footer}}
+				{{{description_footer}}}
 			</section>
 		{{/if}}
 	{{/eq}}
@@ -305,7 +324,7 @@
 		
 			<section id="#last_page">
 
-				<span>{{description_long}}</span>
+				<span>{{{description_long}}}</span>
 
 			</section>
 		
