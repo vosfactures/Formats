@@ -126,15 +126,15 @@
     </table>
 	{{/if}}
 
-	<!-- si vous souhaitez personnaliser le tableau, vous pouvez le remplacer par https://github.com/vosfactures/templates/blob/master/partials/positions.hbs.html  -->
+	<!-- si vous souhaitez personnaliser le tableau, vous pouvez le remplacer par https://github.com/vosfactures/templates/blob/master/positions.hbs.html  -->
 	{{>positions}}
 
 	{{#if final}}
-		<!-- if you want to customize 'positions', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/positions.hbs.html  -->
-		{{>advances}}
+		<!-- si vous souhaitez personnaliser la liste des acomptes liés, vous pouvez les remplacer par https://github.com/vosfactures/templates/blob/master/advances.hbs.html  -->
+	{{>advances}}	
 	{{/if}}
 
-	<!-- si vous souhaitez personnaliser les totaux, vous pouvez les remplacer par https://github.com/vosfactures/templates/blob/master/partials/totals.hbs.html  -->
+	<!-- si vous souhaitez personnaliser les totaux, vous pouvez les remplacer par https://github.com/vosfactures/templates/blob/master/totals.hbs.html  -->
 	{{>totals}}
 
 	<table class="full_width">
