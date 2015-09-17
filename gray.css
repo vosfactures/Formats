@@ -478,34 +478,34 @@
 	.additional_info_col {}
 
 	/* DISCOUNT IN % */
-	td .discount_col {padding-left:10px !important;}
+	td.discount_col {padding-left:10px !important;}
 
 	/* QUANTITY */
-	td .quantity_col {padding-left:10px !important;}
+	td.quantity_col {padding-left:10px !important;}
 
 	/* NET PRICE FOR ONE UNIT */
-	td .price_net_col {padding-left:10px !important;}
+	td.price_net_col {padding-left:10px !important;}
 
 	/* NET PRICE FOR 1 UNIT WITH DISCOUNT */
-	td .price_net_with_discount_col {padding-left:10px !important;}
+	td.price_net_with_discount_col {padding-left:10px !important;}
 
 	/* GROSS PRICE FOR 1 UNIT */
-	td .price_gross_col {padding-left:10px !important;}
+	td.price_gross_col {padding-left:10px !important;}
 
 	/* NET VALUE WITH DISCOUNT */
-	td .total_price_net_col {padding-left:10px;}
+	td.total_price_net_col {padding-left:10px;}
 
 	/* TAX IN */
-	td .tax_col {padding-left:10px !important;}
+	td.tax_col {padding-left:10px !important;}
 
 	/* SECOND TAX IN % */
-	td .tax2_col {padding-left:10px !important;}
+	td.tax2_col {padding-left:10px !important;}
 
 	/* TAX VALUE */
-	td .tax_value_col {padding-left:10px !important;}
+	td.tax_value_col {padding-left:10px !important;}
 
 	/* GROSS VALUE */
-	td .total_price_gross_col {padding-left:10px !important;}
+	td.total_price_gross_col {padding-left:10px !important;}
 
 /* ------------------------------------------------- */
 
