@@ -78,9 +78,16 @@
 					{{tax_no}}<br/>
 				{{/if}}
 
-				{{#if bank}}<br/>{{bank}} {{bank_account}}<br/>{{/if}}
+				{{#and bank bank_account}}
+					<br/>{{bank}} {{bank_account}}
+				{{else}}
+					{{#if bank}}<br/>{{bank}} {{/if}}
+					{{#if bank_account}}<br/>{{bank_account}}{{/if}}
+				{{/and}}
+				{{#if swift}}<br />{{tt "department.bank_swift"}}: {{swift}}{{/if}}
+
 				{{#if email}}<br/>{{email}}{{/if}}
-				
+
 				{{#if www}}<br/>{{www}}{{/if}}
 				
 				<br/>
@@ -387,4 +394,4 @@
 
 
 
-</div> <!-- invoice_outline --> 
+</div> <!-- invoice_outline -->
