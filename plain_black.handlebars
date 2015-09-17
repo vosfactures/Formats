@@ -97,9 +97,12 @@
 			{{#if fax}}
 				<p>{{tt 'department.fax'}}: {{fax}}</p>
 			{{/if}}
-			{{#if bank}}
-				<p style="margin-top: 0.5em;">{{bank}}</p>
+			{{#or bank bank_account}}
+				{{#if bank}}<p style="margin-top: 0.5em;">{{bank}}</p>{{/if}}
           		{{#if bank_account}}<p class="nowrap-lines">{{bank_account}}</p>{{/if}}
+			{{/or}}
+			{{#if swift}}
+				<p class="nowrap-lines">{{tt "department.bank_swift"}}:</span> {{swift}}</p>
 			{{/if}}
 		</div>
 
@@ -135,16 +138,25 @@
 
 
 	
-	<!-- si vous souhaitez personnaliser le tableau, vous pouvez le remplacer par https://github.com/vosfactures/templates/blob/master/positions.hbs.html -->
-	{{>positions}}
+	{{#eq kind 'correction'}}
+		<!-- if you want to customize 'positions_correction', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/positions_correction.hbs.html  -->
+		{{#eq locale 'pl'}}
+			{{>positions_correction}}
+		{{else}}
+			{{>positions}}
+		{{/eq}}
+	{{else}}
+		<!-- if you want to customize 'positions', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/positions.hbs.html  -->
+		{{>positions}}
+	{{/eq}}
 		
 	{{#if final}}
-		<!-- si vous souhaitez personnaliser la liste des acomptes liés, vous pouvez les remplacer par https://github.com/vosfactures/templates/blob/master/advances.hbs.html  -->
+		<!-- if you want to customize 'advances', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/advances.hbs.html  -->
 		{{>advances}}
 	{{/if}}
 
 	<div class="clean space-top"></div>
-	<!-- si vous souhaitez personnaliser les totaux, vous pouvez les remplacer par https://github.com/vosfactures/templates/blob/master/totals.hbs.html  -->
+	<!-- if you want to customize 'totals', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/totals.hbs.html  -->
 	{{>totals}}
 
 
@@ -163,7 +175,7 @@
 		{{absolute_outstanding}}
 		</p>
 
-		{{#if outstanding_in_words}}
+		{{#if absolute_outstanding_in_words}}
 			<p>
 			<span>{{tt "invoice.in_words"}}:</span>
 			{{{absolute_outstanding_in_words}}}
