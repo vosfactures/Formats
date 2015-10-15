@@ -1,20 +1,35 @@
 	<script>
-		// Equal related advances table with positions table //
-		var columns = ['nr_col', 'total_price_gross_col', 'total_price_net_col', 'tax_col', 'tax_value_col'];
+
+		var columns = [];
+		{{#if tax_visible}}
+			{{#unless hide_tax}}
+				var cue = ['total_price_gross_col', 'total_price_net_col', 'tax_col', 'tax_value_col'];
+				for (var i=0; i<cue.length; i++) if(document.getElementById(cue[i])) columns.push(cue[i]);
+			{{else}}
+				columns = ['total_price_gross_col'];
+			{{/unless}}
+		{{else}}
+			columns = ['total_price_gross_col'];;
+		{{/if}}
 
 		var style = document.createElement('style');
 		style.type = 'text/css';
-		var content = '';
+		var scr = ' @media screen {';
+		var print = ' @media print {';
 
 		for (var i = 0; i < columns.length; i+=1) {
-		    var getwid = document.getElementById("pos_table").getElementsByClassName(columns[i]);
-		    var wid = getwid[0].offsetWidth;
-		    ;
-		    content += ' #rel_adv_table .related_advance.'+columns[i]+' {min-width:'+ wid + 'pt !important;max-width:'+ wid + 'pt !important;width:'+ wid + 'pt !important;}';
-		    content += ' #pos_table .'+columns[i]+' {min-width:'+ wid + 'pt !important;max-width:'+ wid + 'pt !important;width:'+ wid + 'pt !important;}';
+		    var getwid = document.getElementById(columns[i])
+		    var wid = getwid.offsetWidth + 'px';
+		    scr += ' #rel_adv_table .'+columns[i]+'.related_advance {min-width:'+ wid +' !important;max-width:'+ wid + ' !important;width:'+ wid + ' !important;}';
+		    print += ' #rel_adv_table .'+columns[i]+'.related_advance {min-width:'+ wid +' !important;max-width:'+ wid + ' !important;width:'+ wid + ' !important;}';
+		    print += ' #pos_table .'+columns[i]+' {min-width:'+ wid + ' !important;max-width:'+ wid + ' !important;width:'+ wid + ' !important;}';
 		}
-		style.innerHTML = content;
-		document.getElementsByTagName('head')[0].appendChild(style);
+
+		scr += '}';
+		print += '}';
+		
+		style.innerHTML = scr +'\n'+ print;
+		document.body.appendChild(style);
 		
 	</script>
 
@@ -22,80 +37,105 @@
 	<table class="main_inv_table" id="rel_adv_table">
 		<thead>
 			<tr>
-				<th colspan="100" id="test007" class="text_left advanced_header">{{tt "invoice.related_advance"}} 
+				<th colspan="100" id="realted_invoices" class="text_left advanced_header">{{tt "invoice.related_advance"}} 
 				{{#eq advanced_num 0}}
 					<br />{{tt "invoice.have_none"}}
 				{{/eq}}</th>
 			</tr>
 			<tr class="advanced_header_titles">
-				<th class="nr_col related_advance">
-					
-				</th>
+
 				<th class="name_col related_advance" >
 					
 				</th>
 
 				{{#if tax_visible}}
+					{{#unless ../hide_tax}}
+						<th class="text_right number total_price_net_col related_advance">
+							{{tt "invoice.total_price_net" }}
+						</th>			
 
-					<th class="text_right number total_price_net_col related_advance">
-						{{tt "invoice.total_price_net" }}
-					</th>			
-
-					<th class="text_right number tax_col related_advance">
-						
-					</th>
-					{{#if ../tax2_visible}}
-						<th class="text_right number tax2_col related_advance">
+						<th class="text_right number tax_col related_advance">
 							
 						</th>
-					{{/if}}
-					<th class="text_right number tax_value_col related_advance">
-						{{tax_value_name}}
+						{{#if ../tax2_visible}}
+							<th class="text_right number tax2_col related_advance">
+								
+							</th>
+						{{/if}}
+						<th class="text_right number tax_value_col related_advance">
+							{{tax_value_name}}
+						</th>
+						<th class="text_right number total_price_gross_col related_advance">
+							{{tt "invoice.total_price_gross" }}
+						</th>
+					{{else}}
+						<th class="text_right number total_price_gross_col related_advance">
+							{{tt "invoice.total_price_gross" }}
+						</th>
+					{{/unless}}
+				{{else}}
+					<th class="text_right number total_price_gross_col related_advance">
+						{{tt "invoice.total_price_net" }}
 					</th>
 				{{/if}}				
 	
-				<th class="text_right number total_price_gross_col related_advance">
-					{{tt "invoice.total_price_gross" }}
-				</th>
-
+			
 			</tr>
 		</thead>
 		<tbody>
 			{{#each advanced}}
 			<tr>
-				<td class="nr_col related_advance">
-					{{no}}
-				</td>
 				<td class="name_col related_advance" >
 					{{number}} {{tt "invoice.advance_day"}} {{issue_date}}
 				</td>
 
 				{{#if ../tax_visible}}
+					{{#unless ../../hide_tax}}
+						<td class="text_right number total_price_net_col related_advance">
+							{{price_net}}
+						</td>			
 
-					<td class="text_right number total_price_net_col related_advance">
-						{{price_net}}
-					</td>			
-
-					<td class="text_right number tax_col related_advance">
-						
-					</td>
-					{{#if ../../tax2_visible}}
-						<td class="text_right number tax2_col related_advance">
+						<td class="text_right number tax_col related_advance">
 							
 						</td>
-					{{/if}}
-					<td class="text_right number tax_value_col related_advance">
-						{{price_tax}}
-					</td>
+						{{#if ../../tax2_visible}}
+							<td class="text_right number tax2_col related_advance">
+								
+							</td>
+						{{/if}}
+						<td class="text_right number tax_value_col related_advance">
+							{{price_tax}}
+						</td>
+						<td class="text_right number total_price_gross_col related_advance">
+							{{price_gross}}
+						</td>
+					{{else}}
+						<td class="text_right number total_price_gross_col related_advance">
+							{{price_gross}}
+						</td>
+					{{/unless}}
+				{{else}}
+					<td class="text_right number total_price_gross_col related_advance">
+						{{price_net}}
+					</td>	
 				{{/if}}				
 	
-				<td class="text_right number total_price_gross_col related_advance">
-					{{price_gross}}
-				</td>
 
 			</tr>
 			{{/each}}
 		</tbody>
 	</table>
+
+	<script>
+
+		// var columns = ['nr_col', 'total_price_net_col', 'tax_col', 'tax2_col', 'tax_value_col', 'total_price_gross_col'];
+
+		// $.each(columns, function() {
+		// 	var wid = $('#pos_table tbody tr:first-of-type td.'+this).innerWidth();
+		// 	;
+		// 	$('#rel_adv_table tbody tr:first-of-type td.'+this).css('width', wid);
+		// });
+
+	</script>
 
 	
