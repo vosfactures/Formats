@@ -200,11 +200,12 @@
 
 	
 	<!-- POSITIONS -->
+	<!-- si vous souhaitez personnaliser le tableau, vous pouvez le remplacer par https://github.com/vosfactures/templates/blob/master/positions2.hbs.html -->
 	{{>positions2}}
 	<!-- POSITIONS END -->
 		
 	{{#if final}}
-		<!-- if you want to customize 'advances', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/advances.hbs.html  -->
+		<!-- si vous souhaitez personnaliser la liste des acomptes liés, vous pouvez les remplacer par https://github.com/vosfactures/templates/blob/master/advances.hbs.html  -->
 		{{>advances}}
 	{{/if}}
 
