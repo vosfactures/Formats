@@ -26,11 +26,16 @@
 				{{/if}}
 
 				<p><span>
-				{{#if accounting_doc}}
-					{{tt "invoice.issue_date"}}:
+				{{#not_eq locale 'fr'}}
+					{{#if accounting_doc}}
+						{{tt "invoice.issue_date"}}:
+					{{else}}
+						{{tt "invoice.print_date"}}:
+					{{/if}}
 				{{else}}
-					{{tt "invoice.print_date"}}:
-				{{/if}}</span>
+					{{tt "invoice.issue_date"}}:
+				{{/not_eq}}
+				</span>
 				{{issue_date}}</p>
 
 				{{#if accounting_doc}}
@@ -138,16 +143,25 @@
 
 
 	
-	<!-- si vous souhaitez personnaliser le tableau, vous pouvez le remplacer par https://github.com/vosfactures/templates/blob/master/positions.hbs.html -->
-	{{>positions}}
+	{{#eq kind 'correction'}}
+		<!-- if you want to customize 'positions_correction', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/positions_correction.hbs.html  -->
+		{{#eq locale 'pl'}}
+			{{>positions_correction}}
+		{{else}}
+			{{>positions}}
+		{{/eq}}
+	{{else}}
+		<!-- if you want to customize 'positions', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/positions.hbs.html  -->
+		{{>positions}}
+	{{/eq}}
 		
 	{{#if final}}
-		<!-- si vous souhaitez personnaliser la liste des acomptes liés, vous pouvez les remplacer par https://github.com/vosfactures/templates/blob/master/advances.hbs.html  -->
+		<!-- if you want to customize 'advances', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/advances.hbs.html  -->
 		{{>advances}}
 	{{/if}}
 
 	<div class="clean space-top"></div>
-	<!-- si vous souhaitez personnaliser les totaux, vous pouvez les remplacer par https://github.com/vosfactures/templates/blob/master/totals.hbs.html  -->
+	<!-- if you want to customize 'totals', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/totals.hbs.html  -->
 	{{>totals}}
 
 
@@ -220,7 +234,7 @@
 			{{/if}}
 
 			{{#if stamp_below_sign_url}}
-				<img src="{{stamp_url}}" alt="stamp" style="max-width:40%"/>
+				<img src="{{stamp_url}}" alt="stamp" style="max-width:50%" id="custom_img" />
 			{{/if}}	
 		</div>
 	</section>
