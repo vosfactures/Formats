@@ -292,7 +292,7 @@
 	table.main_inv_table td.footer strong {}
 	table.main_inv_table tr.no_border td {border:0px;}
 
-	.totals_inv_table {font-size: 10pt;margin-top: 0.6em;page-break-inside: avoid;}
+	.totals_inv_table {font-size: 10pt;margin-top: 0.2em;page-break-inside: avoid;}
 	.totals_inv_table td {line-height:12pt;padding:2px;padding-left:10px;vertical-align: middle;}
 
 	/* TOTAL DISCOUNT NUMBER */
@@ -406,6 +406,10 @@
 	}
 	.text_left {
 		text-align: left;
+	}
+
+	.advanced_header_titles {
+		display: none;
 	}
 /* ------------------------------------------------- */
 
