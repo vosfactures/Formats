@@ -16,7 +16,7 @@ CSS: https://github.com/fakturownia/szablony/blob/master/default.css
 
 Les modèles sont créés en HTML et CSS en utilisant [Handlebars](http://handlebarsjs.com/)
 
-Les variables qui peuvent être utilisées dans les formats sont:
+Les principales variables qui peuvent être utilisées dans les formats sont:
  
 ```shell
 {{document_type}} type de document
@@ -120,12 +120,9 @@ Les variables qui peuvent être utilisées dans les formats sont:
 {{payment_button_url}}
 {{income}} - revenu
 {{department}} - département/compagnie - les champs sont id, nom, type ... par ex: {{department.id}} {{department.name}}
-{{client}}
+{{client}} 
 {{client_panel_view_url}} - url de l'accès client
-{{client_panel_view_link}}
-{{positions_total_price_net}}
-{{positions_total_price_gross}}
-{{positons_total_tax}}
+{{client_panel_view_link}} 
 {{show_totals}} - afficher un résumé du total net, brut et de la TVA
 {{hide_tax}} - afficher les montants TTC uniquement 
 {{show_tax_split}} - afficher le résumé des différents taux de taxe
@@ -156,10 +153,14 @@ Les variables qui peuvent être utilisées dans les formats sont:
   {{additional_info}} - champ additionnel 
   {{discount}} - réduction
   {{quantity}} - quantité
+  {{positions_total_quantity}} - total des quantités
   {{unit_price_net}} - prix unitaire ht
   {{unit_price_gross}} - prix unitaire ttc
   {{unit_price_net_with_discount}} - prix unitaire ht après réduction
   {{unit_price_gross_with_discount}} - prix unitaire ttc après réduction
+  {{positions_total_price_net}} - total HT de la ligne
+  {{positions_total_price_gross}} - total TTC de la ligne
+  {{positons_total_tax}} - total taxe de la ligne
   {{total_price_net}} - total ht
   {{total_price_gross}} - total ttc
   {{tax}} - taux de taxe
