@@ -10,9 +10,9 @@ En utilisant notre logiciel de facturation, vous avez accès à un certain nombr
 
 Quelques exemples de formats de factures:
 
-HTML: https://github.com/fakturownia/szablony/blob/master/default.hbs.html
+HTML: https://github.com/vosfactures/Templates/blob/master/gray.handlebars 
 
-CSS: https://github.com/fakturownia/szablony/blob/master/default.css
+CSS: https://github.com/vosfactures/Templates/blob/master/gray.css
 
 Les modèles sont créés en HTML et CSS en utilisant [Handlebars](http://handlebarsjs.com/)
 
