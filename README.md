@@ -270,7 +270,7 @@ Exemple:
 Importation de données
 ---------------
 
-Il vous est possible d'importer dans votre compte VosFactures des données existantes depuis n'importe quel programme si celles-ci sont dans un fichier .TXT, .CSV, .XLS, .ods, XLSX, .tsv, .xml bure. L'importation de fichier se fait depuis l'onglet Paramètres > Importation. Vous pouvez importer des factures d'achat et de vente (et autres documents de facturation), des clients et fournisseurs, vos catalogues produits, et des relevés bancaires. Durant l'importation, vous pouvez choisir quelles colonnes et lignes à importer. 
+Il vous est possible d'importer dans votre compte VosFactures des données existantes depuis n'importe quel programme si celles-ci sont dans un fichier .TXT, .CSV, .XLS, .ods, XLSX, .tsv, .xml bure. L'importation de fichier se fait depuis l'onglet Paramètres > Importation. Vous pouvez importer des factures d'achat et de vente (et autres documents de facturation), des clients et fournisseurs, vos catalogues produits, et des relevés bancaires. Durant l'importation, vous pouvez choisir quelles colonnes et lignes importer. 
 
 
 
@@ -278,5 +278,5 @@ Il vous est possible d'importer dans votre compte VosFactures des données exist
 API
 ---------------
 
-Description de l'[API de VosFactures](https://github.com/vosfactures/API) 
+Lien vers la documentation de l'[API de VosFactures](https://github.com/vosfactures/API) 
 
