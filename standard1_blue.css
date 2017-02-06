@@ -1,0 +1,500 @@
+@media all{
+	.invoice_outline {
+		margin-left: 0.75cm;
+		margin-right: 0.75cm;	
+		min-height: 20cm;
+		margin-bottom: 0in;
+	}
+
+	/* default font color */
+	.invoice_outline, table {
+		color: #313131;
+		line-height: 15px;
+	}
+
+	/* FONTS */
+	.invoice_outline *:not(.fa) {
+		font-family: 'arial';
+		font-size: 13px;
+	}
+
+
+
+	.seller_buyer .vert_align_top > strong {display:none;}
+	.seller_buyer td {vertical-align: top;}
+
+	p {
+		margin-bottom: 0px;
+		margin-top: 0px;
+	}
+
+/* ------------------------------------------------- */
+
+	/* INVOICE HEADER CONTAINER */
+	#invoice_header {
+		clear: both;
+		display: table;
+		width: 100%;
+		text-align: left;
+		height: 3.5cm;
+		max-height: 3.5cm;
+		line-height: 1.4em;
+	}
+		/* headers */
+		#invoice_header span { }
+
+		/* INVOICE'S DATA (NUMBER, DATE ETC) */
+		#info {
+			display: table-cell;
+			width: 55%;
+			text-align: left;
+		}
+
+		#document_id {
+			margin-bottom: 6px;
+			color: #00a6f0;
+		}
+		#document_id span {
+			font-weight: bold;
+			font-size: 1.75em;
+		}
+		/* DOCUMENT TYPE */
+		span#document_type {}
+		/* DOCUMENT NUMBER */
+		span#document_number {}
+		/* BOTH ABOVE */
+		#info p:first-of-type {}
+
+
+
+
+		/* LOGO */
+		#logo {
+			display: table-cell;
+			width: 45%;
+			vertical-align: top;
+			text-align: center;
+			height: auto;
+		}
+			#logo_place {
+				display: block;
+				position: relative;
+				width: 100% !important;
+				max-width:8.4cm;
+				max-height: 3.5cm;
+				height: auto;
+			}
+			/* LOGO IMAGE ONLY */
+			#logo img {
+				display:block;
+				position:relative;
+				width:auto;
+				max-width:8.4cm;
+				max-height: 3.5cm;
+			}
+
+
+/* ------------------------------------------------- */
+
+
+	/* ROW WITH SELLER AND BUYER IDENTIFICATION DATA */
+	#invoice_traders {
+		clear: both;
+		display: table;
+		width: 100%;
+		text-align: left;
+		width:100%;
+		margin-bottom: 1em;
+		line-height: 1.4em;
+	}
+		/* labels */
+		#invoice_traders span {}
+
+		/* SELLER'S IDENTIFICATION DATA */
+		#seller {
+			display: table-cell;
+			width: 55%;
+			padding-right: 2cm;
+		}
+
+		/* BUYER'S IDENTIFICATION DATA */
+		#buyer {
+			display: table-cell;
+			width: 45%;
+			padding-right: 1.5cm;
+			height: 3.25cm;
+			min-height: 3.25cm
+		}
+
+		#buyer p:first-of-type, #seller p:first-of-type {
+			
+		}
+
+		#invoice_traders .header {
+			display: table-cell;
+			font-weight: bold;
+			color: #00a6f0;
+		}
+
+
+/* ------------------------------------------------- */
+
+
+	/* TITLE */
+	#title {
+		clear: both;
+		width: 100%;
+		display: block;
+		text-align: left;
+		font-weight: bold;
+		margin-bottom: 8px;
+		font-size: 1.1em;
+		color: #00a6f0;
+	}
+
+
+/* ------------------------------------------------- */
+
+
+	/* TABLE WITH PRODUCTS */
+	th.width0,
+	td.width0{width:1%;}
+	th.width1,
+	td.width1{width:2%;}
+	th.width2,
+	td.width2{width:5%;}
+	th.width3,
+	td.width3{width:7%;}
+	th.width4,
+	td.width4{width:25%;}
+	
+	.main_inv_table th, .advanced_header_titles th {
+		background-color: #00a6f0;
+		border-bottom: 1px solid #00a6f0;
+		border-right: 1px solid #fff;
+		color: #fff;
+		vertical-align: middle;
+	}
+
+	.main_inv_table th:first-of-type, #rel_adv_table th:first-of-type {border-left: 1px solid #00a6f0;}
+	.main_inv_table th:last-of-type, #rel_adv_table th:last-of-type {border-right: 1px solid #00a6f0;}
+	table.main_inv_table .no_border td {}
+	table.main_inv_table td {
+		border:1px solid #00a6f0;
+		vertical-align: top;
+	}
+
+	.main_inv_table td,
+	.main_inv_table th,
+	#positions_summary td {
+		padding:5px 3px 4px;
+	}
+
+	.main_inv_table th {
+		padding: 3px 3px 0px;
+	}
+
+	.summary_row td {
+		background-color: #00a6f0;
+		color: #fff;
+	}
+
+	.footer.subtotal:empty,
+	.summary_row td:empty {
+		border: 0px;
+		background-color: transparent;
+	}
+
+	.summary_row td.tax_col.total.footer{
+		background-color: #00a6f0;
+	}
+
+
+/* ------------------------------------------------- */
+
+
+	/* TABLE WOTH TOTALS */
+	table.to_right{width:100%;}
+	table.to_right th{text-align:right;}
+	table.to_right td{width:15%;text-align:right;}
+	.totals_inv_table td, .totals_inv_table th {padding:2px 5px;}
+	.totals_inv_table {
+		margin-top: 0.5em;
+	}
+
+
+/* ------------------------------------------------- */
+
+
+	/* TABLE WITH RELATED ADVANCES */
+	.advanced_header, .advanced_header_titles th {
+		padding-top: 3px !important;
+		padding-bottom: 1px !important;
+	} 
+	.advanced_header {
+		white-space: nowrap;
+	}
+	#related_advances_title_row {display:none;}
+	#related_advances_title_inside {display: inline !important;}
+
+
+
+/* ------------------------------------------------- */
+
+
+	/* TEXTS UNDER TOTALS */
+	#summary {
+		clear: both;
+		width: 100%;
+		display: block;
+		text-align: left;
+		line-height: 1.4em;
+	}
+
+	#to_pay {
+		font-size: 1em;
+		font-weight: bold;
+		color:  #00a6f0;
+	}
+	#to_pay_amount {
+		font-size: 1.25em;
+	}
+
+
+/* ------------------------------------------------- */
+
+
+	/* SIGNATURES AT THE END */
+	#invoice_signatures {
+		clear: both;
+		display: table;
+		width: 100%;
+	}
+		#invoice_signatures p {margin: 0px;}
+		#invoice_signatures > div > p:first-of-type {margin-top: 1.5em;}
+
+		/* headers */
+		#invoice_signatures span {font-weight: bold; color: #00a6f0;}
+
+		/* SELLER */
+		#seller_sign {
+			display: table-cell;
+			width: 50%;
+			text-align: center;
+		}
+
+		/* BUYER */
+		#buyer_sign {
+			display: table-cell;
+			width: 50%;
+			text-align: center;
+		}
+
+		#custom_img {
+			max-width: 50%;
+		}
+
+
+/* ------------------------------------------------- */
+
+
+	/* ONLINE PAYMANT BUTTON */
+	.payment_button {display:block;float:right;text-align:right;height:43px;width:190px;z-index:999;}
+	.payment_button img {display:block;float:right;text-align:right;width:190px;height:43px;z-index:999;}
+
+
+/* ------------------------------------------------- */
+
+
+	/* HELPERS */
+	.text_center {text-align:center;}
+	.text_left {text-align:left;}
+	.text_right {text-align:right;}
+	.number,
+	.digit {white-space:nowrap;text-align:right;}
+	.nowrap, .no_wrap {white-space:nowrap;}
+	.nowrap-lines {white-space: pre;}
+	.hidden {display:none;}	
+	.full_width, .full-width {width:100%;}
+	.half_width {width:50%;}
+	.no_border {border:0;}
+	.no-page-break, .nobreak {
+		page-break-inside: avoid !important;
+	}
+
+
+
+	#rel_adv_table {
+		width: 100%;
+		margin-top: 0.35em;
+	}
+	#rel_adv_table th {
+		border-right: 1px solid #FFFFFF;
+	}
+	#rel_adv_table th:last-of-type {
+		border-right: 1px solid #00a6f0;
+	}
+	#realted_invoices {
+		background-color: transparent;
+		border: 0px !important;
+	}
+
+	#exchange_currency,
+	#exchange_currency td {
+		width: 100%;
+	}
+
+
+
+	/* footer preview only - DO NOT CHANGE - changes don't work in print */
+	#company_info_footer {
+		border:0;
+        padding:0;
+        margin:0;
+        vertical-align:bottom;
+        padding-top:15px;
+        padding-left:0px;
+        padding-right:0px;
+    }
+    #company_info_footer .small_text.text_center {
+        width:100%;
+        padding-left: 22%;
+        padding-right: 22%;
+    }
+    #company_info_footer .small_text.text_center span {
+        max-width: 407px;
+    	display: block;
+        overflow: hidden;
+        height: 50px !important;
+        line-height: 11.3px !important;
+        font-family: arial,sans-serif,tahoma !important;
+        font-size:9.85px !important;
+        letter-spacing: normal !important;
+    }
+
+    #corrected_content {
+		width: 100%;
+		margin-top: 6pt;
+		margin-bottom: 12pt;
+	}
+
+	#corrected_content th,
+	#corrected_content td {
+		width: 50%;
+		vertical-align: top;
+		text-align: left;
+	}
+
+	#corrected_content th {
+		text-align: center;
+	}
+
+	/* EXTRA NOTES ON EXTRA PAGE */
+	#extra_page {
+		clear: both;
+		display: block;
+		text-align: left;
+	}
+
+	#name_col,
+	.name_col.related_advance {
+		text-align: left;
+	}
+
+/* ------------------------------------------------- */
+	/* payments list */
+	#invoice_payments {
+	  text-align: left;
+	  margin-top: 0.5em;
+	}
+
+	#invoice_payments_title {
+		width: 100%;
+		box-sizing: border-box;
+		border: 1px solid #00a6f0;
+    	text-align: left !important;
+    	background-color: #00a6f0;
+    	padding: 3px 3px 1px 3px;
+		font-weight: bold;
+		color: white;
+	}
+
+	#invoice_payments_list {
+		box-sizing: border-box;
+		width: 100%;
+		display: block;
+		border-top: 0px;
+	}
+
+	.invoice_payments_payment {
+		display: block;
+		box-sizing: border-box;
+		width: 100%;
+		border-bottom: 1px solid #00a6f0;
+		border-left: 1px solid #00a6f0;
+		border-right: 1px solid #00a6f0;
+		padding: 5px 3px 4px
+	}
+
+	.invoice_payments_payment > div {
+		display: inline-block;
+	}
+
+	.invoice_payments_provider::before {
+		content: '- ';
+	}
+
+}
+
+@page {
+  size: A4;
+  margin: 0.5cm;
+  margin-bottom: 0cm;
+}
+
+@media screen {	
+	.invoice_preview.invoice {
+		width:210mm;
+		padding: 0px;
+		padding-top: 0.5cm;
+	}	
+	.invoice_outline {margin-top:0.25in;margin-bottom:0.25in;
+		margin-right:0.75cm;
+		margin-left:0.75cm;
+	}
+}
+
+
+@media print{
+	.invoice_outline {
+		margin-top:0.7cm;
+		margin-bottom:0in;
+		margin-right:0.7cm;
+		margin-left:0.7cm;
+		background-color: transparent;
+		background-position: 50% 15cm !important;
+		min-height: 25cm;
+		padding-top: 0px;
+	}			
+
+	.invoice_outline *:not(.fa) {
+		font-family: 'arial';
+		font-size: 9.35pt;
+	}
+	
+	#buyer a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	#title {
+		font-size: 10.25pt;
+	}
+
+	.totals_inv_table td, .totals_inv_table th {padding:1px 2px;}
+
+	table * {
+		border-width: 1px !important;
+	}
+
+}

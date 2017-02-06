@@ -1,3 +1,4 @@
+{{#if advanced}}
 	<script>
 
 		var columns = [];
@@ -27,7 +28,6 @@
 
 		scr += '}';
 		print += '}';
-		
 		style.innerHTML = scr +'\n'+ print;
 		document.body.appendChild(style);
 		
@@ -36,7 +36,7 @@
 
 	<table class="main_inv_table" id="rel_adv_table">
 		<thead>
-			<tr>
+			<tr id="related_advances_title_row">
 				<th colspan="100" id="realted_invoices" class="text_left advanced_header">{{tt "invoice.related_advance"}} 
 				{{#eq advanced_num 0}}
 					<br />{{tt "invoice.have_none"}}
@@ -45,36 +45,41 @@
 			<tr class="advanced_header_titles">
 
 				<th class="name_col related_advance" >
-					
+					<span id="related_advances_title_inside" style="display:none;">
+						{{tt "invoice.related_advance"}}
+						{{#eq advanced_num 0}}
+							- {{tt "invoice.have_none"}}
+						{{/eq}}
+					</span>
 				</th>
 
 				{{#if tax_visible}}
 					{{#unless ../hide_tax}}
-						<th class="text_right number total_price_net_col related_advance">
+						<th class="text_center total_price_net_col related_advance">
 							{{tt "invoice.total_price_net" }}
 						</th>			
 
-						<th class="text_right number tax_col related_advance">
+						<th class="text_center tax_col related_advance">
 							
 						</th>
 						{{#if ../tax2_visible}}
-							<th class="text_right number tax2_col related_advance">
+							<th class="text_center tax2_col related_advance">
 								
 							</th>
 						{{/if}}
-						<th class="text_right number tax_value_col related_advance">
+						<th class="text_center tax_value_col related_advance">
 							{{tax_value_name}}
 						</th>
-						<th class="text_right number total_price_gross_col related_advance">
+						<th class="text_center total_price_gross_col related_advance">
 							{{tt "invoice.total_price_gross" }}
 						</th>
 					{{else}}
-						<th class="text_right number total_price_gross_col related_advance">
+						<th class="text_center total_price_gross_col related_advance">
 							{{tt "invoice.total_price_gross" }}
 						</th>
 					{{/unless}}
 				{{else}}
-					<th class="text_right number total_price_gross_col related_advance">
+					<th class="text_center total_price_gross_col related_advance">
 						{{tt "invoice.total_price_net" }}
 					</th>
 				{{/if}}				
@@ -126,16 +131,4 @@
 		</tbody>
 	</table>
 
-	<script>
-
-		// var columns = ['nr_col', 'total_price_net_col', 'tax_col', 'tax2_col', 'tax_value_col', 'total_price_gross_col'];
-
-		// $.each(columns, function() {
-		// 	var wid = $('#pos_table tbody tr:first-of-type td.'+this).innerWidth();
-		// 	;
-		// 	$('#rel_adv_table tbody tr:first-of-type td.'+this).css('width', wid);
-		// });
-
-	</script>
-
-	
+{{/if}}

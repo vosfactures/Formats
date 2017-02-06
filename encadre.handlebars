@@ -1,22 +1,17 @@
-	{{#and final tax_visible}}
-		{{#unless hide_tax}}
-			<script>
-				var style = document.createElement('style');
-				style.type = 'text/css';
-				var content = '.total_price_gross_col.related_advance {display:none;}';
-
-				style.innerHTML = content;
-				document.getElementsByTagName('head')[0].appendChild(style);
-			</script>
-		{{/unless}}
-	{{/and}}
+{{#if canceled }}
+	<div style="text-align: center; font-size: 12px;">
+		<h3>{{ tt "invoice.kind_options.canceled" }}</h3>
+		{{ tt "invoice.cancel_reason" }}: {{ cancel_reason }}
+		<br><br>
+	</div>
+{{/if}}
 
 {{! ------------------- DO NOT MODIFY ------------------- }}
-<div class="invoice_outline" {{#if status_paid}}{{#if show_paid_logo}}{{#not_in kind "proforma,estimate"}}style="background-image:url('{{paid_mark_url}}');"{{/not_in}}{{/if}}{{/if}} >
+<div class="invoice_outline encadre" {{#if status_paid}}{{#if show_paid_logo}}{{#not_in kind "proforma,estimate"}}style="background:transparent url('{{paid_mark_url}}') no-repeat 50% bottom;"{{/not_in}}{{/if}}{{/if}} >
 
 
 	{{#if payment_url}}
-		<a class="pull-right btn btn-default btn-print" style="margin-bottom:10px;" href="{{payment_url}}">{{tt "account.pay_online_button"}}&nbsp;&raquo;</a>
+		<a class="pull-right btn btn-default btn-print" id="pay-online-button" style="margin-bottom:10px;" href="{{payment_url}}">{{tt "account.pay_online_button"}}&nbsp;&raquo;</a>
 	{{/if}}
 {{! ----------------- end DO NOT MODIFY ----------------- }}
 
@@ -151,8 +146,14 @@
 
 			<table class="top_table">
 				<tr class="tab-row">
-					<td class="tab-cell padding-bottom text-left">
-						<strong>{{#if buyer_company}} {{else}} {{buyer_title}} {{/if}} {{{buyer}}}</strong><br />
+					<td class="tab-cell padding-bottom text-left" id="buyer">
+						<strong>
+							{{#and client_url show_links }}
+								<a href="{{{client_url}}}" class="incognito-link">{{#if buyer_company}} {{else}} {{buyer_title}} {{/if}} {{{buyer}}}</a>
+							{{else}}
+								{{#if buyer_company}} {{else}} {{buyer_title}} {{/if}} {{{buyer}}}
+							{{/and}}
+						</strong><br />
 						{{{buyer_address}}}<br />
 						{{#if buyer_company}}
 							{{#if buyer_tax_no}}
@@ -174,7 +175,7 @@
 			<table class="top_table">
 				<tr class="tab-row">
 					<td class="tab-cell uppercase gray bold" >
-						{{tt "client.delivery_address"}}
+						{{delivery_address_name}}
 					</td>
 				</tr>
 
@@ -200,7 +201,7 @@
 
 	
 	<!-- POSITIONS -->
-	<!-- si vous souhaitez personnaliser le tableau, vous pouvez le remplacer par https://github.com/vosfactures/templates/blob/master/positions2.hbs.html -->
+		<!-- si vous souhaitez personnaliser le tableau, vous pouvez le remplacer par https://github.com/vosfactures/templates/blob/master/positions2.hbs.html -->
 	{{>positions2}}
 	<!-- POSITIONS END -->
 		
@@ -219,6 +220,20 @@
 					</p>
 				{{/if}}
 
+				{{#if_created_after_date '2016-09-19'}}
+					{{#and show_sell_date sell_date}}
+						<div class="box" id="document_selldate">
+							{{#if sell_date_kind}}
+								<span class="nowrap">{{{sell_date_kind}}}:</span>
+							{{else}}
+								<span class="nowrap">{{tt "invoice.sell_date"}}:</span>
+							{{/if}}
+							<br />
+							<strong>{{sell_date}}</strong>
+						</div>
+					{{/and}}
+				{{/if_created_after_date}}
+
 
 				{{#if payment_to}}
 					<div class="box">
@@ -236,19 +251,19 @@
 				{{#if bank}}
 					<div class="box">
 						{{tt "invoice.seller_bank"}}<br />
-						<strong>{{bank}}</strong>
+						<strong class="nowrap">{{bank}}</strong>
 					</div>
 				{{/if}}
 				{{#if swift}}
 					<div class="box">
 						{{tt "department.bank_swift"}}<br />
-						<strong>{{swift}}</strong>
+						<strong class="nowrap">{{swift}}</strong>
 					</div>
 				{{/if}}
 				{{#if bank_account}}
 					<div class="box">
 						{{tt "department.bank_iban"}}<br />
-						<strong>{{bank_account}}</strong>
+						<strong class="nowrap">{{bank_account}}</strong>
 					</div>
 				{{/if}}
 
@@ -265,13 +280,13 @@
 				{{/not_eq}}
 					
 			
-				{{#not_eq additional_fields.sum_recovery 'client_particulier'}}
+				{{#eq additional_fields.sum_recovery 'client_professionnel'}}
 					{{#if buyer_company}}
 						<p class="half-space-top">
 							<strong>{{tt "invoice.legal_cost_note"}}</strong>
 						</p>
 					{{/if}}
-				{{/not_eq}}
+				{{/eq}}
 			
 
 				{{#not_eq additional_fields.advanced_payment_discount 'Néant'}}
@@ -301,12 +316,13 @@
 
 			</div><!-- bottom_left -->
 
+			<!-- TOTALS -->
 			<div id="bottom_right">
 				{{#if show_totals }}
 					{{#unless exchange_currency}}
 						<table class="clean to_right totals_inv_table">
 							{{#unless hide_tax}}
-								{{#if global_discount_percent}}
+								{{#if discount}}
 									<tr>
 										<th class="gray">
 											{{tt "invoice.total_price_net" }}
@@ -317,7 +333,11 @@
 									</tr>
 									<tr>
 										<th class="gray">
-											{{tt "invoice.global_discount"}}({{global_discount_percent}})
+											{{#if global_discount_percent}}
+										{{tt "invoice.global_discount"}} ({{global_discount_percent}})
+									{{else}}
+										{{tt "invoice.discount"}}
+									{{/if}}
 										</th>
 										<td class="number">
 										    {{ global_discount_net }}
@@ -343,29 +363,72 @@
 										</tr>
 									{{/if}}
 								{{/if}}
+							{{else}}
+								{{#if discount}}
+									<tr>
+										<th class="gray">
+											{{tt "invoice.total_price_gross" }}
+										</th>
+										<td class="number">
+										    {{ total_price_gross_without_discount }}
+										</td>
+									</tr>
+									<tr>
+										<th class="gray">
+											{{#if global_discount_percent}}
+										{{tt "invoice.global_discount"}} ({{global_discount_percent}})
+									{{else}}
+										{{tt "invoice.discount"}}
+									{{/if}}
+										</th>
+										<td class="number">
+										    {{ global_discount_gross }}
+										</td>
+									</tr>
+									<tr>
+										<th class="gray">
+											{{tt "invoice.total_price_gross_with_discount" }}
+										</th>
+										<td class="number">
+										    {{ total_price_gross }}
+										</td>
+									</tr>
+								{{/if}}
 							{{/unless}}
 
 							{{#if tax_visible}}
 								{{#unless hide_tax}}
-									{{#each summary}}
+									{{#eq kind 'final'}}
+										{{!-- each summary nie wlicza wartosci podatku z faktur zaliczkowych!  --}}
 										<tr>
 											<th class="gray">
-												{{ ../tax_value_name }} ({{tax}}{{#not_eq tax 'N/A'}}%{{/not_eq}})
+												{{ tax_value_name }}
 											</th>
 											<td class="number">
 											    {{tax_value}}
 											</td>
 										</tr>
-									{{/each}}
+									{{else}}
+										{{#each summary}}
+											<tr>
+												<th class="gray">
+													{{ ../tax_value_name }} ({{tax}}{{#not_eq tax 'N/A'}}%{{/not_eq}})
+												</th>
+												<td class="number">
+												    {{tax_value}}
+												</td>
+											</tr>
+										{{/each}}
+									{{/eq}}
+									<tr>
+										<th class="gray">
+											{{tt "invoice.total_price_gross" }}
+										</th>
+										<td class="number">
+										    {{ total_price_gross }}
+										</td>
+									</tr>
 								{{/unless}}
-								<tr>
-									<th class="gray">
-										{{tt "invoice.total_price_gross" }}
-									</th>
-									<td class="number">
-									    {{ total_price_gross }}
-									</td>
-								</tr>
 							{{/if}}
 								
 					{{/unless}}
@@ -456,9 +519,11 @@
 								{{else}}
 									{{zero_with_currency}}
 								{{/if}}
-								{{#and show_paid_date paid_date}}
-									<br /><small>{{tt 'invoice.paid_on'}} {{paid_date}}</small>
-								{{/and}}
+								{{#unless show_payments_on_invoice}}
+									{{#and show_paid_date paid_date}}
+										<br /><small>{{tt 'invoice.paid_on'}} {{paid_date}}</small>
+									{{/and}}
+								{{/unless}}
 							</td>
 							{{#if exchange_currency}}
 								<td>
@@ -475,10 +540,10 @@
 						</tr>
 					{{/or}}
 					<tr>
-						<th class="gray">{{#if negative_outstanding}}{{tt "invoice.to_receive"}}{{else}}{{tt "invoice.to_pay"}}{{/if}}</th>
-						<td class="to-pay">{{absolute_outstanding}}</td>
+						<th class="gray nowrap">{{#if negative_outstanding}}{{tt "invoice.to_receive"}}{{else}}{{tt "invoice.to_pay"}}{{/if}}</th>
+						<td class="to-pay nowrap">{{absolute_outstanding}}</td>
 						{{#if exchange_currency}}
-							<td>
+							<td class="nowrap">
 								{{absolute_outstanding_in_exchange_currency}}
 							</td>
 						{{/if}}
@@ -498,34 +563,32 @@
 						</tr>
 					{{/if}}
 				</table>
-			</div> <!-- bottom_right -->
+			</div><!-- TOTALS --> <!-- bottom_right -->
+
 		</section> <!-- invoice_details -->
 
 
+		{{#if has_corrected_content}}
+			{{>corrected_content}}
+		{{/if}}
 
-	{{#if status_paid}}{{#if show_paid_logo}}{{#not_in kind "proforma,estimate"}}
-			<img id="paid_mark" src="{{paid_mark_url}}" alt="" />
-	{{/not_in}}{{/if}}{{/if}}
+		{{#if show_payments_on_invoice}}
+			{{>payments}}
+		{{/if}}
 
 
 		<section id="invoice_signatures">
 			<div id="seller_sign">
-				{{#if person}}
+				{{#or person show_empty_seller_person}}
 					<p><span>{{tt "invoice.seller_person"}}</span></p>
 					<p>{{person}}</p>
-				{{/if}}
+				{{/or}}
 
 				{{#if stamp_below_sign_url}}
 					<img src="{{stamp_url}}" alt="stamp" style="max-width:40%"/>
 				{{/if}}	
 			</div>
 			<div id="buyer_sign">
-				{{#not_eq locale 'fr'}}
-					{{#if buyer_person}}
-						<p><span>{{tt "invoice.buyer_person"}}</span></p>
-						<p>{{buyer_person}}</p>
-					{{/if}}
-				{{/not_eq}}
 				{{#in kind "estimate,client_order"}}
 					{{#if show_date_and_sign}}
 						<p style="margin: 0% 10%;"><span>{{tt "invoice.date_and_signature_etc"}}</span></p>
@@ -537,103 +600,32 @@
 	</div><!-- no-page-break -->
 
 {{! ------------------- DO NOT MODIFY ------------------- }}
-	
-	{{#eq locale 'fr'}}
-		{{#if department.name}}
-			<section id="description_footer">
-				<div id="company_info_footer"><span>
-                {{#if department.own_footer}}
-                    {{{department.footer_content}}}
-                {{else}}
-                    {{department.kind}} {{department.name}},
-                    {{#if street}}
-                        {{street}},
-                    {{/if}}
-
-                    {{post_code}}
-
-                    {{#if place}}
-                        {{place}},
-                    {{/if}}
-
-                    <br />
-
-                    {{#eq department.capital_kind 'amount'}}
-	                    Capital: {{department.capital}} {{department.capital_currency}},
-                    {{/eq}}
-
-                    {{#eq department.capital_kind 'variable'}}
-	                    Capital {{department.capital_kind}},
-                    {{/eq}}
-
-                    {{#eq department.register1_status 'yes'}} {{!-- Immatriculé --}}
-
-                        {{#if department.register1_number2}} {{!-- NAF (ou NACE) --}}
-		                    NAF: {{department.register1_number2}},
-                        {{/if}}
-
-                        {{#eq department.register2_status '1'}}
-                            {{department.register2_number1}} RM {{department.register2_number2}},
-                        {{/eq}}
-
-                        {{#eq department.register3_status '1'}}
-		                    RCS  {{department.register3_number1}} {{department.register3_number2}}  {{department.register3_number3}},
-                        {{/eq}}
-
-                        {{#eq department.register4_status '1'}}
-                            {{department.register1_number3}} {{department.register1_number1}} {{department.register4_number3}} {{department.register4_number1}} Dispensé d’immatriculation au RM et RCS,
-                        {{/eq}}
-
-                    {{/eq}}
-
-                    {{#eq department.register1_status 'pending'}} {{!-- En cours d'immatriculation --}}
-	                    En cours d’immatriculation,
-                    {{/eq}}
-
-                    {{#if department.tax_kind}}
-
-                        {{#eq department.tax_kind 'yes'}}
-		                    <!-- {{tt "department.tax_kind"}}:  -->
-                            {{department.tax_no}}
-                        {{/eq}}
-
-                        {{#eq department.tax_kind 'no'}}
-		                    TVA non applicable, art. 293B du CGI.
-                        {{/eq}}
-
-                        {{#eq department.tax_kind 'exempt'}}
-		                    <!-- {{tt "department.tax_kind"}}:  -->
-                            {{department.tax_no}}
-                        {{/eq}}
-
-                    {{/if}}
-                {{/if}}
-                </span></div>
-			</section>
-		{{/if}}
-	{{else}}
-		{{#if description_footer}}
-			<section id="description_footer">
-				{{{description_footer}}}
-			</section>
-		{{/if}}
-	{{/eq}}
-
-	{{#if description_long}}
-		<div style="page-break-after:always !important;"></div>
-		<div class="invoice_outline">
-
-			<hr class="noprint" />
-		
-			<section id="#last_page">
-
-				<span>{{{description_long}}}</span>
-
-			</section>
-		
-		</div>
-	{{/if}}	
+</div><!-- /invocie_outline -->
 
 
-</div> <!-- invoice_outline -->
-{{! ----------------- end DO NOT MODIFY ----------------- }}
+{{#if department.name}}
+	<section id="description_footer">
+		<div id="company_info_footer">
+        	<span>{{>company_info_footer}}</span>
+        </div>
+	</section>
+{{/if}}<!-- #company_info_footer -->
+
+{{#if description_long}}
+
+	<hr class="noprint" style="margin-top:0px;" />
+
+	<div style="page-break-after:always !important;"></div>
+
+	<div class="invoice_outline">
+		<table  class="full_width" >
+			<tr>
+				<td class="small_text">
+					<span id="extra_page_content">{{{description_long}}}</span>
+				</td>
+			</tr>
+		</table>
+	</div>
+{{/if}}	
+
+{{>encadre_extras}}

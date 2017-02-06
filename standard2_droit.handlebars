@@ -1,0 +1,82 @@
+<div class="invoice_outline standard2_droit" {{#if status_paid}}{{#if show_paid_logo}}{{#not_in kind "proforma,estimate"}}style="background:transparent url('{{paid_mark_url}}') no-repeat 50% bottom;"{{/not_in}}{{/if}}{{/if}} >
+
+	<!-- Komunikat o tym, że faktura jest anulowana -->
+	{{# if canceled }}
+		<div style="text-align: center; font-size: 12px;">
+			<h3>{{ tt "invoice.kind_options.canceled" }}</h3>
+			{{ tt "invoice.cancel_reason" }}: {{ cancel_reason }}
+			<br><br>
+		</div>
+	{{/if}}
+
+	{{#if payment_url}}
+		<a class="pull-right btn btn-default btn-print" id="pay-online-button" style="margin-bottom:10px;" href="{{payment_url}}">{{tt "account.pay_online_button"}}&nbsp;&raquo;</a>
+	{{/if}}
+
+
+
+	<section id="invoice_header">
+		<div id="info">
+			<p id="document_id">
+				<span id="document_type">{{document_type}} {{tt "invoice.number"}}</span> 
+				<span id="document_number">{{number}}</span>
+			</p>
+			{{#if correction}}
+				<p class="document_extra">{{ correction }}</p>
+			{{/if}}
+			<p>
+				{{#if print_option}}
+					<p class="document_extra">{{print_option}}</p>
+				{{/if}}
+				{{#if issue_place}}
+					<p id="document_date">{{issue_place}}, {{tt "invoice.on_date"}} {{issue_date}}</p>	
+				{{else}}
+					<p id="document_date"><span>{{tt "invoice.issue_date"}}:</span> {{issue_date}}</p>	
+				{{/if}}
+
+				{{#and show_sell_date sell_date}}
+					{{#if sell_date_kind}}
+						<p id="document_selldate"><span>{{{sell_date_kind}}}:</span> {{sell_date}}</p>
+					{{else}}
+						<p id="document_selldate"><span>{{tt "invoice.sell_date"}}:</span> {{sell_date}}</p>
+					{{/if}}
+				{{/and}}
+
+				{{#if oid}}
+					<p id="document_oid"><span>{{tt 'invoice.oid'}}:</span> {{oid}}</p>
+				{{/if}}
+			</p>
+		</div>
+		<div id="logo">
+			<div id="logo_place" style="text-align:right;margin-left:auto;">
+				{{#if logo_url}}
+						<img src="{{logo_url}}" alt="logo" />
+				{{/if}}
+			</div>
+		</div>
+	</section>
+
+
+	{{> standard2}}
+
+
+</div><!-- /invocie_outline -->
+
+
+{{#if department.name}}
+	<section id="description_footer">
+		<div id="company_info_footer">
+        	<span>{{>company_info_footer}}</span>
+        </div>
+	</section>
+{{/if}}<!-- #company_info_footer -->
+
+{{#if description_long}}
+
+	<hr class="noprint" style="margin-top:0px;" />
+
+	<div class="invoice_outline" id="extra_page" style="page-break-before:always !important;">
+		<div id="extra_page_content">{{{description_long}}}</div>
+	</div>
+{{/if}}	
+

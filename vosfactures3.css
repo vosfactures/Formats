@@ -1,6 +1,13 @@
 
 	@media all{ 
-	.invoice_outline{font-family:helvetica,"lucida grande","lucida sans unicode";}
+	.invoice_outline{
+		font-family:helvetica,"lucida grande","lucida sans unicode";
+		margin-top: 0.75cm;
+		margin-left: 0.75cm;
+		margin-right: 0.75cm;	
+		min-height: 20cm;
+		margin-bottom: 0in;
+	}
 	/*@page{size:A4 ;}
 	*/ 
 	.clear{clear:both;}
@@ -21,15 +28,15 @@
 	table th,
 	table td{margin:0;padding:0;}
 	th.width0,
-	td.width0{min-width:17px;width:1%;}
+	td.width0{width:1%;}
 	th.width1,
-	td.width1{width:3%;min-width:17px;}
+	td.width1{width:2%;}
 	th.width2,
-	td.width2{width:10%;min-width:45px;}
+	td.width2{width:5%;}
 	th.width3,
-	td.width3{min-width:46px;width:15%;}
+	td.width3{width:7%;}
 	th.width4,
-	td.width4{width:30%;min-width:100px;}
+	td.width4{width:25%;}
 	td.logo_inside,
 	td.logo_inside{vertical-align:middle;text-align:center}
 	td.logo_inside img{max-height:187px;max-width:250px;}
@@ -104,6 +111,64 @@
 		padding-bottom: 2px !important;
 	}
 
+	#logo {
+		width:60%;
+	}
+	#logo img {
+		max-width: 100%;
+	}
+
+	#corrected_content {
+		width: 100%;
+		margin-top: 6pt;
+		margin-bottom: 12pt;
+	}
+
+	#corrected_content th,
+	#corrected_content td {
+		width: 50%;
+		vertical-align: top;
+		text-align: left;
+	}
+
+	/* ------------------------------------------------- */
+	/* payments list */
+	#invoice_payments {
+	  text-align: left;
+	  margin-top: 0.5em;
+	  width: auto;
+	  display: inline-block;
+	  margin-left: 4px;
+	}
+
+	#invoice_payments_title {
+		font-weight: bold;
+		padding: 0px 5px;
+		font-size: 11px;
+		border-bottom: 1px solid #DDDDDD;
+	}
+
+	#invoice_payments_list {
+
+	}
+
+	.invoice_payments_payment {
+		border-left: 1px solid #DDDDDD;
+		border-right: 1px solid #DDDDDD;
+		border-bottom: 1px solid #DDDDDD;
+		padding: 3px 5px 2px;
+		line-height: 0.8em;
+	}
+
+	.invoice_payments_payment > div {
+		display: inline-block;
+	    font-size: 11px;
+	}
+
+	.invoice_payments_provider::before {
+		content: '- ';
+	}
+
 }
 
 @media print {		
@@ -122,6 +187,10 @@
 		margin-bottom: 0in;
 		margin-left: 0.5in;
 		margin-right: 0.5in;
+		padding-top:0;
+		background-color: transparent;
+		background-position: 50% 15cm !important;
+		min-height: 25cm;
 	}
 	
 
@@ -133,14 +202,26 @@
 
 	.invoice_outline table.main_inv_table {margin-top:5px}
 
+	.totals_inv_table td, .totals_inv_table th {
+		padding-right: 4px !important;
+	}
+
+	#buyer a {
+		color: inherit;
+		text-decoration: none;
+	}
+
 }
 
 @media screen {	
-
 	.invoice_preview.invoice {
-		font-size:180%;	
-		width: 9.25in;
+		width:210mm;
+		padding: 0px;
+		padding-top: 0.5cm;
+		font-size: 150%;
+	}	
+	.invoice_outline {margin-top:0.25in;margin-bottom:0.25in;
+		margin-right:0.75cm;
+		margin-left:0.75cm;
 	}
-	 
-	
-}	
+}

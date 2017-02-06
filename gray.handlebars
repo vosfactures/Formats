@@ -34,15 +34,7 @@
 				{{/if}}
 
 				<p><span>
-				{{#not_eq locale 'fr'}}
-					{{#if accounting_doc}}
-						{{tt "invoice.issue_date"}}:
-					{{else}}
-						{{tt "invoice.print_date"}}:
-					{{/if}}
-				{{else}}
 					{{tt "invoice.issue_date"}}:
-				{{/not_eq}}
 				</span>
 				{{issue_date}}</p>
 
@@ -208,35 +200,33 @@
       		</p>
 		{{/or}}
 
-		{{#eq locale 'fr'}}
-			{{#not_eq additional_fields.interest_rate 'Néant'}}
-				{{#if additional_fields.interest_rate}}
-					<p>
-						<span>{{tt "invoice.interest_note"}}:</span> 
-						{{additional_fields.interest_rate}}
-					</p>
-				{{/if}}
-			{{/not_eq}}
-				
-		
-			{{#not_eq additional_fields.sum_recovery 'client_particulier'}}
-				{{#if buyer_company}}
-					<p>
-						<span>{{tt "invoice.legal_cost_note"}}</span>
-					</p>
-				{{/if}}
-			{{/not_eq}}
-		
+		{{#not_eq additional_fields.interest_rate 'Néant'}}
+			{{#if additional_fields.interest_rate}}
+				<p>
+					<span>{{tt "invoice.interest_note"}}:</span> 
+					{{additional_fields.interest_rate}}
+				</p>
+			{{/if}}
+		{{/not_eq}}
+			
+	
+		{{#not_eq additional_fields.sum_recovery 'client_particulier'}}
+			{{#if buyer_company}}
+				<p>
+					<span>{{tt "invoice.legal_cost_note"}}</span>
+				</p>
+			{{/if}}
+		{{/not_eq}}
+	
 
-			{{#not_eq additional_fields.advanced_payment_discount 'Néant'}}
-				{{#if additional_fields.advanced_payment_discount}}
-					<p>
-						<span>{{tt "invoice.discount_on_advanced_payment_note"}}:</span>
-						{{additional_fields.advanced_payment_discount}} %
-					</p>
-				{{/if}}
-			{{/not_eq}}
-		{{/eq}}
+		{{#not_eq additional_fields.advanced_payment_discount 'Néant'}}
+			{{#if additional_fields.advanced_payment_discount}}
+				<p>
+					<span>{{tt "invoice.discount_on_advanced_payment_note"}}:</span>
+					{{additional_fields.advanced_payment_discount}} %
+				</p>
+			{{/if}}
+		{{/not_eq}}
 
 		{{#if additional_field_name}}
 			{{#if additional_field_value}}
@@ -273,12 +263,6 @@
 			{{/if}}	
 		</div>
 		<div id="buyer_sign">
-			{{#not_eq locale 'fr'}}
-				{{#if buyer_person}}
-					<p><span>{{tt "invoice.buyer_person"}}</span></p>
-					<p>{{buyer_person}}</p>
-				{{/if}}
-			{{/not_eq}}
 			{{#in kind "estimate,client_order"}}
 				{{#if show_date_and_sign}}
 					<p style="margin: 0% 10%;"><span>{{tt "invoice.date_and_signature_etc"}}</span></p>
@@ -291,86 +275,79 @@
 
 {{! ------------------- DO NOT MODIFY ------------------- }}
 	
-	{{#eq locale 'fr'}}
-		{{#if department.name}}
-			<section id="description_footer">
-				<div id="company_info_footer"><span>
-                {{#if department.own_footer}}
-                    {{{department.footer_content}}}
-                {{else}}
-                    {{department.kind}} {{department.name}},
-                    {{#if street}}
-                        {{street}},
-                    {{/if}}
 
-                    {{post_code}}
-
-                    {{#if place}}
-                        {{place}},
-                    {{/if}}
-
-                    <br />
-
-                    {{#eq department.capital_kind 'amount'}}
-	                    Capital: {{department.capital}} {{department.capital_currency}},
-                    {{/eq}}
-
-                    {{#eq department.capital_kind 'variable'}}
-	                    Capital {{department.capital_kind}},
-                    {{/eq}}
-
-                    {{#eq department.register1_status 'yes'}} {{!-- Immatriculé --}}
-
-                        {{#if department.register1_number2}} {{!-- NAF (ou NACE) --}}
-		                    NAF: {{department.register1_number2}},
-                        {{/if}}
-
-                        {{#eq department.register2_status '1'}}
-                            {{department.register2_number1}} RM {{department.register2_number2}},
-                        {{/eq}}
-
-                        {{#eq department.register3_status '1'}}
-		                    RCS  {{department.register3_number1}} {{department.register3_number2}}  {{department.register3_number3}},
-                        {{/eq}}
-
-                        {{#eq department.register4_status '1'}}
-                            {{department.register1_number3}} {{department.register1_number1}} {{department.register4_number3}} {{department.register4_number1}} Dispensé d’immatriculation au RM et RCS,
-                        {{/eq}}
-
-                    {{/eq}}
-
-                    {{#eq department.register1_status 'pending'}} {{!-- En cours d'immatriculation --}}
-	                    En cours d’immatriculation,
-                    {{/eq}}
-
-                    {{#if department.tax_kind}}
-
-                        {{#eq department.tax_kind 'yes'}}
-		                    <!-- {{tt "department.tax_kind"}}:  -->
-                            {{department.tax_no}}
-                        {{/eq}}
-
-                        {{#eq department.tax_kind 'no'}}
-		                    TVA non applicable, art. 293B du CGI.
-                        {{/eq}}
-
-                        {{#eq department.tax_kind 'exempt'}}
-		                    <!-- {{tt "department.tax_kind"}}:  -->
-                            {{department.tax_no}}
-                        {{/eq}}
-
-                    {{/if}}
+	{{#if department.name}}
+		<section id="description_footer">
+			<div id="company_info_footer"><span>
+            {{#if department.own_footer}}
+                {{{department.footer_content}}}
+            {{else}}
+                {{department.kind}} {{department.name}},
+                {{#if street}}
+                    {{street}},
                 {{/if}}
-                </span></div>
-			</section>
-		{{/if}}
-	{{else}}
-		{{#if description_footer}}
-			<section id="description_footer">
-				{{{description_footer}}}
-			</section>
-		{{/if}}
-	{{/eq}}
+
+                {{post_code}}
+
+                {{#if place}}
+                    {{place}},
+                {{/if}}
+
+                <br />
+
+                {{#eq department.capital_kind 'amount'}}
+                    Capital: {{department.capital}} {{department.capital_currency}},
+                {{/eq}}
+
+                {{#eq department.capital_kind 'variable'}}
+                    Capital {{department.capital_kind}},
+                {{/eq}}
+
+                {{#eq department.register1_status 'yes'}} {{!-- Immatriculé --}}
+
+                    {{#if department.register1_number2}} {{!-- NAF (ou NACE) --}}
+	                    NAF: {{department.register1_number2}},
+                    {{/if}}
+
+                    {{#eq department.register2_status '1'}}
+                        {{department.register2_number1}} RM {{department.register2_number2}},
+                    {{/eq}}
+
+                    {{#eq department.register3_status '1'}}
+	                    RCS  {{department.register3_number1}} {{department.register3_number2}}  {{department.register3_number3}},
+                    {{/eq}}
+
+                    {{#eq department.register4_status '1'}}
+                        {{department.register1_number3}} {{department.register1_number1}} {{department.register4_number3}} {{department.register4_number1}} Dispensé d’immatriculation au RM et RCS,
+                    {{/eq}}
+
+                {{/eq}}
+
+                {{#eq department.register1_status 'pending'}} {{!-- En cours d'immatriculation --}}
+                    En cours d’immatriculation,
+                {{/eq}}
+
+                {{#if department.tax_kind}}
+
+                    {{#eq department.tax_kind 'yes'}}
+	                    <!-- {{tt "department.tax_kind"}}:  -->
+                        {{department.tax_no}}
+                    {{/eq}}
+
+                    {{#eq department.tax_kind 'no'}}
+	                    TVA non applicable, art. 293B du CGI.
+                    {{/eq}}
+
+                    {{#eq department.tax_kind 'exempt'}}
+	                    <!-- {{tt "department.tax_kind"}}:  -->
+                        {{department.tax_no}}
+                    {{/eq}}
+
+                {{/if}}
+            {{/if}}
+            </span></div>
+		</section>
+	{{/if}}
 
 	{{#if description_long}}
 		<div style="page-break-after:always !important;"></div>

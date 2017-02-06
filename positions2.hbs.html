@@ -88,12 +88,11 @@
 					{{/if}}
 				{{/unless}}
 				<td class="name_col">
-					{{#if item_url }}
-						<a href="{{{item_url}}}" class="hidden-print show-screen">{{{item}}}</a>
-						<span class="show-print hidden-screen">{{{item}}}</span>
+					{{#and item_url ../../show_links }}
+						<a href="{{{item_url}}}" class="incognito-link">{{{item}}}</a>
 					{{else}}
-						{{{item}}}
-					{{/if}}
+						<span>{{{item}}}</span>
+					{{/and}}
 					<div id="product_description" class="item_description">
 						{{#if ../../show_product_description}}
 					 		{{{description}}}
@@ -116,7 +115,12 @@
 							{{#eq ../../../../discount_kind 'amount'}}
 								{{discount}}
 							{{else}}
-								{{discount_amount_net}}<br />
+								{{#if ../../../../../hide_tax}}
+									{{discount_amount_gross}}
+								{{else}}
+									{{discount_amount_net}}
+								{{/if}}
+								<br />
 								<small>{{discount}}</small>
 							{{/eq}}
 

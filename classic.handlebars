@@ -1,0 +1,354 @@
+<!-- Komunikat o tym, że faktura jest anulowana -->
+{{#if canceled }}
+	<div style="text-align: center; font-size: 12px;">
+		<h3>{{ tt "invoice.kind_options.canceled" }}</h3>
+		{{ tt "invoice.cancel_reason" }}: {{ cancel_reason }}
+		<br><br>
+	</div>
+{{/if}}
+
+{{! ------------------- DO NOT MODIFY ------------------- }}
+<div class="invoice_outline classic" {{#if status_paid}}{{#if show_paid_logo}}{{#not_in kind "proforma,estimate"}}style="background-image:url('{{paid_mark_url}}');"{{/not_in}}{{/if}}{{/if}} >
+
+
+	{{#if payment_url}}
+		<a class="pull-right btn btn-default btn-print" id="pay-online-button" style="margin-bottom:10px;" href="{{payment_url}}">{{tt "account.pay_online_button"}}&nbsp;&raquo;</a>
+	{{/if}}
+{{! ----------------- end DO NOT MODIFY ----------------- }}
+
+	<section id="invoice_header">
+		<div id="logo">
+			<div id="logo_place">
+				{{#if logo_url}}
+						<img src="{{logo_url}}" alt="logo" />
+				{{/if}}
+			</div>
+		</div>
+		<div id="info">
+			<p>
+				<span id="document_type">{{document_type}} <span id="document_type_spacer"></span>{{tt "invoice.number"}}</span>
+				<span id="document_number">{{number}}</span>
+			</p>
+			{{#if correction}}
+				<p class="document_extra">{{ correction }}</p>
+			{{/if}}
+			<p>
+				{{#if print_option}}
+					<p class="document_extra">{{print_option}}</p>
+				{{/if}}
+
+				{{#if issue_place}}
+					<p id="document_date"><span>{{tt "invoice.place"}}:</span> {{issue_place}}, {{tt "invoice.on_date"}} {{issue_date}}</p>	
+				{{else}}
+					<p id="document_date"><span>{{tt "invoice.issue_date"}}:</span> {{issue_date}}</p>	
+				{{/if}}
+
+				{{#and show_sell_date sell_date}}
+					{{#if sell_date_kind}}
+						<p><span>{{{sell_date_kind}}}:</span> {{sell_date}}</p>
+					{{else}}
+						<p><span>{{tt "invoice.sell_date"}}:</span> {{sell_date}}</p>
+					{{/if}}
+				{{/and}}
+
+				{{#if oid}}
+					<p>
+						<span>{{tt 'invoice.oid'}}:</span> {{oid}}
+					</p>
+				{{/if}}
+			</p>
+		</div>
+	</section>
+
+
+	<section id="invoice_traders">
+		<div style="display:table-row">
+			<div class="header">{{tt "invoice.seller"}}:</div>
+			<div style="table-cell;"> </div>
+			<div class="header">
+				{{#eq kind 'receipt'}}
+					{{#if buyer}}
+						{{tt "invoice.buyer"}}:
+					{{/if}}
+				{{else}}
+					{{tt "invoice.buyer"}}:
+				{{/eq}}
+			</div>
+		</div>
+		<div style="display:table-row">
+			<div id="seller">
+				
+				<div class="box">
+					<p>{{{company}}}</p>
+					<p>{{{address}}}</p>
+					{{#if tax_no}}
+						<p style="margin-bottom: 0.5em;">{{seller_tax_no_kind}} {{tax_no}}</p>
+					{{/if}}
+				
+					{{#if email}}
+						<p>{{email}}</p>
+					{{/if}}
+				
+					{{#if www}}
+						<p>{{www}}</p>
+					{{/if}}
+				
+					{{#if phone}}
+						<p>{{tt 'department.phone'}}: {{phone}}</p>
+					{{/if}}
+					{{#if fax}}
+						<p>{{tt 'department.fax'}}: {{fax}}</p>
+					{{/if}}
+				</div>
+			</div>
+			<div id="traders-spacer"> </div>
+			<div id="buyer">
+				
+				<div class="box">
+					<p>
+						{{#and client_url show_links }}
+							<a href="{{{client_url}}}" class="incognito-link">{{#if buyer_company}} {{else}} {{buyer_title}} {{/if}} {{{buyer}}}</a>
+						{{else}}
+							{{#if buyer_company}} {{else}} {{buyer_title}} {{/if}} {{{buyer}}}
+						{{/and}}
+					</p>
+					<p>{{{buyer_address}}}</p>
+					{{#if buyer_company}}
+						{{#if buyer_tax_no}}
+							<p>{{buyer_tax_no_kind}} {{buyer_tax_no}}</p>
+						{{/if}}
+					{{/if}}
+					
+					{{#and use_delivery_address delivery_address}}
+						<p style="margin-top: 0.5em;"><strong>{{delivery_address_name}}</strong><br/>
+						{{{delivery_address}}}</p>
+					{{/and}}
+					
+					{{#and show_buyer_note buyer_note}}
+						<p style="margin-top: 0.5em;">{{{buyer_note}}}</p>
+					{{/and}}
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+
+	{{#if title}}
+		<div id="title">
+			{{{title}}}
+		</div>
+	{{/if}}
+
+
+	<!-- si vous souhaitez personnaliser le tableau, vous pouvez le remplacer par https://github.com/vosfactures/templates/blob/master/positions.hbs.html -->
+	{{>positions2}}
+		
+	{{#if final}}
+		<!-- si vous souhaitez personnaliser la liste des acomptes liés, vous pouvez les remplacer par https://github.com/vosfactures/templates/blob/master/advances.hbs.html  -->
+		<!-- if you want to customize 'advances', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/advances.hbs.html  -->
+		{{>advances}}
+	{{/if}}
+
+
+	<div class="clean"></div>
+
+	
+	<!-- si vous souhaitez personnaliser les totaux, vous pouvez les remplacer par https://github.com/vosfactures/templates/blob/master/totals2.hbs.html  -->
+	{{>totals2_with_currency}}
+
+	{{#unless exchange_currency}}
+		{{#unless discount}}
+			{{#unless tax_visible}} 
+				<table class="clean to_right totals_inv_table">
+					<tr>
+						<th>
+							{{#if hide_tax}}{{tt "invoice.total_price_gross" }}{{else}}{{tt "invoice.total_price_net" }}{{/if}}
+						</th>
+						<td class="number">
+						    {{ total_price_net_with_currency }}
+						</td>
+					</tr>
+				</table>
+
+			{{/unless}}
+		{{/unless}}
+	{{/unless}}
+
+	{{#if has_corrected_content}}
+		{{>corrected_content}}
+	{{/if}}
+
+	<div class="no-page-break">
+	
+	<section id="summary">
+
+	{{#not_eq kind 'estimate'}}
+		<div class="many-p">
+			<p id="absolute_outstanding_field" class="nowrap">
+				<span>{{#if negative_outstanding}}{{tt "invoice.to_receive"}}{{else}}{{tt "invoice.to_pay"}}{{/if}}:</span>
+				<span class="to-pay">{{absolute_outstanding}}</span>
+				{{#if exchange_currency}}
+				 &nbsp;|&nbsp; {{absolute_outstanding_in_exchange_currency}}
+				{{/if}}
+			</p>
+
+			{{#or paid show_paid_when_zero}}
+				<p id="paid_field" class="nowrap">
+					<span>{{tt "invoice.paid"}}:</span>
+					{{#if paid}}
+						{{paid}}
+					{{else}}
+						{{zero_with_currency}}
+					{{/if}}
+					{{#unless show_payments_on_invoice}}
+						{{#and paid show_paid_date paid_date}}
+							{{tt 'invoice.paid_on'}} {{paid_date}}
+						{{/and}}
+					{{/unless}}
+				</p>
+			{{/or}}
+		</div>
+
+		{{#if absolute_outstanding_in_words}}
+			<p id="absolute_outstanding_in_words_field">
+				<span>{{tt "invoice.in_words"}}:</span>
+				{{{absolute_outstanding_in_words}}}
+				{{#if exchange_currency}}
+					&nbsp;|&nbsp; {{{absolute_outstanding_in_words_in_exchange_currency}}}
+				{{/if}}
+			</p>
+		{{/if}}
+	{{/not_eq}}
+
+		
+
+
+		{{#or payment_to type_of_payment}}
+			<div class="many-p">
+				{{#if payment_to}}
+					<p id="payment_to_field" class="nowrap">	
+						<span>{{tt "invoice.payment_to"}}:</span>
+						{{payment_to}}
+					</p>
+				{{/if}}
+
+				{{#if type_of_payment}}
+					<p id="type_of_payment_field" class="nowrap">	
+						<span>{{tt "invoice.payment_type"}}:</span>
+						{{type_of_payment}}
+					</p>
+				{{/if}}
+			</div>
+		{{/or}}
+
+		{{#or bank bank_account swift}}
+			<p id="bank_field">
+				{{#if bank}}<span>{{tt "invoice.seller_bank"}}:</span> {{bank}}<i style="margin-right:2em;"></i>{{/if}}
+	      		{{#if swift}} <span>{{tt "department.bank_swift"}}:</span> {{swift}}<i style="margin-right:2em;"></i>{{/if}}
+	      		{{#if bank_account}} <span>{{tt "invoice.seller_bank_account"}}:</span> {{bank_account}} {{/if}}
+      		</p>
+		{{/or}}
+
+		{{#not_eq additional_fields.interest_rate 'Néant'}}
+			{{#if additional_fields.interest_rate}}
+				<p id="interest_rate_field">
+					<span>{{tt "invoice.interest_note"}}:</span> 
+					{{additional_fields.interest_rate}}
+				</p>
+			{{/if}}
+		{{/not_eq}}
+			
+	
+		{{#eq additional_fields.sum_recovery 'client_professionnel'}}
+			{{#if buyer_company}}
+				<p id="sum_recovery_field">
+					<span>{{tt "invoice.legal_cost_note"}}</span>
+				</p>
+			{{/if}}
+		{{/eq}}
+	
+
+		{{#not_eq additional_fields.advanced_payment_discount 'Néant'}}
+			{{#if additional_fields.advanced_payment_discount}}
+				<p id="advanced_payment_discount_field">
+					<span>{{tt "invoice.discount_on_advanced_payment_note"}}:</span>
+					{{additional_fields.advanced_payment_discount}} %
+				</p>
+			{{/if}}
+		{{/not_eq}}
+
+		{{#if additional_field_name}}
+			{{#if additional_field_value}}
+				<p id="additional_field">
+					<span>{{additional_field_name}}: </span>
+					{{additional_field_value}}
+				</p>
+			{{/if}}
+		{{/if}}
+
+		{{#if notes}}
+			<p id="notes">
+				<span>{{tt "invoice.description"}}:</span><br />
+				{{{notes}}}
+			</p>
+		{{/if}}
+
+	</section>
+
+	{{#if show_payments_on_invoice}}
+		{{>payments}}
+	{{/if}}
+
+	{{#if status_paid}}{{#if show_paid_logo}}{{#not_in kind "proforma,estimate"}}
+			<img id="paid_mark" src="{{paid_mark_url}}" alt="" />
+	{{/not_in}}{{/if}}{{/if}}
+
+	<section id="invoice_signatures">
+		<div id="seller_sign">
+			{{#or person show_empty_seller_person}}
+				<p><span>{{tt "invoice.seller_person"}}</span></p>
+				<p>{{person}}</p>
+			{{/or}}
+
+			{{#if stamp_below_sign_url}}
+				<img src="{{stamp_url}}" alt="stamp" style="max-width:50%" id="custom_img" />
+			{{/if}}	
+		</div>
+		<div id="buyer_sign">
+			{{#in kind "estimate,client_order"}}
+				{{#if show_date_and_sign}}
+					<p style="margin: 0% 10%;"><span>{{tt "invoice.date_and_signature_etc"}}</span></p>
+					<!-- Date et signature du client précédée de la mention ‘Bon pour accord’ --> 
+				{{/if}}
+			{{/in}}
+		</div>
+	</section>
+	</div>
+
+</div> <!-- invoice_outline -->
+
+{{! ------------------- DO NOT MODIFY ------------------- }}
+	
+
+	{{#if department.name}}
+		<section id="description_footer">
+			<div id="company_info_footer">
+            	<span>{{>company_info_footer}}</span>
+            </div>
+		</section>
+	{{/if}}
+
+	{{#if description_long}}
+		<hr class="noprint" style="margin-top:0px;" />
+
+		<div class="invoice_outline" id="extra_page" style="page-break-before:always !important;">
+			
+			<div id="extra_page_content">{{{description_long}}}</div>
+
+		</div>
+	{{/if}}	
+
+
+{{! ----------------- end DO NOT MODIFY ----------------- }}
