@@ -1,0 +1,12 @@
+  {{#and final tax_visible}}
+    {{#unless hide_tax}}
+      <script>
+        var style = document.createElement('style');
+        style.type = 'text/css';
+        var content = '.total_price_gross_col.related_advance {display:none;}';
+
+        style.innerHTML = content;
+        document.getElementsByTagName('head')[0].appendChild(style);
+      </script>
+    {{/unless}}
+  {{/and}}
