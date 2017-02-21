@@ -1,8 +1,7 @@
 [VosFactures.fr](http://vosfactures.fr/) - Logiciel de facturation en ligne
 ===========
 
-Partial templates
+Formats: Fichiers partiels
 ---------------
 
-In this directory you can find all partial files used in templates.
-They are indicated by tag {{>partial_name}} inside templates.
+Sont contenus dans ce dossier les différents fichier partiels utilisés dans les divers formats par défaut proposés dans le logiciel. Dans les formats, ils sont représentés par un tag de type {{>fichier_partiel}}. 
