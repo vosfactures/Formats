@@ -201,12 +201,12 @@
 
 	
 	<!-- POSITIONS -->
-		<!-- si vous souhaitez personnaliser le tableau, vous pouvez le remplacer par https://github.com/vosfactures/templates/blob/master/positions2.hbs.html -->
+		<!-- si vous souhaitez personnaliser le tableau, vous pouvez le remplacer par https://github.com/vosfactures/Formats/blob/master/partials/positions2.handlebars -->
 	{{>positions2}}
 	<!-- POSITIONS END -->
 		
 	{{#if final}}
-		<!-- si vous souhaitez personnaliser la liste des acomptes liés, vous pouvez les remplacer par https://github.com/vosfactures/templates/blob/master/advances.hbs.html  -->
+		<!-- si vous souhaitez personnaliser la liste des acomptes liés, vous pouvez les remplacer par https://github.com/vosfactures/Formats/blob/master/partials/advances.handlebars  -->
 		{{>advances}}
 	{{/if}}
 
@@ -399,7 +399,7 @@
 							{{#if tax_visible}}
 								{{#unless hide_tax}}
 									{{#eq kind 'final'}}
-										{{!-- each summary nie wlicza wartosci podatku z faktur zaliczkowych!  --}}
+										{{!-- each summary dont sum values from advances!!!  --}}
 										<tr>
 											<th class="gray">
 												{{ tax_value_name }}
@@ -569,10 +569,12 @@
 
 
 		{{#if has_corrected_content}}
+			<!-- si vous souhaitez personnaliser le contenu corrigé, vous pouvez les remplacer par https://github.com/vosfactures/Formats/blob/master/partials/corrected_content.handlebars  -->
 			{{>corrected_content}}
 		{{/if}}
 
 		{{#if show_payments_on_invoice}}
+			<!-- si vous souhaitez personnaliser la liste des paiements, vous pouvez les remplacer par https://github.com/vosfactures/Formats/blob/master/partials/payments.handlebars  -->
 			{{>payments}}
 		{{/if}}
 
@@ -606,7 +608,8 @@
 {{#if department.name}}
 	<section id="description_footer">
 		<div id="company_info_footer">
-        	<span>{{>company_info_footer}}</span>
+        	<!-- si vous souhaitez personnaliser le pied de page, vous pouvez les remplacer par https://github.com/vosfactures/Formats/blob/master/partials/company_info_footer.handlebars  -->
+			<span>{{>company_info_footer}}</span>
         </div>
 	</section>
 {{/if}}<!-- #company_info_footer -->

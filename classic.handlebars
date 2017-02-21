@@ -142,12 +142,11 @@
 	{{/if}}
 
 
-	<!-- si vous souhaitez personnaliser le tableau, vous pouvez le remplacer par https://github.com/vosfactures/templates/blob/master/positions.hbs.html -->
+	<!-- si vous souhaitez personnaliser le tableau, vous pouvez le remplacer par https://github.com/vosfactures/Formats/blob/master/partials/positions2.handlebars -->
 	{{>positions2}}
 		
 	{{#if final}}
-		<!-- si vous souhaitez personnaliser la liste des acomptes liés, vous pouvez les remplacer par https://github.com/vosfactures/templates/blob/master/advances.hbs.html  -->
-		<!-- if you want to customize 'advances', you can override this by https://github.com/fakturownia/Szablony/blob/master/partials/advances.hbs.html  -->
+		<!-- si vous souhaitez personnaliser la liste des acomptes liés, vous pouvez les remplacer par https://github.com/vosfactures/Formats/blob/master/partials/advances.handlebars  -->
 		{{>advances}}
 	{{/if}}
 
@@ -155,7 +154,7 @@
 	<div class="clean"></div>
 
 	
-	<!-- si vous souhaitez personnaliser les totaux, vous pouvez les remplacer par https://github.com/vosfactures/templates/blob/master/totals2.hbs.html  -->
+	<!-- si vous souhaitez personnaliser les totaux, vous pouvez les remplacer par https://github.com/vosfactures/Formats/blob/master/partials/totals2_with_currency.handlebars  -->
 	{{>totals2_with_currency}}
 
 	{{#unless exchange_currency}}
@@ -177,6 +176,7 @@
 	{{/unless}}
 
 	{{#if has_corrected_content}}
+		<!-- si vous souhaitez personnaliser le contenu corrigé, vous pouvez les remplacer par https://github.com/vosfactures/Formats/blob/master/partials/corrected_content.handlebars  -->
 		{{>corrected_content}}
 	{{/if}}
 
@@ -298,6 +298,7 @@
 	</section>
 
 	{{#if show_payments_on_invoice}}
+		<!-- si vous souhaitez personnaliser la liste des paiements, vous pouvez les remplacer par https://github.com/vosfactures/Formats/blob/master/partials/payments.handlebars  -->
 		{{>payments}}
 	{{/if}}
 
@@ -335,7 +336,8 @@
 	{{#if department.name}}
 		<section id="description_footer">
 			<div id="company_info_footer">
-            	<span>{{>company_info_footer}}</span>
+            	<!-- si vous souhaitez personnaliser le pied de page, vous pouvez les remplacer par https://github.com/vosfactures/Formats/blob/master/partials/company_info_footer.handlebars  -->
+				<span>{{>company_info_footer}}</span>
             </div>
 		</section>
 	{{/if}}

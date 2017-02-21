@@ -57,8 +57,8 @@
 		
 	</section>
 
-
-	{{> standard2}}
+	<!-- si vous souhaitez personnaliser le contenu du document, vous pouvez les remplacer par https://github.com/vosfactures/Formats/blob/master/partials/standard2.handlebars  -->
+	{{>standard2}}
 
 
 </div> <!-- invoice_outline -->
@@ -68,7 +68,8 @@
 {{#if department.name}}
 	<section id="description_footer">
 		<div id="company_info_footer">
-        	<span>{{>company_info_footer}}</span>
+        	<!-- si vous souhaitez personnaliser le pied de page, vous pouvez les remplacer par https://github.com/vosfactures/Formats/blob/master/partials/company_info_footer.handlebars  -->
+			<span>{{>company_info_footer}}</span>
         </div>
 	</section>
 {{/if}}<!-- #company_info_footer -->

@@ -14,6 +14,9 @@ HTML: https://github.com/vosfactures/Templates/blob/master/gray.handlebars
 
 CSS: https://github.com/vosfactures/Templates/blob/master/gray.css
 
+Les formats utilisent des fichiers partiels, représentés dans le code par un tag {{>fichier_partiel}} . Ces fichiers sont accessibles ici: https://github.com/vosfactures/Formats/tree/master/partials.
+
+
 Les modèles sont créés en HTML et CSS en utilisant [Handlebars](http://handlebarsjs.com/)
 
 Les principales variables qui peuvent être utilisées dans les formats sont:
