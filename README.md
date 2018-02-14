@@ -4,21 +4,21 @@
 Formats (templates) des factures
 ---------------
 
-En utilisant notre logiciel de facturation, vous avez accès à un certain nombre de formats de factures. Si l'un d'eux ne répond pas à vos attentes, vous pouvez créer votre propre modèle. Il vous suffit de vous connecter à votre compte (si vous n'êtes pas encore inscrit, [vous pouvez ouvrir un compte gratuitement] (https://app.vosfactures.fr/signup) ), de cliquer sur Paramètres > Paramètres du compte > Formats d'impression puis de cliquer sur le bouton "Ajouter un nouveau format".
+## Principe
+En utilisant notre logiciel de facturation, vous avez accès à un certain nombre de formats de factures (mises en page). </br>
+Si l'un d'eux ne répond pas à vos attentes, <b>vous pouvez créer votre propre modèle</b>.</br> 
+Il vous suffit de vous connecter à votre compte (si vous n'êtes pas encore inscrit : https://app.vosfactures.fr/signup pour un essai gratuit), de cliquer sur Paramètres > Paramètres du compte > Formats d'impression, puis de cliquer sur le bouton "Ajouter un nouveau format". Vous pouvez choisir le format par défaut que vous souhaitez modifier, comme expliqué ici: https://aide.vosfactures.fr/8631976-Cr-er-un-format-personnalis-
+
+## Documentation 
+
+Vous trouverez sur Github la documentation de chacun des formats par défaut, c'est-à-dire la partie HTML et la partie CSS de chaque format. Les formats sont créés en HTML et CSS en utilisant [Handlebars](https://handlebarsjs.com/)
+
+Les formats utilisent des fichiers partiels, représentés dans le code HTML par un tag {{>fichier_partiel}}. Ces fichiers partiels sont accessibles ici: https://github.com/vosfactures/Formats/tree/master/partials.
 
 
+## Variables handlebars
 
-Quelques exemples de formats de factures:
-
-HTML: https://github.com/vosfactures/Templates/blob/master/gray.handlebars 
-
-CSS: https://github.com/vosfactures/Templates/blob/master/gray.css
-
-Les formats utilisent des fichiers partiels, représentés dans le code par un tag {{>fichier_partiel}} . Ces fichiers sont accessibles ici: https://github.com/vosfactures/Formats/tree/master/partials.
-
-
-Les modèles sont créés en HTML et CSS en utilisant [Handlebars](http://handlebarsjs.com/)
-
+Vous pouvez visualiser les données d'une facture en handlebars en ajoutant le suffixe <b>.handlebars</b> à l'url (ex: moncompte.vosfactures.fr/invoices/232342321.handlebars). <br/>
 Les principales variables qui peuvent être utilisées dans les formats sont:
  
 ```shell
