@@ -33,6 +33,7 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{sell_date}} - date de vente
 {{sell_date_kind}} - date de vente ou validité (ou autre)
 {{today_date}} - date du jour
+{{invoice_category}} - catégorie du document
 {{company}} - nom de la compagnie/département
 {{person}} - nom du vendeur
 {{post_code}} - code postal du vendeur
