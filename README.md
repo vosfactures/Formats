@@ -30,8 +30,8 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{issue_place}} - lieu de création
 {{print_option}} 
 {{place}} - lieu de vente
-{{sell_date}} - date de vente
-{{sell_date_kind}} - date de vente ou validité (ou autre)
+{{sell_date}} - date additionnelle
+{{sell_date_kind}} - intitulé de la date additionnelle
 {{today_date}} - date du jour
 {{invoice_category}} - catégorie du document
 {{company}} - nom de la compagnie/département
@@ -41,14 +41,14 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{tax_no}} - numéro de taxe du vendeur
 {{country}} - pays du vendeur
 {{address}} - adresse complète du vendeur
-{{www}} - adresse internet
-{{email}} - adresse email
-{{fax}} - numéro de fax
-{{phone}} - numéro de téléphone
-{{bank}} - domiciliation bancaire et numéro
-{{bank_account}} - numéro de compte bancaire (RIB ou IBAN)
-{{department.bank_swift}} - numéro BIC 
-{{department.bank_name}} - domiciliation bancaire
+{{www}} - adresse internet du vendeur
+{{email}} - adresse email du vendeur
+{{fax}} - numéro de fax du vendeur
+{{phone}} - numéro de téléphone du vendeur
+{{bank}} - domiciliation bancaire et numéro de compte du vendeur
+{{bank_account}} - numéro de compte bancaire (RIB ou IBAN) du vendeur
+{{department.bank_swift}} - numéro BIC du vendeur
+{{department.bank_name}} - domiciliation bancaire du vendeur
 {{buyer}} - nom de l'acheteur
 {{buyer_post_code}} - code postal de l'acheteur
 {{buyer_place}} - ville de l'acheteur
@@ -57,6 +57,7 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{buyer_tax_no}} - numéro de taxe de l'acheteur
 {{buyer_person}} - nom (et prénom) de l'acheteur
 {{buyer_company}} - nom de la compagnie de l'acheteur
+{buyer_phone}} - n° de tel de l'acheteur
 {{seller_tax_no_kind}} - Numéro d'identification du vendeur
 {{buyer_tax_no_kind}} - Numéro d'identification de l'acheteur
 {{client.external_id}} - Réf/code client
