@@ -121,12 +121,12 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{token}} - code
 {{view_url}}
 {{view_link}} - lien vers l'aperçu du document
-{{payment_url}} - url pour effectuer le paiement
+{{payment_link}} - Lien direct afin de payer la facture en ligne (Paiement en ligne)
 {{payment_button_url}}
 {{income}} - revenu
 {{department}} - département/compagnie - les champs sont id, nom, type ... par ex: {{department.id}} {{department.name}}
 {{client}} 
-{{client_panel_view_url}} - url de l'accès client
+{{client_panel_view_url}} - Lien url de l'accès client
 {{client_panel_view_link}} 
 {{show_totals}} - afficher un résumé du total net, brut et de la TVA
 {{hide_tax}} - afficher les montants TTC uniquement 
