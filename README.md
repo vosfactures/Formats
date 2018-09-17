@@ -121,7 +121,7 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{token}} - code
 {{view_url}}
 {{view_link}} - lien vers l'aperçu du document
-{{payment_link}} - Lien direct afin de payer la facture en ligne (Paiement en ligne)
+{{payment_link}} - Lien vers Paiement en ligne (lien direct permettant au client de payer en ligne la facture)
 {{payment_button_url}}
 {{income}} - revenu
 {{department}} - département/compagnie - les champs sont id, nom, type ... par ex: {{department.id}} {{department.name}}
