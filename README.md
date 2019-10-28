@@ -57,7 +57,8 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{buyer_tax_no}} - numéro de taxe de l'acheteur
 {{buyer_person}} - nom (et prénom) de l'acheteur
 {{buyer_company}} - nom de la compagnie de l'acheteur
-{buyer_phone}} - n° de tel de l'acheteur
+{buyer_phone}} - n° de tel de l'acheteur (correspond au champ "Téléphone" du contact)
+{buyer_mobile_phone}} - n° de tel portable de l'acheteur (correspond au champ Tél. portable du contact)
 {{seller_tax_no_kind}} - Numéro d'identification du vendeur
 {{buyer_tax_no_kind}} - Numéro d'identification de l'acheteur
 {{client.external_id}} - Réf/code client
