@@ -197,22 +197,23 @@ Le système propose par défaut un contenu pour l'envoi des documents de factura
 
 Contenu par défaut de l'email accompagnant l'envoi des factures:
 ```shell
-Bonjour,
+Bonjour, 
 
-Veuillez trouver le document suivant: {{document_type}} numéro {{number}} d’un montant total de {{total_price_gross_with_currency}}.
-Vous pouvez visualiser le document en cliquant sur le lien: {{{view_link}}}
+Veuillez trouver en pièce jointe le document suivant: 
+{{document_type}} numéro {{number}} d’un montant total de {{total_price_gross_with_currency}}. 
+
+Vous pouvez également visualiser le document en cliquant sur le lien suivant: {{{view_link}}}  
 
 {{footer}}
-
 ```
 
 Contenu par défaut de l'email de relance en cas de factures impayées:
 ```shell
-Bonjour,
+Bonjour, 
 
-Veuillez trouver la {{document_type}} numéro {{number}} d’un montant de {{total_price_gross_with_currency}} qui reste à ce jour impayée.
+Veuillez trouver en pièce jointe la {{document_type}} numéro {{number}} d’un montant de {{outstanding}} qui {{#if overdue}}reste à ce jour impayé.{{else}}arrive à échéance le {{payment_to}}.{{/if}}
 
-Vous pouvez visualiser la facture en cliquant sur le lien suivant: {{{view_link}}}
+Vous pouvez visualiser la {{document_type}} en cliquant sur le lien suivant: {{{view_link}}}
 
 Dans l’attente de votre prompt règlement,
 
@@ -221,6 +222,12 @@ Bien cordialement,
 {{footer}}
 ```
 
+Vous pouvez également utiliser les variables suivantes pour vos emails de relance: 
+```shell
+{{inc reminder_no}} - numéro de la relance que vous envoyez, ie. N
+{{reminder_no}} - nombre de relances jusque là envoyées, ie. N-1 par rapport à la relance que vous allez envoyer
+{{dec reminder_no}} - nombre de relances jusque là envoyées, ie. N-2 par rapport à la relance que vous allez envoyer
+```
 
 Fonctions disponibles dans les formats de factures et des e-mails
 ---------------
