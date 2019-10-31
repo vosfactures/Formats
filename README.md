@@ -37,7 +37,7 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{currency}} - Devise du document
 {{currency_symbol}} - Devise (symbole)
 {{currency_short}} - Devise (abrégé)
-<b>Concernant le département vendeur :</b> 
+=> Concernant le département vendeur :
 {{department}} - département/compagnie - les champs sont id, nom, type ... par ex: {{department.id}} {{department.name}}
 {{company}} - Nom de la compagnie/département vendeur
 {{post_code}} - Code postal
@@ -56,7 +56,7 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{department.bank_name}} - Domiciliation bancaire (nom de la banque)
 {{bank}} - Domiciliation bancaire et numéro de compte
 {{person}} - Nom/Prénom du vendeur
-<b>Concernant le contact (client) : </b>
+=> Concernant le contact (client) :
 {{buyer}} - Nom de l'acheteur
 {{buyer_person}} - Nom (et prénom) de l'acheteur
 {{buyer_company}} - Nom de la compagnie de l'acheteur professionnel
@@ -73,7 +73,7 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{delivery_address}} - Adresse supplémentaire
 {{show_buyer_note}} - Afficher la description additionnelle
 {{buyer_note}} - Description additionnelle
-<b>Concernant le tableau des produits/services : </b>
+=> Concernant le tableau des produits/services :
 {{use_product_code}} - Afficher la colonne Référence
 {{show_product_description}} - afficher la description des produits
 {{show_unit_price_gross}} - afficher le prix unitaire TTC
@@ -109,7 +109,7 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
   {{tax}} - taux de taxe
   {{tax2}} - taux de la deuxième taxe
 {{/each}}
-<b>Concernant les Totaux </b>
+=> Concernant les Totaux :
 {{#each summary}} - résumé des totaux :
   {{total_price_net}} - Total HT du document
   {{total_price_gross}} - Total TTC du document
@@ -146,7 +146,7 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{negative_outstanding}} - Solde en votre faveur (en chiffres)
 {{absolute_outstanding}} -  Montant total à payer en valeur absolue (en chiffres)
 {{absolute_outstanding_in_words}} - Montant total à payer en valeur absolue (en lettres)
-<b>Concernant les modalités de paiement :</b>
+=> Concernant les modalités de paiement :
 {{paid}} - Montant payé
 {{status_paid}} - Etat Payé ou non du document
 {{oid}} - Numéro de commande du document
@@ -160,7 +160,7 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{token}} - Code du paiement en ligne
 {{show_paid_logo}} - afficher le tampon "Payé"
 {{paid_mark_url}} - url du tampon vert "Payé"
-<b>Concernant les autres éléments du document :</b>
+=> Concernant les autres éléments du document :
 {{notes}} - informations spécifiques
 {{additional_field_name}} - titre du champ additionnel
 {{additional_field_value}} - contenu du champ additionnel
