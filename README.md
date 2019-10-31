@@ -22,64 +22,66 @@ Vous pouvez visualiser les données d'une facture en handlebars en ajoutant le s
 Les principales variables qui peuvent être utilisées dans les formats sont:
  
 ```shell
-{{document_type}} type de document
-{{kind}} - type ("vat" pour facture, "estimate" pour devis, "proforma" pour facture proforma, "correction" pour avoir, "client_order" pour bon de commande de client, "advance" pour facture d'acompte", "final" pour facture de solde, "invoice_other" pour autre type de document)
-{{number}} - numéro
+{{document_type}} Type de document
+{{kind}} - Type ("vat" pour facture, "estimate" pour devis, "proforma" pour facture proforma, "correction" pour avoir, "client_order" pour bon de commande de client, "advance" pour facture d'acompte", "final" pour facture de solde, "invoice_other" pour autre type de document)
+{{number}} - Numéro du document
 {{title}} - titre
-{{issue_date}} - date de création
-{{issue_place}} - lieu de création
+{{issue_date}} - Date de création du document
+{{issue_place}} - Lieu de création du document
 {{print_option}} 
-{{place}} - lieu de vente
-{{sell_date}} - date additionnelle
-{{sell_date_kind}} - intitulé de la date additionnelle
-{{today_date}} - date du jour
-{{invoice_category}} - catégorie du document
-{{company}} - nom de la compagnie/département
-{{person}} - nom du vendeur
-{{post_code}} - code postal du vendeur
-{{street}} - numéro et nom de rue du vendeur
-{{tax_no}} - numéro de taxe du vendeur
-{{country}} - pays du vendeur
-{{address}} - adresse complète du vendeur
-{{www}} - adresse internet du vendeur
-{{email}} - adresse email du vendeur
-{{fax}} - numéro de fax du vendeur
-{{phone}} - numéro de téléphone du vendeur
-{{bank}} - domiciliation bancaire et numéro de compte du vendeur
-{{bank_account}} - numéro de compte bancaire (RIB ou IBAN) du vendeur
-{{department.bank_swift}} - numéro BIC du vendeur
-{{department.bank_name}} - domiciliation bancaire du vendeur
-{{buyer}} - nom de l'acheteur
-{{buyer_post_code}} - code postal de l'acheteur
-{{buyer_place}} - ville de l'acheteur
-{{buyer_street}} - numéro et nom de rue de l'acheteur
-{{buyer_country}} - pays de l'acheteur
-{{buyer_tax_no}} - numéro de taxe de l'acheteur
-{{buyer_person}} - nom (et prénom) de l'acheteur
-{{buyer_company}} - nom de la compagnie de l'acheteur
-{buyer_phone}} - n° de tel de l'acheteur (correspond au champ "Téléphone" du contact)
-{buyer_mobile_phone}} - n° de tel portable de l'acheteur (correspond au champ Tél. portable du contact)
-{{seller_tax_no_kind}} - Numéro d'identification du vendeur
-{{buyer_tax_no_kind}} - Numéro d'identification de l'acheteur
-{{client.external_id}} - Réf/code client
-{{use_delivery_address}} - afficher l'adresse de livraison
-{{delivery_address}} - adresse de livraison
-{{buyer_note}} - description additionnelle
-{{show_buyer_note}} - afficher la description additionnelle
-{{buyer_tax_no_kind}} - Numéro d'identification de l'acheteur
+{{sell_date}} - Date additionnelle
+{{sell_date_kind}} - Intitulé de la date additionnelle
+{{today_date}} - Date du jour
+{{invoice_category}} - Catégorie du document
+Concernant le département vendeur: 
+{{company}} - Nom de la compagnie/département vendeur
+{{post_code}} - Code postal
+{{street}} - Rue (numéro et nom)
+{{place}} - Ville
+{{tax_no}} - Numéro d'immatriculation (ex: n° TVA)
+{{seller_tax_no_kind}} - Type de numéro d'immatriculation (TVA, SIREN, CIF...)
+{{country}} - Pays
+{{address}} - adresse complète
+{{www}} - Adresse internet
+{{email}} - Adresse email
+{{fax}} - Numéro de fax
+{{phone}} - Numéro de téléphone
+{{bank_account}} - Numéro de compte bancaire (RIB ou IBAN)
+{{department.bank_swift}} - Numéro BIC
+{{department.bank_name}} - Domiciliation bancaire (nom de la banque)
+{{bank}} - Domiciliation bancaire et numéro de compte
+{{person}} - Nom/Prénom du vendeur
+Concernant le contact (client): 
+{{buyer}} - Nom de l'acheteur
+{{buyer_person}} - Nom (et prénom) de l'acheteur
+{{buyer_company}} - Nom de la compagnie de l'acheteur professionnel
+{{buyer_post_code}} - Code postal de l'acheteur
+{{buyer_place}} - Ville de l'acheteur
+{{buyer_street}} - Rue (numéro et nom) de l'acheteur
+{{buyer_country}} - Pays de l'acheteur
+{{buyer_tax_no}} - Numéro d'immatriculation (ex: n° TVA) de l'acheteur professionnel
+{{buyer_tax_no_kind}} - Type de numéro d'immatriculation (TVA, SIREN, CIF...) de l'acheteur professionnel
+{buyer_phone}} - Numéro de tel de l'acheteur (correspond au champ "Téléphone" du contact)
+{buyer_mobile_phone}} - Numéro de tel portable de l'acheteur (correspond au champ "Tél. portable" du contact)
+{{client.external_id}} - Réf/code de l'acheteur
+{{use_delivery_address}} - Afficher l'adresse supplémentaire (ex: adresse de livraison)
+{{delivery_address}} - Adresse supplémentaire
+{{show_buyer_note}} - Afficher la description additionnelle
+{{buyer_note}} - Description additionnelle
+Concernant le tableau des produits/services : 
 {{use_product_code}} - afficher la colonne Référence
 {{additional_info}} - colonne additionnelle
 {{additional_info_desc}} - Titre de la colonne additionnelle
-{{discount}} - réduction (montant)
-{{show_discount}} - afficher réduction
-{{total_price_net}} - total HT
-{{total_price_net_with_currency}} - total HT avec devise
-{{total_price_gross}} - total TTC 
-{{total_price_gross_with_currency}} - total TTC avec devise
-{{tax_value}} - montant de la taxe
-{{tax_value_with_currency}} - montant de la taxe avec devise
-{{tax_name}} - nom de la taxe
-{{tax2_name}} - nom de la deuxième taxe
+{{discount}} - Réduction (montant)
+{{show_discount}} - Afficher la réduction
+{{total_price_net}} - Total HT du document
+{{total_price_net_with_currency}} - Total HT avec devise du document
+{{total_price_gross}} - Total TTC du document
+{{total_price_gross_with_currency}} - Total TTC avec devise du document
+{{tax_value}} - Montant total des Taxes du document
+{{tax_value_with_currency}} - Montant des Taxes du document avec devise
+{{tax_name}} - Nom de la Taxe
+{{tax2_name}} - Nom de la deuxième Taxe
 {{tax_value_name}} - nom de la taxe 
 {{tax_visible}} - afficher colonne taxe
 {{tax2_visible}} - afficher deuxième colonne taxe
@@ -94,6 +96,7 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{exchange_currency}} - devise (conversion)
 {{exchange_rate}} - taux de change (utilisé dans les rapports)
 {{long_exchange_note}} - taux de change appliqué
+{{positions_total_quantity_separated}} - Quantité totale (distinguée par unité différente). 
 {{total_price_net_in_main_currency}} - total HT avec devise principale
 {{total_price_gross_in_main_currency}} - total TTC avec devise principale
 {{total_price_net_in_exchange_currency}} - total HT avec devise de conversion
@@ -149,7 +152,6 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{advanced_num}} - nombre des acomptes liés à une facture finale
 {{description_long}} - texte additionnel (imprimé sur la page suivante)
 {{description_footer}} - Bas de page
-
 {{#each positions}}  - ligne des tableaux :
   {{no}} - numéro de ligne
   {{kind}} - type de ligne (ligne de produit ou ligne de texte)
