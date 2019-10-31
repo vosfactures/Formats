@@ -33,7 +33,12 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{sell_date_kind}} - Intitulé de la date additionnelle
 {{today_date}} - Date du jour
 {{invoice_category}} - Catégorie du document
-Concernant le département vendeur: 
+{{lang}} - Langue du document
+{{currency}} - Devise du document
+{{currency_symbol}} - Devise (symbole)
+{{currency_short}} - Devise (abrégé)
+<b>Concernant le département vendeur :</b> 
+{{department}} - département/compagnie - les champs sont id, nom, type ... par ex: {{department.id}} {{department.name}}
 {{company}} - Nom de la compagnie/département vendeur
 {{post_code}} - Code postal
 {{street}} - Rue (numéro et nom)
@@ -51,7 +56,7 @@ Concernant le département vendeur:
 {{department.bank_name}} - Domiciliation bancaire (nom de la banque)
 {{bank}} - Domiciliation bancaire et numéro de compte
 {{person}} - Nom/Prénom du vendeur
-Concernant le contact (client): 
+<b>Concernant le contact (client) : </b>
 {{buyer}} - Nom de l'acheteur
 {{buyer_person}} - Nom (et prénom) de l'acheteur
 {{buyer_company}} - Nom de la compagnie de l'acheteur professionnel
@@ -68,126 +73,116 @@ Concernant le contact (client):
 {{delivery_address}} - Adresse supplémentaire
 {{show_buyer_note}} - Afficher la description additionnelle
 {{buyer_note}} - Description additionnelle
-Concernant le tableau des produits/services : 
-{{use_product_code}} - afficher la colonne Référence
-{{additional_info}} - colonne additionnelle
+<b>Concernant le tableau des produits/services : </b>
+{{use_product_code}} - Afficher la colonne Référence
+{{show_product_description}} - afficher la description des produits
+{{show_unit_price_gross}} - afficher le prix unitaire TTC
+{{additional_info}} - Colonne additionnelle
 {{additional_info_desc}} - Titre de la colonne additionnelle
 {{discount}} - Réduction (montant)
-{{show_discount}} - Afficher la réduction
-{{total_price_net}} - Total HT du document
-{{total_price_net_with_currency}} - Total HT avec devise du document
-{{total_price_gross}} - Total TTC du document
-{{total_price_gross_with_currency}} - Total TTC avec devise du document
-{{tax_value}} - Montant total des Taxes du document
-{{tax_value_with_currency}} - Montant des Taxes du document avec devise
+{{total_discount}} - Réduction globale (montant)
+{{global_discount_percent}} - Réduction globale (en %)
+{{show_discount}} - Afficher la colonne réduction
+{{hide_tax}} - Afficher les montants TTC uniquement 
+{{tax_visible}} - Afficher la colonne taxe
 {{tax_name}} - Nom de la Taxe
+{{tax2_visible}} - Afficher deuxième colonne taxe
 {{tax2_name}} - Nom de la deuxième Taxe
-{{tax_value_name}} - nom de la taxe 
-{{tax_visible}} - afficher colonne taxe
-{{tax2_visible}} - afficher deuxième colonne taxe
-{{currency}} - devise
-{{currency_symbol}} - devise (symbole)
-{{currency_short}} - devise (abrégé)
-{{exchange_currency}} - convertir en
-{{lang}} - langue
-{{exchange_currency_rate}} - taux de change (sur les documents)
-{{exchange_note}} - note sur le taux
-{{exchange_date}} - date de la conversion
-{{exchange_currency}} - devise (conversion)
-{{exchange_rate}} - taux de change (utilisé dans les rapports)
-{{long_exchange_note}} - taux de change appliqué
-{{positions_total_quantity_separated}} - Quantité totale (distinguée par unité différente). 
-{{total_price_net_in_main_currency}} - total HT avec devise principale
-{{total_price_gross_in_main_currency}} - total TTC avec devise principale
-{{total_price_net_in_exchange_currency}} - total HT avec devise de conversion
-{{total_price_gross_in_exchange_currency}} - total TTC avec devise de conversion
-{{tax_value_in_exchange_currency}} - montant de taxe avec devise de conversion
-{{outstanding}} - montant à payer (en chiffres)
-{{outstanding_in_exchange_currency}} - montant converti à payer (en chiffres)
-{{outstanding_in_words}} - montant à payer (en lettres)
-{{outstanding_in_words_in_exchange_currency}} - montant converti à payer (en lettres)
-{{negative_outstanding}} - solde en votre faveur (en chiffres)
-{{absolute_outstanding}} -  montant à payer en valeur absolue (en chiffres)
-{{absolute_outstanding_in_words}} - montant à payer en valeur absolue (en lettres)
-{{all_in_words_in_exchange_currency}} montant total converti (en lettres)
-{{all_in_words}} - montant total (en lettres)
-{{paid}} - montant payé
-{{status_paid}} - Etat Payé ou non
-{{oid}} - numéro de commande
-{{payment_to}} - date limite de règlement
+{{tax_value_name}} - Total des Taxes 
+{{#each positions}}  - ligne des tableaux :
+  {{no}} - Numéro de ligne
+  {{kind}} - Type de ligne (ligne de produit ou ligne de texte)
+  {{code}} - Référence du produit
+  {{item}} - Nom du produit
+  {{description}} - Description du produit
+  {{additional_info}} - Colonne additionnelle 
+  {{discount}} - Réduction
+  {{quantity}} - Quantité
+  {{positions_total_quantity}} - Total des quantités
+  {{unit_price_net}} - Prix unitaire ht
+  {{unit_price_gross}} - Prix unitaire ttc
+  {{unit_price_net_with_discount}} - Prix unitaire ht après réduction
+  {{unit_price_gross_with_discount}} - Prix unitaire ttc après réduction
+  {{positions_total_price_net}} - Total HT de la ligne
+  {{positions_total_price_gross}} - Total TTC de la ligne
+  {{positons_total_tax}} - Total taxe de la ligne
+  {{tax}} - taux de taxe
+  {{tax2}} - taux de la deuxième taxe
+{{/each}}
+<b>Concernant les Totaux </b>
+{{#each summary}} - résumé des totaux :
+  {{total_price_net}} - Total HT du document
+  {{total_price_gross}} - Total TTC du document
+  {{tax}} - Taux de taxe
+  {{tax_value}} - Montant total des Taxes du document
+  {{total_price_net_without_discount}} - Total HT avant réduction
+  {{total_price_gross_without_discount}} - Total TTC avant réduction
+  {{global_discount_net}} - Montant total HT de la réduction
+  {{global_discount_gross}} - Montant total TTC de la réduction
+{{/each}}
+{{positions_total_quantity_separated}} - Quantité totale (distinguée par unité différente) du document
+{{total_price_net_with_currency}} - Total HT avec devise du document
+{{total_price_gross_with_currency}} - Total TTC avec devise du document
+{{tax_value_with_currency}} - Montant des Taxes avec devise du document
+{{show_totals}} - Afficher un résumé du total net, brut et de la taxe
+{{show_tax_split}} - afficher le résumé des différents taux de taxe
+{{exchange_currency}} - Convertir en
+{{exchange_currency_rate}} - Taux de change du document
+{{exchange_note}} - Note sur le taux personnalisé
+{{exchange_date}} - Date de la conversion
+{{exchange_rate}} - Taux de change (utilisé dans les rapports)
+{{long_exchange_note}} - Taux de change appliqué
+{{total_price_net_in_main_currency}} - Total HT avec devise principale
+{{total_price_gross_in_main_currency}} - Total TTC avec devise principale
+{{total_price_net_in_exchange_currency}} - Total HT avec devise de conversion
+{{total_price_gross_in_exchange_currency}} - Total TTC avec devise de conversion
+{{tax_value_in_exchange_currency}} - Montant de taxe avec devise de conversion
+{{outstanding}} - Montant total à payer (en chiffres)
+{{outstanding_in_exchange_currency}} - Montant total converti à payer (en chiffres)
+{{outstanding_in_words}} - Montant total à payer (en lettres)
+{{outstanding_in_words_in_exchange_currency}} - Montant total converti à payer (en lettres)
+{{all_in_words}} - Montant Total à payer (en lettres)
+{{all_in_words_in_exchange_currency}} - Montant total à payer converti (en lettres)
+{{negative_outstanding}} - Solde en votre faveur (en chiffres)
+{{absolute_outstanding}} -  Montant total à payer en valeur absolue (en chiffres)
+{{absolute_outstanding_in_words}} - Montant total à payer en valeur absolue (en lettres)
+<b>Concernant les modalités de paiement :</b>
+{{paid}} - Montant payé
+{{status_paid}} - Etat Payé ou non du document
+{{oid}} - Numéro de commande du document
+{{payment_to}} - Date limite de règlement
 {{type_of_payment}} - Mode de règlement
+{{show_paid_date}} - afficher la date de paiement
+{{paid_date}} - date de paiement
+{{payment_link}} - Lien vers Paiement en ligne (lien direct permettant au client de payer en ligne la facture)
+{{payment_button_url}} - 
+{{transaction_id}} - ID de la transaction
+{{token}} - Code du paiement en ligne
+{{show_paid_logo}} - afficher le tampon "Payé"
+{{paid_mark_url}} - url du tampon vert "Payé"
+<b>Concernant les autres éléments du document :</b>
 {{notes}} - informations spécifiques
 {{additional_field_name}} - titre du champ additionnel
 {{additional_field_value}} - contenu du champ additionnel
-{{logo_url}} - url du logo
-{{stamp_url}} - url du tampon
-{{stamp_below_sign_url}} - url du tampon sous le nom du vendeur
-{{token}} - code
-{{view_url}}
-{{view_link}} - lien vers l'aperçu du document
-{{payment_link}} - Lien vers Paiement en ligne (lien direct permettant au client de payer en ligne la facture)
-{{payment_button_url}}
-{{income}} - revenu
-{{department}} - département/compagnie - les champs sont id, nom, type ... par ex: {{department.id}} {{department.name}}
+{{logo_url}} - Url du logo
+{{stamp_url}} - Url du tampon
+{{stamp_below_sign_url}} - Url du tampon sous le nom du vendeur
+{{show_date_and_sign}} - Afficher la mention " Date et signature du client..."
+{{description_long}} - Texte additionnel (imprimé sur la page suivante du document)
+{{description_footer}} - Bas de page du document
+{{footer}} - Bas de page (des emails)
+{{view_url}} - URL du lien vers l'aperçu du document
+{{view_link}} - Lien vers l'aperçu du document
+{{client_panel_view_url}} - URL de l'accès client
+{{client_panel_view_link}} - Lien vers l'accès client
+{{final}} - Facture de Solde
+{{advanced}} - Facture d'Acompte
+{{advanced_num}} - Nombre de factures d'acompte liées à une facture finale
+{{income}} - Revenu
 {{client}} 
-{{client_panel_view_url}} - Lien url de l'accès client
-{{client_panel_view_link}} 
-{{show_totals}} - afficher un résumé du total net, brut et de la TVA
-{{hide_tax}} - afficher les montants TTC uniquement 
-{{show_tax_split}} - afficher le résumé des différents taux de taxe
-{{show_paid_date}} - afficher la date de paiement
-{{paid_date}} - date de paiement
-{{show_date_and_sign}} - afficher la mention " Date et signature du client..."
-{{show_product_description}} - afficher la description des produits
-{{show_unit_price_gross}} - afficher le prix unitaire TTC
-{{total_discount}} - réduction globale (montant)
-{{global_discount_percent}} - réduction globale (en %)
-{{show_paid_logo}} - afficher le tampon "Payé"
-{{paid_mark_url}} - url du tampon vert "Payé"
 {{sales_code}}
-{{transaction_id}} - ID de la transaction
 {{locale}} - 
-{{final}} - facture de solde
-{{advanced}} - acompte
-{{advanced_num}} - nombre des acomptes liés à une facture finale
-{{description_long}} - texte additionnel (imprimé sur la page suivante)
-{{description_footer}} - Bas de page
-{{#each positions}}  - ligne des tableaux :
-  {{no}} - numéro de ligne
-  {{kind}} - type de ligne (ligne de produit ou ligne de texte)
-  {{code}} - référence du produit
-  {{item}} - nom du produit
-  {{description}} - description du produit
-  {{additional_info}} - champ additionnel 
-  {{discount}} - réduction
-  {{quantity}} - quantité
-  {{positions_total_quantity}} - total des quantités
-  {{unit_price_net}} - prix unitaire ht
-  {{unit_price_gross}} - prix unitaire ttc
-  {{unit_price_net_with_discount}} - prix unitaire ht après réduction
-  {{unit_price_gross_with_discount}} - prix unitaire ttc après réduction
-  {{positions_total_price_net}} - total HT de la ligne
-  {{positions_total_price_gross}} - total TTC de la ligne
-  {{positons_total_tax}} - total taxe de la ligne
-  {{total_price_net}} - total ht
-  {{total_price_gross}} - total ttc
-  {{tax}} - taux de taxe
-  {{tax2}} - taux de la deuxième taxe
-  {{tax_value}} - montant de taxe
-{{/each}}
 
-{{#each summary}} - résumé des totaux :
-  {{total_price_net}} - total HT
-  {{total_price_gross}} - total TTC
-  {{tax}} - taux de taxe
-  {{tax_value}} - total taxe
-  {{total_price_gross_without_discount}} - sous-total TTC avant réduction
-  {{total_price_net_without_discount}} - sous-total HT avant réduction
-  {{global_discount_net}} - montant total HT de la réduction
-  {{global_discount_gross}} - montant total TTC de la réduction
-{{/each}}
-
-{{footer}} - bas de page
 ```
 
 
