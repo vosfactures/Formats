@@ -120,7 +120,7 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
   {{global_discount_net}} - Montant total HT de la réduction
   {{global_discount_gross}} - Montant total TTC de la réduction
 {{/each}}
-{{positions_total_quantity_separated}} - Quantité totale (distinguée par unité différente) du document
+{{{positions_total_quantity_separated}}} - Quantité totale (distinguée par unité différente) du document
 {{total_price_net_with_currency}} - Total HT avec devise du document
 {{total_price_gross_with_currency}} - Total TTC avec devise du document
 {{tax_value_with_currency}} - Montant des Taxes avec devise du document
