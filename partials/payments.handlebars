@@ -10,6 +10,9 @@
                     <div class="invoice_payments_price">{{price_with_currency}}</div> 
                     <div class="invoice_payments_date">{{tt 'invoice.paid_on'}} {{date}}</div>
                     <div class="invoice_payments_provider">{{provider}}</div>
+                    {{#if cheque_number}}
+                        <div class="invoice_payments_provider">{{cheque_number}}</div>
+                    {{/if}}
                 </div>
             {{/each}}
         </div>
