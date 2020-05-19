@@ -21,7 +21,7 @@ Les formats utilisent des fichiers partiels, représentés dans le code HTML par
 Vous pouvez visualiser les données d'une facture en handlebars en ajoutant le suffixe <b>.handlebars</b> à l'url (ex: moncompte.vosfactures.fr/invoices/232342321.handlebars). <br/>
 Les principales variables qui peuvent être utilisées dans les formats sont:
  
-```shell
+```htmlbars
 {{document_type}} Type de document
 {{kind}} - Type ("vat" pour facture, "estimate" pour devis, "proforma" pour facture proforma, "correction" pour avoir, "client_order" pour bon de commande de client, "advance" pour facture d'acompte", "final" pour facture de solde, "invoice_other" pour autre type de document)
 {{number}} - Numéro du document
@@ -193,7 +193,7 @@ Format des emails
 Le système propose par défaut un contenu pour l'envoi des documents de facturation, et un contenu pour l'envoi de relances en cas de factures impayées. Vous pouvez personnaliser le contenu des e-mails envoyés aux clients. Le texte des emails utilisent les mêmes variables que les formats (voir ci-dessus) et utilise aussi [Handlebars](http://handlebarsjs.com/).
 
 Contenu par défaut de l'email accompagnant l'envoi des factures:
-```shell
+```htmlbars
 Bonjour, 
 
 Veuillez trouver en pièce jointe le document suivant: 
@@ -205,7 +205,7 @@ Vous pouvez également visualiser le document en cliquant sur le lien suivant: {
 ```
 
 Contenu par défaut de l'email de relance en cas de factures impayées:
-```shell
+```htmlbars
 Bonjour, 
 
 Veuillez trouver en pièce jointe la {{document_type}} numéro {{number}} d’un montant de {{outstanding}} qui {{#if overdue}}reste à ce jour impayé.{{else}}arrive à échéance le {{payment_to}}.{{/if}}
@@ -231,7 +231,7 @@ Fonctions disponibles dans les formats de factures et des e-mails
 
 Les formats peuvent inclure les fonctions suivantes:
 
-```shell
+```htmlbars
   if
   for
   eq 
@@ -247,7 +247,7 @@ Les formats peuvent inclure les fonctions suivantes:
 
 Exemple:
 
-```shell  
+```htmlbars  
 {{#if val1 }}
   ok
 {{else}}
