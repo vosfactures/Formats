@@ -1,13 +1,25 @@
-[VosFactures.fr](http://vosfactures.fr/) - Logiciel de facturation en ligne
+[VosFactures.fr](https://vosfactures.fr/) - Logiciel de Facturation en ligne : Personnalisation
 ===========
 
-Formats (templates) des factures
+## Menu
++ [Formats des factures (et autres documents de facturation)](#templates)  
+     + [Principe](#main)
+     + [Documentation](#more)
+     + [Variables Handlebars](#variables)
++ [Formats des Emails](#emails)  
+
+<a name="templates"/>
+
+## Formats (templates) des factures
 ---------------
+<a name="main"/>
 
 ## Principe
 En utilisant notre logiciel de facturation, vous avez accès à un certain nombre de formats (mises en page) de factures et devis, que vous pouvez personnaliser via l'ajout de codes CSS. </br>
 Toutefois, si l'un d'eux ne répond pas à vos attentes, <b>vous pouvez créer votre propre modèle</b>.</br></br> 
 Pour cela, il vous suffit de vous connecter à votre compte (si vous n'êtes pas encore inscrit : https://app.vosfactures.fr/signup pour un essai gratuit), de cliquer sur Paramètres > Paramètres du compte > Formats des documents, puis de cliquer sur le bouton "Ajouter un nouveau format". Vous pouvez choisir le format par défaut que vous souhaitez modifier, comme expliqué ici: https://aide.vosfactures.fr/8631976-Cr-er-un-format-personnalis-
+
+<a name="more"/>
 
 ## Documentation 
 
@@ -15,6 +27,7 @@ Vous trouverez sur Github la documentation de chacun des formats par défaut, c'
 
 Les formats utilisent des fichiers partiels, représentés dans le code HTML par un tag {{>fichier_partiel}}. Ces fichiers partiels sont accessibles ici: https://github.com/vosfactures/Formats/tree/master/partials.
 
+<a name="variables"/>
 
 ## Variables handlebars
 
@@ -56,7 +69,7 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{department.bank_name}} - Domiciliation bancaire (nom de la banque)
 {{bank}} - Domiciliation bancaire et numéro de compte
 {{person}} - Nom/Prénom du vendeur
-=> Concernant le contact (client) :
+* Concernant le contact (client) :
 {{buyer}} - Nom de l'acheteur
 {{buyer_person}} - Nom (et prénom) de l'acheteur
 {{buyer_company}} - Nom de la compagnie de l'acheteur professionnel
@@ -73,7 +86,7 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{delivery_address}} - Adresse supplémentaire
 {{show_buyer_note}} - Afficher la description additionnelle
 {{buyer_note}} - Description additionnelle
-=> Concernant le tableau des produits/services :
+* Concernant le tableau des produits/services :
 {{use_product_code}} - Afficher la colonne Référence
 {{show_product_description}} - afficher la description des produits
 {{show_unit_price_gross}} - afficher le prix unitaire TTC
@@ -109,7 +122,7 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
   {{tax}} - taux de taxe
   {{tax2}} - taux de la deuxième taxe
 {{/each}}
-=> Concernant les Totaux :
+* Concernant les Totaux :
 {{#each summary}} - résumé des totaux :
   {{total_price_net}} - Total HT du document
   {{total_price_gross}} - Total TTC du document
@@ -146,7 +159,7 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{negative_outstanding}} - Solde en votre faveur (en chiffres)
 {{absolute_outstanding}} -  Montant total à payer en valeur absolue (en chiffres)
 {{absolute_outstanding_in_words}} - Montant total à payer en valeur absolue (en lettres)
-=> Concernant les modalités de paiement :
+* Concernant les modalités de paiement :
 {{paid}} - Montant payé
 {{status_paid}} - Etat Payé ou non du document
 {{oid}} - Numéro de commande du document
@@ -160,7 +173,7 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{token}} - Code du paiement en ligne
 {{show_paid_logo}} - afficher le tampon "Payé"
 {{paid_mark_url}} - url du tampon vert "Payé"
-=> Concernant les autres éléments du document :
+* Concernant les autres éléments du document :
 {{notes}} - informations spécifiques
 {{additional_field_name}} - titre du champ additionnel
 {{additional_field_value}} - contenu du champ additionnel
@@ -170,7 +183,6 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{show_date_and_sign}} - Afficher la mention " Date et signature du client..."
 {{description_long}} - Texte additionnel (imprimé sur la page suivante du document)
 {{description_footer}} - Bas de page du document
-{{footer}} - Bas de page (des emails)
 {{view_url}} - URL du lien vers l'aperçu du document
 {{view_link}} - Lien vers l'aperçu du document
 {{client_panel_view_url}} - URL de l'accès client
@@ -179,6 +191,7 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{advanced}} - Facture d'Acompte
 {{advanced_num}} - Nombre de factures d'acompte liées à une facture finale
 {{income}} - Revenu
+{{footer}} - Bas de page (des emails)
 {{client}} 
 {{sales_code}}
 {{locale}} - 
@@ -186,9 +199,9 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 ```
 
 
+<a name="emails"/>
 
-
-Format des emails
+## Format des emails
 ---------------
 Le système propose par défaut un contenu pour l'envoi des documents de facturation, et un contenu pour l'envoi de relances en cas de factures impayées. Vous pouvez personnaliser le contenu des e-mails envoyés aux clients. Le texte des emails utilisent les mêmes variables que les formats (voir ci-dessus) et utilise aussi [Handlebars](http://handlebarsjs.com/).
 
