@@ -37,7 +37,7 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{currency}} - Devise du document
 {{currency_symbol}} - Devise (symbole)
 {{currency_short}} - Devise (abrégé)
-<b> Concernant le département vendeur :</b>
+* Concernant le département vendeur :
 {{department}} - département/compagnie - les champs sont id, nom, type ... par ex: {{department.id}} {{department.name}}
 {{company}} - Nom de la compagnie/département vendeur
 {{post_code}} - Code postal
