@@ -7,8 +7,8 @@
      + [Documentation](#more)
      + [Variables Handlebars](#variables)
 + [Formats des Emails](#emails)
-+ [Fonctions](#fct)
-+ [Importations](#import)
++ [Fonctions disponibles dans les formats](#fct)
++ [Importations de données](#import)
 + [API](#api)
 
 <a name="templates"/>
@@ -299,7 +299,7 @@ Exemple:
 Importation de données
 ---------------
 
-Il vous est possible d'importer dans votre compte VosFactures des données existantes depuis n'importe quel programme si celles-ci sont dans un fichier .TXT, .CSV, .XLS, .ods, XLSX, .tsv, .xml bure. L'importation de fichier se fait depuis l'onglet Paramètres > Importation. Vous pouvez importer des factures d'achat et de vente (et autres documents de facturation), des clients et fournisseurs, vos catalogues produits, et des relevés bancaires. Durant l'importation, vous pouvez choisir quelles colonnes et lignes importer. 
+Il vous est possible d'importer dans votre compte VosFactures des données existantes depuis n'importe quel programme si celles-ci sont dans un fichier .TXT, .CSV, .XLS, .ODS, XLSX, .TSV, .XML.</br></br> L'importation de fichiers se fait depuis l'onglet Paramètres > Importation.</br> Vous pouvez importer des documents de facturation (factures, devis, dépenses...), des clients et fournisseurs, vos catalogues produits, et des relevés bancaires.</br> Durant l'importation, vous pouvez choisir quelles colonnes et lignes importer. Vous pouvez consulter les sujets d'aide dédiés: [Etapes de l'importation]( https://aide.vosfactures.fr/410101-Principe-et-tapes-de-l-importation) et [Conseils avant d'importer](https://aide.vosfactures.fr/748672-Export-Importation-de-vos-fichiers-vers-VosFactures-Quelques-conseils). 
 
 
 <a name="api"/>
@@ -307,5 +307,5 @@ Il vous est possible d'importer dans votre compte VosFactures des données exist
 API
 ---------------
 
-Lien vers la documentation de l'[API de VosFactures](https://github.com/vosfactures/API) 
+Consultez notre documentation [API de VosFactures](https://github.com/vosfactures/API).  
 
