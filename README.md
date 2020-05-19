@@ -1,4 +1,4 @@
-[VosFactures.fr](https://vosfactures.fr/) - Logiciel de Facturation en ligne : Personnalisation
+[VosFactures](https://vosfactures.fr/) - Logiciel de Facturation en ligne
 ===========
 
 ## Menu
@@ -6,7 +6,10 @@
      + [Principe](#main)
      + [Documentation](#more)
      + [Variables Handlebars](#variables)
-+ [Formats des Emails](#emails)  
++ [Formats des Emails](#emails)
++ [Fonctions](#fct)
++ [Importations](#import)
++ [API](#api)
 
 <a name="templates"/>
 
@@ -239,6 +242,8 @@ Vous pouvez également utiliser les variables suivantes pour vos emails de relan
 {{dec reminder_no}} - nombre de relances jusque là envoyées, ie. N-2 par rapport à la relance que vous allez envoyer
 ```
 
+<a name="fct"/>
+
 Fonctions disponibles dans les formats de factures et des e-mails
 ---------------
 
@@ -289,6 +294,7 @@ Exemple:
 {{/for}}
 ```
 
+<a name="import"/>
 
 Importation de données
 ---------------
@@ -296,7 +302,7 @@ Importation de données
 Il vous est possible d'importer dans votre compte VosFactures des données existantes depuis n'importe quel programme si celles-ci sont dans un fichier .TXT, .CSV, .XLS, .ods, XLSX, .tsv, .xml bure. L'importation de fichier se fait depuis l'onglet Paramètres > Importation. Vous pouvez importer des factures d'achat et de vente (et autres documents de facturation), des clients et fournisseurs, vos catalogues produits, et des relevés bancaires. Durant l'importation, vous pouvez choisir quelles colonnes et lignes importer. 
 
 
-
+<a name="api"/>
 
 API
 ---------------
