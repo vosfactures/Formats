@@ -204,7 +204,8 @@
 		background-color: transparent;
 	}
 
-	.summary_row td.tax_col.total.footer{
+	.summary_row td.tax2_col.total.footer,
+	.summary_row td.tax_col.total.footer {
 		background-color: #00a6f0;
 	}
 
@@ -268,6 +269,7 @@
 		clear: both;
 		display: table;
 		width: 100%;
+		margin:18px 0 0 0;
 	}
 		#invoice_signatures p {margin: 0px;}
 		#invoice_signatures > div > p:first-of-type {margin-top: 1.5em;}
@@ -449,12 +451,21 @@
 
 	.invoice_payments_payment > div {
 		display: inline-block;
+		vertical-align: top;
 	}
 
-	.invoice_payments_provider::before {
-		content: '- ';
+	.invoice_payments_provider {
+		width: 66%;
 	}
 
+	.invoice_payments_date::after {
+		content: ' -';
+	}
+
+  .subtotal_row {
+    background: #00a6f0 !important;
+    color: #FFFFFF;
+  }
 	
 }
 
@@ -513,5 +524,4 @@
 	}
 
 
-} 
-
+}
