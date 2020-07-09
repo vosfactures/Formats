@@ -1,3 +1,4 @@
+		{{#not_eq kind 'maintenance_request'}}
 			{{#if show_totals }}
 				{{#unless exchange_currency}}
 					<table class="clean to_right totals_inv_table">
@@ -9,7 +10,7 @@
 											{{tt "invoice.total_price_net" }}
 										</th>
 										<td class="number">
-										    {{ total_price_net_without_discount_with_currency }}
+											{{ total_price_net_without_discount_with_currency }}
 										</td>
 									</tr>
 									<tr>
@@ -21,7 +22,7 @@
 											{{/if}}
 										</th>
 										<td class="number">
-										    {{ global_discount_net_with_currency }}
+											{{ global_discount_net_with_currency }}
 										</td>
 									</tr>
 									<tr>
@@ -29,7 +30,7 @@
 											{{tt "invoice.total_price_net_with_discount" }}
 										</th>
 										<td class="number">
-										    {{ total_price_net_with_currency }}
+											{{ total_price_net_with_currency }}
 										</td>
 									</tr>
 								{{else}}
@@ -38,39 +39,57 @@
 											{{tt "invoice.total_price_net" }}
 										</th>
 										<td class="number">
-										    {{ total_price_net_with_currency }}
+											{{ total_price_net_with_currency }}
 										</td>
 									</tr>
 								{{/if}}
 
-								{{#eq kind 'final'}}
-									{{!-- each summary nie wlicza wartosci podatku z faktur zaliczkowych!  --}}
-									<tr>
-										<th>
-											{{ tax_value_name }}
-										</th>
-										<td class="number">
-										    {{tax_value_with_currency}}
-										</td>
-									</tr>
-								{{else}}
-									{{#each summary}}
-										<tr>
-											<th>
-												{{ ../tax_value_name }} ({{tax}}{{#not_eq tax 'N/A'}}%{{/not_eq}})
-											</th>
-											<td class="number">
-											    {{tax_value_with_currency}}
-											</td>
-										</tr>
-									{{/each}}
-								{{/eq}}
+									{{#if tax2_visible}}
+										{{#if tax2_details}}
+											<tr>
+												<th>
+													{{ ../tax1_value_name }}
+												</th>
+												<td class="number">
+													{{../tax1_value_with_currency}}
+												</td>
+											</tr>
+											<tr>
+												<th>
+													{{ ../tax2_value_name }}
+												</th>
+												<td class="number">
+													{{../tax2_value_with_currency}}
+												</td>
+											</tr>
+										{{else}}
+											<tr>
+												<th>
+													{{ ../tax_value_name }}
+												</th>
+												<td class="number">
+													{{../tax_value_with_currency}}
+												</td>
+											</tr>
+										{{/if}}
+									{{else}}
+										{{#each final_summary}}
+											<tr>
+												<th>
+													{{ ../tax_value_name }} ({{tax}}{{#not_eq tax 'N/A'}}%{{/not_eq}})
+												</th>
+												<td class="number">
+													{{tax_value_with_currency}}
+												</td>
+											</tr>
+										{{/each}}
+									{{/if}}
 								<tr>
 									<th>
 										{{tt "invoice.total_price_gross" }}
 									</th>
 									<td class="number">
-									    {{ total_price_gross_with_currency }}
+										{{ total_price_gross_with_currency }}
 									</td>
 								</tr>
 							{{else}}
@@ -80,7 +99,7 @@
 											{{tt "invoice.total_price_gross" }}
 										</th>
 										<td class="number">
-										    {{ total_price_gross_without_discount_with_currency }}
+											{{ total_price_gross_without_discount_with_currency }}
 										</td>
 									</tr>
 									<tr>
@@ -92,7 +111,7 @@
 											{{/if}}
 										</th>
 										<td class="number">
-										    {{ global_discount_gross_with_currency }}
+											{{ global_discount_gross_with_currency }}
 										</td>
 									</tr>
 									<tr>
@@ -100,7 +119,7 @@
 											{{tt "invoice.total_price_gross_with_discount" }}
 										</th>
 										<td class="number">
-										    {{ total_price_gross_with_currency }}
+											{{ total_price_gross_with_currency }}
 										</td>
 									</tr>
 								{{else}}
@@ -109,7 +128,7 @@
 											{{tt "invoice.total_price_gross" }}
 										</th>
 										<td class="number">
-										    {{ total_price_gross_with_currency }}
+											{{ total_price_gross_with_currency }}
 										</td>
 									</tr>
 								{{/if}}
@@ -117,13 +136,13 @@
 						{{else}}
 							{{#if discount}}
 								{{#unless hide_tax}}
-								
+
 									<tr>
 										<th>
 											{{tt "invoice.total_price_net" }}
 										</th>
 										<td class="number">
-										    {{ total_price_net_without_discount_with_currency }}
+											{{ total_price_net_without_discount_with_currency }}
 										</td>
 									</tr>
 									<tr>
@@ -135,7 +154,7 @@
 											{{/if}}
 										</th>
 										<td class="number">
-										    {{ global_discount_net_with_currency }}
+											{{ global_discount_net_with_currency }}
 										</td>
 									</tr>
 									<tr>
@@ -143,10 +162,10 @@
 											{{tt "invoice.total_price_net_with_discount" }}
 										</th>
 										<td class="number">
-										    {{ total_price_net_with_currency }}
+											{{ total_price_net_with_currency }}
 										</td>
 									</tr>
-								
+
 								{{else}}
 
 									<tr>
@@ -154,7 +173,7 @@
 											{{tt "invoice.total_price_gross" }}
 										</th>
 										<td class="number">
-										    {{ total_price_gross_without_discount_with_currency }}
+											{{ total_price_gross_without_discount_with_currency }}
 										</td>
 									</tr>
 									<tr>
@@ -166,7 +185,7 @@
 											{{/if}}
 										</th>
 										<td class="number">
-										    {{ global_discount_gross_with_currency }}
+											{{ global_discount_gross_with_currency }}
 										</td>
 									</tr>
 									<tr>
@@ -174,19 +193,19 @@
 											{{tt "invoice.total_price_gross_with_discount" }}
 										</th>
 										<td class="number">
-										    {{ total_price_gross_with_currency }}
+											{{ total_price_gross_with_currency }}
 										</td>
 									</tr>
-								
+
 								{{/unless}}
 							{{/if}}
 						{{/if}}
-							
+
 					</table>
 
 					<div class="clear"></div>
 				{{/unless}}
-			{{/if}}  
+			{{/if}}
 
 
 
@@ -199,10 +218,10 @@
 									{{tt "invoice.total_price_net" }}
 								</th>
 								<td class="number">
-								    {{ total_price_net}}{{currency}}
+									{{ total_price_net}}{{currency}}
 								</td>
-								<td class="number">			    
-								    {{ total_price_net_in_exchange_currency }}{{exchange_currency}}
+								<td class="number">
+									{{ total_price_net_in_exchange_currency }}{{exchange_currency}}
 								</td>
 							</tr>
 							<tr>
@@ -210,10 +229,10 @@
 									{{tax_value_name}}
 								</th>
 								<td class="number">
-								    {{ tax_value }}{{currency}}
+									{{ tax_value }}{{currency}}
 								</td>
-								<td class="number">			    
-								    {{ tax_value_in_exchange_currency }}{{exchange_currency}}
+								<td class="number">
+									{{ tax_value_in_exchange_currency }}{{exchange_currency}}
 								</td>
 							</tr>
 						{{/unless}}
@@ -222,10 +241,10 @@
 								{{tt "invoice.total_price_gross" }}
 							</th>
 							<td class="number">
-							    {{ total_price_gross}}{{currency}}
+								{{ total_price_gross}}{{currency}}
 							</td>
-							<td class="number">			    
-							    {{ total_price_gross_in_exchange_currency }}{{exchange_currency}}
+							<td class="number">
+								{{ total_price_gross_in_exchange_currency }}{{exchange_currency}}
 							</td>
 						</tr>
 					{{/if}}
@@ -236,10 +255,10 @@
 									{{tt "invoice.total_price_gross" }}
 								</th>
 								<td class="number">
-								    {{ total_price_gross}}{{currency}}
+									{{ total_price_gross}}{{currency}}
 								</td>
-								<td class="number">			    
-								    {{ total_price_gross_in_exchange_currency }}{{exchange_currency}}
+								<td class="number">
+									{{ total_price_gross_in_exchange_currency }}{{exchange_currency}}
 								</td>
 							</tr>
 						{{else}}
@@ -248,15 +267,15 @@
 									{{tt "invoice.total_price_net" }}
 								</th>
 								<td class="number">
-								    {{ total_price_net}}{{currency}}
+									{{ total_price_net}}{{currency}}
 								</td>
-								<td class="number">			    
-								    {{ total_price_net_in_exchange_currency }}{{exchange_currency}}
+								<td class="number">
+									{{ total_price_net_in_exchange_currency }}{{exchange_currency}}
 								</td>
 							</tr>
 						{{/if}}
 					{{/unless}}
-						
+
 				</table>
 
 				<div class="clear"></div>
@@ -264,11 +283,12 @@
 
 				<table class="" id="exchange_currency">
 					<tbody>
-						<tr>		
+						<tr>
 							<td>
 								{{long_exchange_note}}<br />
 							</td>
 						</tr>
 					</tbody>
 				</table>
-			{{/if}} 
+			{{/if}}
+		{{/not_eq}}
