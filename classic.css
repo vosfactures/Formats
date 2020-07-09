@@ -1,5 +1,5 @@
-@media all{ 
-	
+@media all{
+
 /* ------------------------------------------------- */
 	/* DO NOT DELETE */
 	.invoice_outline {
@@ -36,12 +36,12 @@
 
 
 
-	
+
 
 /* ------------------------------------------------- */
 	/* DO NOT CHANGE */
 	p {margin:0;}
-	
+
 	table{page-break-after:auto}
 	tr{page-break-inside:avoid;page-break-after:auto}
 	td{page-break-inside:avoid;}
@@ -64,7 +64,7 @@
 
 
 /* ------------------------------------------------- */
-	
+
 	/* ALIGNS */
 	table {
 		clear: both;
@@ -72,14 +72,14 @@
 		empty-cells:hide;
 		width:100%;
 		background-color: transparent;
-	}	
+	}
 
 	table.main_inv_table th.text_left,
 	table.main_inv_table td.text_left,
 	th.text_left,
 	td.text_left {text-align:left;}
 	.number,.nowrap,
-	td b, td.row1, td.row2, td.row3 {white-space:nowrap}	
+	td b, td.row1, td.row2, td.row3 {white-space:nowrap}
 	th.width3 + th.width1.nowrap {white-space:normal}
 
 
@@ -129,7 +129,7 @@
 
 
 /* ------------------------------------------------- */
-	
+
 	/* SUMMATIONS */
 	table.to_right {text-align:right;width:100%;}
 	table.to_right th {text-align:right;}
@@ -146,7 +146,7 @@
 		padding-top: 2px !important;
 		text-align: center;
 	}
-	
+
 
 /* ------------------------------------------------- */
 
@@ -246,7 +246,7 @@
 		}
 
 		#traders-spacer {
-			display: table-cell; 
+			display: table-cell;
 			width: 4%;
 		}
 
@@ -269,7 +269,7 @@
 		font-weight: bold;
 		font-size: 1.5em;
 	}
-	
+
 /* ------------------------------------------------- */
 
 	/* INVOICE SUMMARY */
@@ -327,7 +327,7 @@
 			display: table-cell;
 			width: 50%;
 			text-align: center;
-		}	
+		}
 			/* header */
 			#seller_sign span {font-weight: bold;}
 
@@ -375,6 +375,11 @@
 		display: none;
 	}
 
+  #rel_adv_table .total_price_gross_col.show_on_classic,
+  #rel_adv_table .tax_value_col.show_on_classic,
+  #rel_adv_table .tax_col.show_on_classic {
+    display: table-cell;
+  }
 
 /* ------------------------------------------------- */
 
@@ -412,7 +417,7 @@
 	.totals_inv_table td, .totals_inv_table th {
 		padding: 3pt 3pt;
 	}
-	
+
 	table.main_inv_table td.footer {vertical-align: middle;}
 	table.main_inv_table td.footer strong {}
 
@@ -556,25 +561,25 @@
 /* ------------------------------------------------- */
 
 	/* TEXT DIRECTIONS */
-	.invoice_outline[dir="rtl"],	
-	.invoice_outline[dir="rtl"] table, 
-	.invoice_outline[dir="rtl"] table th, 
+	.invoice_outline[dir="rtl"],
+	.invoice_outline[dir="rtl"] table,
+	.invoice_outline[dir="rtl"] table th,
 	.invoice_outline[dir="rtl"] table td
 	{
 		text-align:right;
 	}
-	
-	.invoice_outline[dir="rtl"] .inv_paid > td,	
+
+	.invoice_outline[dir="rtl"] .inv_paid > td,
 	.invoice_outline[dir="rtl"] .inv_to_pay > td{
 		text-align:right;
 	}
-	
-	
-	.invoice_outline[dir="rtl"] table.clean.to_right td,		
+
+
+	.invoice_outline[dir="rtl"] table.clean.to_right td,
 	.invoice_outline[dir="rtl"] table.clean.to_right th {text-align:left;}
 
 
-/* ------------------------------------------------- */	
+/* ------------------------------------------------- */
 	/* DO NOT MODIFY */
 	.payment_button {
 		display:block;
@@ -583,7 +588,7 @@
 		height:43px;
 		width:190px;
 		z-index:999;
-	} 
+	}
 
 	.payment_button img{
 		display:block;
@@ -600,7 +605,7 @@
 		padding:0;
 	}
 /* ------------------------------------------------- */
-	
+
 	.advanced_header_titles {
 		display: none;
 	}
@@ -651,20 +656,41 @@
 
 	.invoice_payments_payment > div {
 		display: inline-block;
+		vertical-align: top;
 	}
 	.invoice_payments_payment:first-of-type > div {
 		padding-top: 3pt;
 	}
 
 	.invoice_payments_price {
-		
+
 	}
 
-	.invoice_payments_provider::before {
-		content: '- ';
+	.invoice_payments_provider {
+		width: 66%;
 	}
 
+	.invoice_payments_date::after {
+		content: ' -';
+	}
 
+  .subtotal_row {
+    background: rgba(170, 170, 170, 0.35) !important;
+  }
+
+  .subtotal_col {
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    border-right: none !important;
+    border-left: none !important;
+  }
+
+  .subtotal_row td:first-child {
+    border-left: 1px solid #000 !important;
+  }
+  .subtotal_row td:last-child {
+    border-right: 1px solid #000 !important;
+  }
 
 }
 
@@ -673,7 +699,7 @@
   margin: 0.5cm;
 }
 
-@media print {	
+@media print {
 
 
 /* ------------------------------------------------- */
@@ -757,7 +783,7 @@
 
 }
 
-@media screen {	
+@media screen {
 
 	table.main_inv_table td { }
 
@@ -770,6 +796,6 @@
 		width:210mm;
 		padding: 0px;
 		padding-top: 1cm;
-	}	
-/* ------------------------------------------------- */	
-}	
+	}
+/* ------------------------------------------------- */
+}
