@@ -677,11 +677,27 @@
 		
 	}
 
-	.invoice_payments_provider::before {
-		content: '- ';
+	.invoice_payments_provider {
+		width: 66%;
 	}
 
+	.invoice_payments_date::after {
+		content: ' -';
+	}
 
+	.subtotal_col {
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    border-right: none !important;
+    border-left: none !important;
+  }
+
+  .subtotal_row td:first-child {
+    border-left: 1px solid #000 !important;
+  }
+  .subtotal_row td:last-child {
+    border-right: 1px solid #000 !important;
+  }
 
 }
 @media print {	
