@@ -157,6 +157,14 @@
 		content: '- ';
 	}
 
+	.nowrap, .no_wrap {
+		white-space:nowrap;
+	}
+
+  .subtotal_row {
+    background: #DDDDDD !important;
+  }
+
 }
 
 @media screen {	
