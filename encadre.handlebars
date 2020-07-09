@@ -1,7 +1,8 @@
+
 {{#if canceled }}
 	<div style="text-align: center; font-size: 12px;">
 		<h3>{{ tt "invoice.kind_options.canceled" }}</h3>
-		{{ tt "invoice.cancel_reason" }}: {{ cancel_reason }}
+		{{ tt "invoice.cancel_reason" }} : {{ cancel_reason }}
 		<br><br>
 	</div>
 {{/if}}
@@ -10,9 +11,7 @@
 <div class="invoice_outline encadre" {{#if status_paid}}{{#if show_paid_logo}}{{#not_in kind "proforma,estimate"}}style="background:transparent url('{{paid_mark_url}}') no-repeat 50% bottom;"{{/not_in}}{{/if}}{{/if}} >
 
 
-	{{#if payment_url}}
-		<a class="pull-right btn btn-default btn-print" id="pay-online-button" style="margin-bottom:10px;" href="{{payment_url}}">{{tt "account.pay_online_button"}}&nbsp;&raquo;</a>
-	{{/if}}
+	{{>buttons}}
 {{! ----------------- end DO NOT MODIFY ----------------- }}
 
 	<section id="invoice_header">
@@ -28,25 +27,25 @@
 				<p>{{{address}}}</p>
 
 				{{#if phone}}
-					<p class="space-top">{{tt 'invoice.seller_phone'}}: {{phone}}</p>
+					<p class="space-top">{{tt 'invoice.seller_phone'}} : {{phone}}</p>
 				{{/if}}
 				{{#if fax}}
-					<p {{#unless phone}}class="space-top"{{/unless}}>{{tt 'invoice.seller_fax'}}: {{fax}}</p>
+					<p {{#unless phone}}class="space-top"{{/unless}}>{{tt 'invoice.seller_fax'}} : {{fax}}</p>
 				{{/if}}
 
 				{{#if www}}
-					<p class="space-top">{{tt 'invoice.seller_www'}}: {{www}}</p>
+					<p class="space-top">{{tt 'invoice.seller_www'}} : {{www}}</p>
 				{{/if}}
-			
+
 				{{#if email}}
-					<p {{#unless www}}class="space-top"{{/unless}}>{{tt 'invoice.seller_email'}}: {{email}}</p>
+					<p {{#unless www}}class="space-top"{{/unless}}>{{tt 'invoice.seller_email'}} : {{email}}</p>
 				{{/if}}
 
 				{{#if tax_no}}
-					<p class="double-space-top">{{seller_tax_no_kind}}: {{tax_no}}</p>
+					<p class="double-space-top">{{seller_tax_no_kind}} : {{tax_no}}</p>
 				{{/if}}
-			
-				
+
+
 			</div>
 		</div> <!-- top_left -->
 
@@ -127,19 +126,19 @@
 					<td class="tab-cell">
 						{{issue_date}}
 					</td>
-					
+
 					{{#if issue_place}}
 						<td class="tab-cell">
 							{{issue_place}}
 						</td>
 					{{/if}}
-						
+
 					{{#if oid}}
 						<td class="tab-cell">
 							{{oid}}
 						</td>
 					{{/if}}
-					
+
 
 				</tr>
 			</table>
@@ -199,12 +198,16 @@
 	{{/if}}
 
 
-	
+
 	<!-- POSITIONS -->
+	{{#not_eq kind 'maintenance_request'}}
 		<!-- si vous souhaitez personnaliser le tableau, vous pouvez le remplacer par https://github.com/vosfactures/Formats/blob/master/partials/positions2.handlebars -->
-	{{>positions2}}
+		{{>positions2}}
+	{{else}}
+		{{>positions_without_prices}}
+	{{/not_eq}}
 	<!-- POSITIONS END -->
-		
+
 	{{#if final}}
 		<!-- si vous souhaitez personnaliser la liste des acomptes liés, vous pouvez les remplacer par https://github.com/vosfactures/Formats/blob/master/partials/advances.handlebars  -->
 		{{>advances}}
@@ -223,11 +226,7 @@
 				{{#if_created_after_date '2016-09-19'}}
 					{{#and show_sell_date sell_date}}
 						<div class="box" id="document_selldate">
-							{{#if sell_date_kind}}
-								<span class="nowrap">{{{sell_date_kind}}}:</span>
-							{{else}}
-								<span class="nowrap">{{tt "invoice.sell_date"}}:</span>
-							{{/if}}
+							<span class="nowrap">{{{sell_date_kind}}} :</span>
 							<br />
 							<strong>{{sell_date}}</strong>
 						</div>
@@ -242,7 +241,7 @@
 					</div>
 				{{/if}}
 				{{#if type_of_payment}}
-					<div class="box">	
+					<div class="box">
 						<span class="nowrap">{{tt "invoice.payment_type"}}</span><br />
 						<strong class="nowrap">{{type_of_payment}}</strong>
 					</div>
@@ -270,29 +269,27 @@
 
 				<div class="clear"> </div>
 
-				{{#not_eq additional_fields.interest_rate 'Néant'}}
-					{{#if additional_fields.interest_rate}}
-						<p class="half-space-top">
-							<span>{{tt "invoice.interest_note"}}:</span> 
-							{{additional_fields.interest_rate}}
-						</p>
-					{{/if}}
-				{{/not_eq}}
-					
-			
+				{{#if show_interest_rate}}
+					<p class="half-space-top">
+						<span>{{tt "invoice.interest_note"}} :</span>
+						{{interest_rate}}
+					</p>
+				{{/if}}
+
+
 				{{#eq additional_fields.sum_recovery 'client_professionnel'}}
 					{{#if buyer_company}}
 						<p class="half-space-top">
-							<strong>{{tt "invoice.legal_cost_note"}}</strong>
+							<strong>{{legal_cost_compensation}}</strong>
 						</p>
 					{{/if}}
 				{{/eq}}
-			
+
 
 				{{#not_eq additional_fields.advanced_payment_discount 'Néant'}}
 					{{#if additional_fields.advanced_payment_discount}}
 						<p class="half-space-top">
-							<span>{{tt "invoice.discount_on_advanced_payment_note"}}:</span>
+							<span>{{tt "invoice.discount_on_advanced_payment_note"}} :</span>
 							{{additional_fields.advanced_payment_discount}} %
 						</p>
 					{{/if}}
@@ -301,7 +298,7 @@
 				{{#if additional_field_name}}
 					{{#if additional_field_value}}
 						<p class="half-space-top">
-							<span>{{additional_field_name}}: </span>
+							<span>{{additional_field_name}} : </span>
 							{{additional_field_value}}
 						</p>
 					{{/if}}
@@ -309,206 +306,244 @@
 
 				{{#if notes}}
 					<p id="notes" class="half-space-top">
-						<strong>{{tt "invoice.description"}}:</strong><br />
+						<strong>{{tt "invoice.description"}} :</strong><br />
 						{{{notes}}}
 					</p>
+				{{/if}}
+
+				{{#if gocardless_subscription}}
+					<br/>
+					<strong>{{tt 'account.gocardless.sub_info'}}</strong>
+					<br/>
+					<strong>{{tt 'subscription.interval_unit'}} :</strong> {{subscription_interval_unit}}
+					{{#if subscription_month}}
+						<br/>
+						<strong>{{tt 'subscription.month' }} :</strong> {{subscription_month}}
+					{{/if}}
+					{{#if subscription_day_of_month}}
+						<br/>
+						<strong>{{tt 'subscription.day_of_month'}} :</strong> {{subscription_day_of_month}}
+					{{/if}}
+					{{#if subscription_count}}
+						<br/>
+						<strong>{{tt 'subscription.count'}} :</strong> {{subscription_count}}
+					{{/if}}
 				{{/if}}
 
 			</div><!-- bottom_left -->
 
 			<!-- TOTALS -->
 			<div id="bottom_right">
-				{{#if show_totals }}
-					{{#unless exchange_currency}}
-						<table class="clean to_right totals_inv_table">
-							{{#unless hide_tax}}
-								{{#if discount}}
-									<tr>
-										<th class="gray">
-											{{tt "invoice.total_price_net" }}
-										</th>
-										<td class="number">
-										    {{ total_price_net_without_discount }}
-										</td>
-									</tr>
-									<tr>
-										<th class="gray">
-											{{#if global_discount_percent}}
-										{{tt "invoice.global_discount"}} ({{global_discount_percent}})
-									{{else}}
-										{{tt "invoice.discount"}}
-									{{/if}}
-										</th>
-										<td class="number">
-										    {{ global_discount_net }}
-										</td>
-									</tr>
-									<tr>
-										<th class="gray">
-											{{tt "invoice.total_price_net_with_discount" }}
-										</th>
-										<td class="number">
-										    {{ total_price_net }}
-										</td>
-									</tr>
-								{{else}}
-									{{#if tax_visible}}
+				{{#not_eq kind 'maintenance_request'}}
+					{{#if show_totals }}
+						{{#unless exchange_currency}}
+							<table class="clean to_right totals_inv_table">
+								{{#unless hide_tax}}
+									{{#if discount}}
 										<tr>
 											<th class="gray">
 												{{tt "invoice.total_price_net" }}
 											</th>
 											<td class="number">
-											    {{ total_price_net }}
+												{{ total_price_net_without_discount }}
 											</td>
 										</tr>
-									{{/if}}
-								{{/if}}
-							{{else}}
-								{{#if discount}}
-									<tr>
-										<th class="gray">
-											{{tt "invoice.total_price_gross" }}
-										</th>
-										<td class="number">
-										    {{ total_price_gross_without_discount }}
-										</td>
-									</tr>
-									<tr>
-										<th class="gray">
-											{{#if global_discount_percent}}
-										{{tt "invoice.global_discount"}} ({{global_discount_percent}})
-									{{else}}
-										{{tt "invoice.discount"}}
-									{{/if}}
-										</th>
-										<td class="number">
-										    {{ global_discount_gross }}
-										</td>
-									</tr>
-									<tr>
-										<th class="gray">
-											{{tt "invoice.total_price_gross_with_discount" }}
-										</th>
-										<td class="number">
-										    {{ total_price_gross }}
-										</td>
-									</tr>
-								{{/if}}
-							{{/unless}}
-
-							{{#if tax_visible}}
-								{{#unless hide_tax}}
-									{{#eq kind 'final'}}
-										{{!-- each summary dont sum values from advances!!!  --}}
 										<tr>
 											<th class="gray">
-												{{ tax_value_name }}
+												{{#if global_discount_percent}}
+											{{tt "invoice.global_discount"}} ({{global_discount_percent}})
+										{{else}}
+											{{tt "invoice.discount"}}
+										{{/if}}
 											</th>
 											<td class="number">
-											    {{tax_value}}
+												{{ global_discount_net }}
+											</td>
+										</tr>
+										<tr>
+											<th class="gray">
+												{{tt "invoice.total_price_net_with_discount" }}
+											</th>
+											<td class="number">
+												{{ total_price_net }}
 											</td>
 										</tr>
 									{{else}}
-										{{#each summary}}
+										{{#if tax_visible}}
 											<tr>
 												<th class="gray">
-													{{ ../tax_value_name }} ({{tax}}{{#not_eq tax 'N/A'}}%{{/not_eq}})
+													{{tt "invoice.total_price_net" }}
 												</th>
 												<td class="number">
-												    {{tax_value}}
+													{{ total_price_net }}
 												</td>
 											</tr>
-										{{/each}}
-									{{/eq}}
+										{{/if}}
+									{{/if}}
+								{{else}}
+									{{#if discount}}
+										<tr>
+											<th class="gray">
+												{{tt "invoice.total_price_gross" }}
+											</th>
+											<td class="number">
+												{{ total_price_gross_without_discount }}
+											</td>
+										</tr>
+										<tr>
+											<th class="gray">
+												{{#if global_discount_percent}}
+											{{tt "invoice.global_discount"}} ({{global_discount_percent}})
+										{{else}}
+											{{tt "invoice.discount"}}
+										{{/if}}
+											</th>
+											<td class="number">
+												{{ global_discount_gross }}
+											</td>
+										</tr>
+										<tr>
+											<th class="gray">
+												{{tt "invoice.total_price_gross_with_discount" }}
+											</th>
+											<td class="number">
+												{{ total_price_gross }}
+											</td>
+										</tr>
+									{{/if}}
+								{{/unless}}
+
+								{{#if tax_visible}}
+									{{#unless hide_tax}}
+											{{#if tax2_visible}}
+												{{#if tax2_details}}
+													<tr>
+														<th class="gray">
+															{{ ../tax1_value_name }}
+														</th>
+														<td class="number">
+															{{../tax1_value_with_currency}}
+														</td>
+													</tr>
+													<tr>
+														<th class="gray">
+															{{ ../tax2_value_name }}
+														</th>
+														<td class="number">
+															{{../tax2_value_with_currency}}
+														</td>
+													</tr>
+												{{else}}
+													<tr>
+														<th class="gray">
+															{{ ../tax_value_name }}
+														</th>
+														<td class="number">
+															{{../tax_value_with_currency}}
+														</td>
+													</tr>
+												{{/if}}
+											{{else}}
+												{{#each final_summary}}
+													<tr>
+														<th class="gray">
+															{{ ../tax_value_name }} ({{tax}}{{#not_eq tax 'N/A'}}%{{/not_eq}})
+														</th>
+														<td class="number">
+															{{tax_value}}
+														</td>
+													</tr>
+												{{/each}}
+											{{/if}}
+										<tr>
+											<th class="gray">
+												{{tt "invoice.total_price_gross" }}
+											</th>
+											<td class="number">
+												{{ total_price_gross }}
+											</td>
+										</tr>
+									{{/unless}}
+								{{/if}}
+
+						{{/unless}}
+					{{/if}}
+
+
+
+					{{#if exchange_currency}}
+						<table class="totals_inv_table clean to_right">
+							{{#if tax_visible}}
+								{{#unless hide_tax}}
 									<tr>
 										<th class="gray">
-											{{tt "invoice.total_price_gross" }}
+											{{tt "invoice.total_price_net" }}
 										</th>
 										<td class="number">
-										    {{ total_price_gross }}
+											{{ total_price_net}}{{currency}}
+										</td>
+										<td class="number">
+											{{ total_price_net_in_exchange_currency }}{{exchange_currency}}
+										</td>
+									</tr>
+
+									<tr>
+										<th class="gray">
+											{{tax_value_name}}
+										</th>
+										<td class="number">
+											{{ tax_value }}{{currency}}
+										</td>
+										<td class="number">
+											{{ tax_value_in_exchange_currency }}{{exchange_currency}}
 										</td>
 									</tr>
 								{{/unless}}
-							{{/if}}
-								
-					{{/unless}}
-				{{/if}}  
-
-
-
-				{{#if exchange_currency}}
-					<table class="totals_inv_table clean to_right">
-						{{#if tax_visible}}
-							{{#unless hide_tax}}
-								<tr>
-									<th class="gray">
-										{{tt "invoice.total_price_net" }}
-									</th>
-									<td class="number">
-									    {{ total_price_net}}{{currency}}
-									</td>
-									<td class="number">			    
-									    {{ total_price_net_in_exchange_currency }}{{exchange_currency}}
-									</td>
-								</tr>
-							
-								<tr>
-									<th class="gray">
-										{{tax_value_name}}
-									</th>
-									<td class="number">
-									    {{ tax_value }}{{currency}}
-									</td>
-									<td class="number">			    
-									    {{ tax_value_in_exchange_currency }}{{exchange_currency}}
-									</td>
-								</tr>
-							{{/unless}}
-							<tr>
-								<th class="gray">
-									{{tt "invoice.total_price_gross" }}
-								</th>
-								<td class="number">
-								    {{ total_price_gross}}{{currency}}
-								</td>
-								<td class="number">			    
-								    {{ total_price_gross_in_exchange_currency }}{{exchange_currency}}
-								</td>
-							</tr>
-						{{/if}}
-						{{#unless tax_visible}}
-							{{#if hide_tax}}
 								<tr>
 									<th class="gray">
 										{{tt "invoice.total_price_gross" }}
 									</th>
 									<td class="number">
-									    {{ total_price_gross}}{{currency}}
+										{{ total_price_gross}}{{currency}}
 									</td>
-									<td class="number">			    
-									    {{ total_price_gross_in_exchange_currency }}{{exchange_currency}}
-									</td>
-								</tr>
-							{{else}}
-								<tr>
-									<th class="gray">
-										{{tt "invoice.total_price_net" }}
-									</th>
 									<td class="number">
-									    {{ total_price_net}}{{currency}}
-									</td>
-									<td class="number">			    
-									    {{ total_price_net_in_exchange_currency }}{{exchange_currency}}
+										{{ total_price_gross_in_exchange_currency }}{{exchange_currency}}
 									</td>
 								</tr>
 							{{/if}}
-						{{/unless}}
-				{{/if}}
+							{{#unless tax_visible}}
+								{{#if hide_tax}}
+									<tr>
+										<th class="gray">
+											{{tt "invoice.total_price_gross" }}
+										</th>
+										<td class="number">
+											{{ total_price_gross}}{{currency}}
+										</td>
+										<td class="number">
+											{{ total_price_gross_in_exchange_currency }}{{exchange_currency}}
+										</td>
+									</tr>
+								{{else}}
+									<tr>
+										<th class="gray">
+											{{tt "invoice.total_price_net" }}
+										</th>
+										<td class="number">
+											{{ total_price_net}}{{currency}}
+										</td>
+										<td class="number">
+											{{ total_price_net_in_exchange_currency }}{{exchange_currency}}
+										</td>
+									</tr>
+								{{/if}}
+							{{/unless}}
+					{{/if}}
 
-				<tr>
-					<td colspan="2" class="table-spacer">
-					</td>
-				</tr>
+					<tr>
+						<td colspan="2" class="table-spacer">
+						</td>
+					</tr>
 
 					{{#or paid show_paid_when_zero}}
 						<tr>
@@ -528,7 +563,7 @@
 							{{#if exchange_currency}}
 								<td>
 								{{#if paid}}
-									
+
 								{{else}}
 									{{zero_with_currency_in_exchange_currency}}
 								{{/if}}
@@ -562,6 +597,7 @@
 							</td>
 						</tr>
 					{{/if}}
+				{{/not_eq}} <!--not_eq kind 'maintenance_request'-->
 				</table>
 			</div><!-- TOTALS --> <!-- bottom_right -->
 
@@ -569,12 +605,10 @@
 
 
 		{{#if has_corrected_content}}
-			<!-- si vous souhaitez personnaliser le contenu corrigé, vous pouvez les remplacer par https://github.com/vosfactures/Formats/blob/master/partials/corrected_content.handlebars  -->
 			{{>corrected_content}}
 		{{/if}}
 
 		{{#if show_payments_on_invoice}}
-			<!-- si vous souhaitez personnaliser la liste des paiements, vous pouvez les remplacer par https://github.com/vosfactures/Formats/blob/master/partials/payments.handlebars  -->
 			{{>payments}}
 		{{/if}}
 
@@ -588,15 +622,23 @@
 
 				{{#if stamp_below_sign_url}}
 					<img src="{{stamp_url}}" alt="stamp" style="max-width:40%"/>
-				{{/if}}	
+				{{/if}}
 			</div>
 			<div id="buyer_sign">
-				{{#in kind "estimate,client_order"}}
-					{{#if show_date_and_sign}}
-						<p style="margin: 0% 10%;"><span>{{tt "invoice.date_and_signature_etc"}}</span></p>
-						<!-- Date et signature du client précédée de la mention ‘Bon pour accord’ --> 
+				{{#not_eq locale 'fr'}}
+					{{#or buyer_person show_empty_buyer_person}}
+						<p><span>{{tt "invoice.buyer_person"}}</span></p>
+						<p>{{buyer_person}}</p>
+					{{/or}}
+				{{/not_eq}}
+				{{#if show_date_and_sign}}
+					<p style="margin: 0% 10%;"><span>{{tt "invoice.date_and_signature_etc"}}</span></p>
+					{{#if signature_url}}
+						<p>{{tt "invoice.signature_accept"}} {{signature_date}}</p>
+						<p style="margin: 0% 10%;"><img src="{{signature_url}}" width="60%" height="60%"></p>
 					{{/if}}
-				{{/in}}
+					<!-- Date et signature du client précédée de la mention ‘Bon pour accord’ -->
+				{{/if}}
 			</div>
 		</section>
 	</div><!-- no-page-break -->
@@ -608,9 +650,8 @@
 {{#if department.name}}
 	<section id="description_footer">
 		<div id="company_info_footer">
-        	<!-- si vous souhaitez personnaliser le pied de page, vous pouvez les remplacer par https://github.com/vosfactures/Formats/blob/master/partials/company_info_footer.handlebars  -->
 			<span>{{>company_info_footer}}</span>
-        </div>
+		</div>
 	</section>
 {{/if}}<!-- #company_info_footer -->
 
@@ -629,7 +670,6 @@
 			</tr>
 		</table>
 	</div>
-{{/if}}	
+{{/if}}
 
-{{>encadre_extras}} 
- 
+{{>encadre_extras}}
