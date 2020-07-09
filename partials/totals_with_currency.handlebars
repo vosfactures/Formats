@@ -1,3 +1,4 @@
+{{#not_eq kind 'maintenance_request'}}
 	{{#if show_totals }}
 		{{#unless exchange_currency}}
 			<table class="clean to_right totals_inv_table" style="page-break-inside: avoid !important;">
@@ -42,14 +43,33 @@
 								</td>
 							</tr>
 						{{/if}}
-						<tr>
-							<th>
-								{{ tax_value_name }}
-							</th>
-							<td class="number">
-							    {{ tax_value_with_currency }}
-							</td>
-						</tr>
+						{{#if tax2_details}}
+							<tr>
+								<th>
+									{{ tax1_value_name }}
+								</th>
+								<td class="number">
+								    {{ tax1_value_with_currency }}
+								</td>
+							</tr>
+							<tr>
+								<th>
+									{{ tax2_value_name }}
+								</th>
+								<td class="number">
+								    {{ tax2_value_with_currency }}
+								</td>
+							</tr>
+						{{else}}
+							<tr>
+								<th>
+									{{ tax_value_name }}
+								</th>
+								<td class="number">
+								    {{ tax_value_with_currency }}
+								</td>
+							</tr>
+						{{/if}}
 						<tr>
 							<th>
 								{{tt "invoice.total_price_gross" }}
@@ -190,17 +210,42 @@
 						    {{ total_price_net_in_exchange_currency }}{{exchange_currency}}
 						</td>
 					</tr>
-					<tr>
-						<th>
-							{{tax_value_name}}
-						</th>
-						<td class="number">
-						    {{ tax_value }}{{currency}}
-						</td>
-						<td class="number">			    
-						    {{ tax_value_in_exchange_currency }}{{exchange_currency}}
-						</td>
-					</tr>
+					{{#if tax2_details}}
+						<tr>
+							<th>
+								{{tax1_value_name}}
+							</th>
+							<td class="number">
+							    {{ tax1_value }}{{currency}}
+							</td>
+							<td class="number">			    
+							    {{ tax1_value_in_exchange_currency }}{{exchange_currency}}
+							</td>
+						</tr>
+						<tr>
+							<th>
+								{{tax2_value_name}}
+							</th>
+							<td class="number">
+							    {{ tax2_value }}{{currency}}
+							</td>
+							<td class="number">			    
+							    {{ tax2_value_in_exchange_currency }}{{exchange_currency}}
+							</td>
+						</tr>
+					{{else}}
+						<tr>
+							<th>
+								{{tax_value_name}}
+							</th>
+							<td class="number">
+							    {{ tax_value }}{{currency}}
+							</td>
+							<td class="number">			    
+							    {{ tax_value_in_exchange_currency }}{{exchange_currency}}
+							</td>
+						</tr>
+					{{/if}}
 				{{/unless}}
 				<tr>
 					<th>
@@ -256,4 +301,5 @@
 				</tr>
 			</tbody>
 		</table>
-	{{/if}} 
+	{{/if}}
+{{/not_eq}}
