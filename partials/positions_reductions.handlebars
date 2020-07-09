@@ -38,6 +38,11 @@
 							<th class="width3 text_center no_wrap price_net_col" id="price_net_col">
 								{{tt "invoice_position.price_net"}}
 							</th>
+                            {{#if show_unit_price_gross}}
+                                <th class="width3 text_center no_wrap price_gross_col">
+                                    {{tt "invoice_position.price_gross"}}
+                                </th>
+                            {{/if}}
 							<th class="width3 text_center total_price_net_col" id="total_price_net_col">
 								{{tt "invoice_position.total_price_net"}}
 							</th>
@@ -52,6 +57,11 @@
 							<th class="width3 text_center tax_value_col" id="tax_value_col">		
 								{{tax_value_name}}					
 							</th>
+							{{#if tax2_details}}
+								<th class="width3 text_center tax2_value_col" id="tax_value_col">		
+									{{tax2_value_name}}					
+								</th>
+							{{/if}}
 						{{else}}
 							<th class="width3 no_wrap text_center price_gross_col price_gross_col-hide_tax" id="price_gross_col">
 								{{tt "invoice_position.price_gross"}}
@@ -89,37 +99,219 @@
 		</thead>
 		<tbody>
 			{{#each positions}}
+			{{#eq kind 'page_break'}}
+		</tbody>
+	</table>
+	<br><div style="page-break-after:always !important;"></div>
+	<table class="main_inv_table full_width" id="pos_table">
+		<thead>
+			<tr>
+				<th class="width1 no_wrap nr_col nr_col" id="nr_col">
+					{{tt "invoice_position.nr"}}
+				</th>
+				<th class="width4 text_center name_col" id="name_col">
+					{{tt "invoice_position.name"}}
+				</th>
+
+				{{#not_eq ../../kind 'advance'}}
+					{{#if ../../../use_product_code}}
+						<th class="width2 text_center code_col" id="code_col">
+							{{tt "invoice_position.code"}}
+						</th>				
+					{{/if}}
+
+					{{#if ../../../additional_info}}				
+						<th class="width2 text_center additional_info_col" id="additional_info_col">
+							{{additional_info_desc}}
+						</th>				
+					{{/if}}
+
+					<th class="width2 text_center no_wrap quantity_col" id="quantity_col">
+						{{tt "invoice_position.quantity"}}
+					</th>
+
+					{{#if ../../../discount}}				
+						<th class="width2 text_center no_wrap discount_col" id="discount_col">
+							{{tt "invoice_position.discount_percent"}}
+						</th>				
+					{{/if}}
+
+					
+					{{#if ../../../tax_visible}}
+						{{#unless ../../../../hide_tax}}
+							<th class="width3 text_center no_wrap price_net_col" id="price_net_col">
+								{{tt "invoice_position.price_net"}}
+							</th>
+                            {{#if ../../../../../show_unit_price_gross}}
+                                <th class="width3 text_center no_wrap price_gross_col">
+                                    {{tt "invoice_position.price_gross"}}
+                                </th>
+                            {{/if}}
+							<th class="width3 text_center total_price_net_col" id="total_price_net_col">
+								{{tt "invoice_position.total_price_net"}}
+							</th>
+							<th class="width1 text_center no_wrap tax_col" id="tax_col">
+								{{tax_name}}
+							</th>
+							{{#if ../../../../../tax2_visible}}
+								<th class="width1 text_center tax2_col" id="tax2_col">
+									{{tax2_name}}
+								</th>
+							{{/if}}
+							<th class="width3 text_center tax_value_col" id="tax_value_col">		
+								{{tax_value_name}}					
+							</th>
+							{{#if ../../../../../tax2_details}}
+								<th class="width3 text_center tax2_value_col" id="tax_value_col">		
+									{{tax2_value_name}}					
+								</th>
+							{{/if}}
+						{{else}}
+							<th class="width3 no_wrap text_center price_gross_col price_gross_col-hide_tax" id="price_gross_col">
+								{{tt "invoice_position.price_gross"}}
+							</th>
+						{{/unless}}
+						<th class="width3 no_wrap text_center total_price_gross_col" id="total_price_gross_col">
+							{{tt "invoice_position.total_price_gross"}}
+						</th>
+					{{else}}
+						<th class="width3 no_wrap text_center price_net_col" id="price_net_col">
+							{{tt "invoice_position.bill_price_net"}}
+						</th>
+						{{#unless ../../../../hide_tax}}
+							<th class="width3 no_wrap text_center total_price_net_col" id="total_price_gross_col">
+								 {{tt "invoice_position.total_price_net"}}
+							</th>
+						{{else}}
+							<th class="width3 no_wrap text_center total_price_gross_col" id="total_price_gross_col">
+							 {{tt "invoice_position.total_price_gross"}}
+						</th>
+						{{/unless}}
+					{{/if}}
+				{{else}}
+					{{#unless ../../../hide_tax}}
+						<th class="width3 no_wrap text_center total_price_net_col-advance" id="total_price_net_col">
+							{{tt "invoice_position.total_price_net"}}
+						</th>
+					{{else}}
+						<th class="width3 no_wrap text_center total_price_gross_col-advance" id="total_price_gross_col">
+							{{tt "invoice_position.total_price_gross"}}
+						</th>
+					{{/unless}}
+				{{/not_eq}}
+			</tr>
+		</thead>
+		<tbody>
+				{{/eq}}
+				{{#not_eq kind 'page_break'}}
 				{{#eq kind 'text_separator'}}
 					<tr>
 						<td colspan="100" class='text_left text_separator'>{{item}}</td>
 					</tr>
 				{{else}}
+                    {{#eq kind 'subtotal'}}
+                        <tr class="subtotal_row">
+                            <td class="nr_col subtotal_col">&nbsp;</td>
+                            <td class="name_col subtotal_col">
+                                <strong>{{{item}}}</strong>
+                            </td>
+                            {{#not_eq ../../../../kind 'advance'}}
+                                {{#if ../../../../../use_product_code}}
+                                    <td class="code_col subtotal_col">&nbsp;</td>
+                                {{/if}}
+
+                                {{#if ../../../../../additional_info}}
+                                    <td class="text_right additional_info_col subtotal_col">&nbsp;</td>
+                                {{/if}}
+
+                                <td class="text_right quantity_col subtotal_col">&nbsp;</td>
+
+                                {{#if ../../../../../discount}}
+                                    <td class="text_right discount_col subtotal_col">&nbsp;</td>
+                                {{/if}}
+
+                                {{#if ../../../../../tax_visible}}
+                                    {{#unless ../../../../../../hide_tax}}
+                                        <td class="text_right no_wrap number price_net_col subtotal_col">&nbsp;</td>
+                                        {{#if ../../../../../../../show_unit_price_gross}}
+                                            <td class="text_right no_wrap number price_gross_col subtotal_col">&nbsp;</td>
+                                        {{/if}}
+                                        <td class="text_right no_wrap number total_price_net_col subtotal_col">
+                                            {{total_price_net}}
+                                        </td>
+
+                                        <td class="text_right no_wrap number tax_col subtotal_col">&nbsp;</td>
+                                        {{#if ../../../../../../../tax2_visible}}
+                                            <td class="text_right no_wrap number tax2_col subtotal_col">&nbsp;</td>
+                                        {{/if}}
+                                        {{#if ../../../../../../../tax2_details}}
+                                            <td class="text_right number no_wrap tax_value_col tax1_value_col subtotal_col">&nbsp;</td>
+                                            <td class="text_right number no_wrap tax_value_col tax2_value_col subtotal_col">&nbsp;</td>
+                                        {{else}}
+                                            <td class="text_right number no_wrap tax_value_col subtotal_col">
+                                                {{tax_value}}
+                                            </td>
+                                        {{/if}}
+                                    {{else}}
+                                        <td class="text_right no_wrap number price_gross_col-hide_tax price_gross_col subtotal_col">&nbsp;</td>
+                                    {{/unless}}
+                                    <td class="text_right no_wrap number total_price_gross_col subtotal_col">
+                                        {{total_price_gross}}
+                                    </td>
+                                {{!-- <th class="width3 text_right total_price_gross_col">
+                                {{tt "invoice_position.total_price_gross"}}
+                                </th> --}}
+                                {{else}}
+                                    <td class="text_right no_wrap number price_gross_col-hide_tax price_gross_col subtotal_col">&nbsp;</td>
+                                    <td class="text_right number total_price_gross_col subtotal_col">
+                                        {{total_price_gross}}
+                                    </td>
+                                {{/if}}
+                            {{else}}
+                                {{#unless ../../../../hide_tax}}
+                                    <td class="text_right number no_wrap total_price_net_col-advance subtotal_col">
+                                        {{total_price_net}}
+                                    </td>
+                                {{else}}
+                                    <td class="text_right number no_wrap total_price_gross_col-advance subtotal_col">
+                                        {{total_price_gross}}
+                                    </td>
+                                {{/unless}}
+                            {{/not_eq}}
+                        </tr>
+                    {{else}}
+
 					<tr>
 						<td class="nr_col">
 							{{no}}
 						</td>
 						<td class="name_col">
 							<strong>
-								{{#and item_url ../../show_links }}
+								{{#and item_url ../../../../show_links }}
 									<a href="{{{item_url}}}" class="incognito-link">{{{item}}}</a>
 								{{else}}
 									{{{item}}}
 								{{/and}}
 							</strong>
 							<span id="product_description_{{no}}" class="item_description">
-								{{#if ../../show_product_description}}
+								{{#if ../../../../show_product_description}}
 							 		{{{description}}}
 							 	{{/if}}
 							</span>
+							{{#and barcode ../../../../use_barcodes}}
+								<div class="ean_code hidden">
+									{{{barcode}}}
+								</div>
+							{{/and}}
 						</td>
-						{{#not_eq ../../kind 'advance'}}
-							{{#if ../../../use_product_code}}
+						{{#not_eq ../../../../kind 'advance'}}
+							{{#if ../../../../../use_product_code}}
 								<td class="code_col">
 									{{code}}
 								</td>					
 							{{/if}}
 							
-							{{#if ../../../additional_info}}				
+							{{#if ../../../../../additional_info}}
 								<td class="text_right additional_info_col">
 									{{additional_info}}
 								</td>				
@@ -129,13 +321,13 @@
 								{{quantity}}
 							</td>
 							
-							{{#if ../../../discount}}
+							{{#if ../../../../../discount}}
 								<td class="text_right discount_col">
-									{{#eq ../../../../discount_kind 'amount'}}
+									{{#eq ../../../../../../discount_kind 'amount'}}
 										{{discount}}
 									{{else}}
-										{{#if ../../../../../tax_visible}}
-											{{#unless ../../../../../../hide_tax}}
+										{{#if ../../../../../../../tax_visible}}
+											{{#unless ../../../../../../../../hide_tax}}
 												{{discount_amount_net}}<br />
 											{{else}}
 												{{discount_amount_gross}}<br />
@@ -148,16 +340,26 @@
 								</td>
 							{{/if}}				
 
-							{{#if ../../../tax_visible}}
-								{{#unless ../../../../hide_tax}}
+							{{#if ../../../../../tax_visible}}
+								{{#unless ../../../../../../hide_tax}}
 									<td class="text_right no_wrap number price_net_col">
-										{{#and ../../../../../discount has_discount}}
+										{{#and ../../../../../../../discount has_discount}}
 											{{unit_price_net_with_discount}}<br />
 											<small style="text-decoration:line-through;">{{unit_price_net}}</small>
 										{{else}}
 											{{unit_price_net}}
 										{{/and}}
 									</td>
+                                    {{#if ../../../../../../../show_unit_price_gross}}
+                                        <td class="text_right no_wrap number price_gross_col">
+                                                {{#and ../../../../../../../../discount has_discount}}
+                                                    {{unit_price_gross_with_discount}}<br/>
+                                                    <small style="text-decoration:line-through;">{{unit_price_gross}}</small>
+                                                {{else}}
+                                                    {{unit_price_gross}}
+                                                {{/and}}
+                                        </td>
+                                    {{/if}}
 									<td class="text_right no_wrap number total_price_net_col">
 										{{total_price_net}}
 									</td>			
@@ -165,17 +367,26 @@
 									<td class="text_right no_wrap number tax_col">
 										{{tax}}{{#not_eq tax 'N/A'}}%{{/not_eq}}
 									</td>
-									{{#if ../../../../../tax2_visible}}
+									{{#if ../../../../../../../tax2_visible}}
 										<td class="text_right no_wrap number tax2_col">
 											{{tax2}}{{#not_eq tax2 'N/A'}}%{{/not_eq}}
 										</td>
 									{{/if}}
-									<td class="text_right number no_wrap tax_value_col">
-										{{tax_value}}
-									</td>
+									{{#if ../../../../../../../tax2_details}}
+										<td class="text_right number no_wrap tax_value_col tax1_value_col">
+											{{tax1_value}}
+										</td>
+										<td class="text_right number no_wrap tax_value_col tax2_value_col">
+											{{tax2_value}}
+										</td>
+									{{else}}
+										<td class="text_right number no_wrap tax_value_col">
+											{{tax_value}}
+										</td>
+									{{/if}}
 								{{else}}
 									<td class="text_right no_wrap number price_gross_col-hide_tax price_gross_col">
-										{{#if ../../../discount}}
+										{{#if ../../../../../discount}}
 											{{unit_price_gross_with_discount}}<br />
 											<small style="text-decoration:line-through;">{{unit_price_gross}}</small>
 										{{else}}
@@ -191,7 +402,7 @@
 								</th> --}}
 							{{else}}
 								<td class="text_right no_wrap number price_gross_col-hide_tax price_gross_col">
-										{{#if ../../../discount}}
+										{{#if ../../../../../discount}}
 											{{unit_price_gross_with_discount}}<br />
 											<small style="text-decoration:line-through;">{{unit_price_gross}}</small>
 										{{else}}
@@ -203,7 +414,7 @@
 								</td>
 							{{/if}}				
 						{{else}}
-							{{#unless ../../../hide_tax}}
+							{{#unless ../../../../../hide_tax}}
 								<td class="text_right number no_wrap total_price_net_col-advance">
 									{{total_price_net}}
 								</td>
@@ -215,6 +426,8 @@
 						{{/not_eq}}
 					</tr>
 				{{/eq}}
+                {{/eq}}
+				{{/not_eq}}
 
 			{{/each}}
 			
@@ -222,7 +435,7 @@
 			{{#not_eq kind 'advance'}}
 				<tr class="clean no_border summary_row">	
 					<td class="empty nr_col footer total"></td>
-					<td class="empty name_col footer total"></td> 
+					<td class="empty name_col footer total"></td>
 					{{#if use_product_code}}
 						<td class="empty code_col footer total"></td>
 					{{/if}}
@@ -232,14 +445,20 @@
 					{{#if discount}}
 						<td class="empty discount_col footer total"></td>
 					{{/if}}
-					<td class="empty quantity_col quantity_footer footer total"></td>	
-					
+					<td class="empty quantity_col quantity_footer footer total"></td>
+                    {{#if show_unit_price_gross}}
+                        {{#if tax_visible }}
+                            {{#unless hide_tax }}
+                                <td class="empty mod2 footer subtotal"></td>
+                            {{/unless}}
+                        {{/if}}
+                    {{/if}}
 
 					<td class="empty price_net_col price_gross_col price_gross_col-hide_tax footer total" style="display: none;"></td>
-					
+
 					<td  class="text_right no_border total footer total">
 						<strong>{{tt "invoice.total"}}</strong>
-					</td>		
+					</td>
 					{{#if tax_visible}}
 						{{#unless hide_tax }}
 	              			<td class="text_right number total_price_net_col footer total">
@@ -250,20 +469,39 @@
 	                              {{positions_total_price_net}}
 	                          {{/eq}}
 	                        </td>
-							<td class="tax_col footer total"></td>
+							<td class="tax_col footer total">&nbsp;</td>
 							{{#if ../tax2_visible}}
-								<td class="tax2_col footer total"></td>
+								<td class="tax2_col footer total">&nbsp;</td>
 							{{/if}}
-
-							<td class="text_right number tax_value_col footer total">
+							{{#if ../tax2_details}}
+								<td class="text_right number tax_value_col tax1_value_col footer total">
 								{{#not_eq kind 'final'}}
-									{{tax_value}}
+									{{tax1_value}}
 								{{/not_eq}}
 								{{#eq kind 'final'}}
-									{{positons_total_tax}}
+									{{positons_total_tax1}}
 								{{/eq}}
-								
-							</td>
+								</td>
+								<td class="text_right number tax_value_col tax2_value_col footer total">
+									{{#not_eq kind 'final'}}
+										{{tax2_value}}
+									{{/not_eq}}
+									{{#eq kind 'final'}}
+										{{positons_total_tax2}}
+									{{/eq}}
+									
+								</td>
+							{{else}}
+								<td class="text_right number tax_value_col footer total">
+									{{#not_eq kind 'final'}}
+										{{tax_value}}
+									{{/not_eq}}
+									{{#eq kind 'final'}}
+										{{positons_total_tax}}
+									{{/eq}}
+									
+								</td>
+							{{/if}}
 						{{/unless}}
 					{{/if}}
 					<td class="width3 text_right number total_price_gross_col footer total">
@@ -295,6 +533,9 @@
 									{{/if}}
 									<td class="quantity_col footer subtotal"></td>
 									<td class="empty price_net_col footer subtotal" style="display: none;"></td>
+                                    {{#if ../../show_unit_price_gross}}
+                                        <td class="empty mod2 footer subtotal"></td>
+                                    {{/if}}
 									<td class="text_right number including footer subtotal">
 										<strong>{{tt "invoice.including"}}</strong>
 									</td>
@@ -366,4 +607,4 @@
 		</table>
 	{{/eq}}
 
-	<div class="clear"></div> 
+	<div class="clear"></div>
