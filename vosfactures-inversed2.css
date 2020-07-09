@@ -178,6 +178,26 @@
 		content: '- ';
 	}
 
+	.nowrap, .no_wrap {
+		white-space:nowrap;
+	}
+
+  .subtotal_row {
+    background: #f1f1f1 !important;
+  }
+
+  .subtotal_col {
+    border-right: none !important;
+    border-left: none !important;
+  }
+
+  .subtotal_row td:first-child {
+    border-left: 1px solid #DDDDDD !important;
+  }
+  .subtotal_row td:last-child {
+    border-right: 1px solid #DDDDDD !important;
+  }
+
 }
 
 @media print {		
