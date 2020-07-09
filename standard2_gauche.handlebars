@@ -1,17 +1,14 @@
 <div class="invoice_outline standard2_gauche" {{#if status_paid}}{{#if show_paid_logo}}{{#not_in kind "proforma,estimate"}}style="background:transparent url('{{paid_mark_url}}') no-repeat 50% bottom;"{{/not_in}}{{/if}}{{/if}} >
 
-	<!-- Komunikat o tym, że faktura jest anulowana -->
-	{{# if canceled }}
+	{{#if canceled }}
 		<div style="text-align: center; font-size: 12px;">
 			<h3>{{ tt "invoice.kind_options.canceled" }}</h3>
-			{{ tt "invoice.cancel_reason" }}: {{ cancel_reason }}
+			{{ tt "invoice.cancel_reason" }} : {{ cancel_reason }}
 			<br><br>
 		</div>
 	{{/if}}
 
-	{{#if payment_url}}
-		<a class="pull-right btn btn-default btn-print" id="pay-online-button" style="margin-bottom:10px;" href="{{payment_url}}">{{tt "account.pay_online_button"}}&nbsp;&raquo;</a>
-	{{/if}}
+    {{>buttons}}
 
 
 
@@ -38,27 +35,24 @@
 				{{#if issue_place}}
 					<p id="document_date">{{issue_place}}, {{tt "invoice.on_date"}} {{issue_date}}</p>	
 				{{else}}
-					<p id="document_date"><span>{{tt "invoice.issue_date"}}:</span> {{issue_date}}</p>	
+					<p id="document_date"><span>{{tt "invoice.issue_date"}} :</span> {{issue_date}}</p>	
 				{{/if}}
 
 				{{#and show_sell_date sell_date}}
-					{{#if sell_date_kind}}
-						<p id="document_selldate"><span>{{{sell_date_kind}}}:</span> {{sell_date}}</p>
-					{{else}}
-						<p id="document_selldate"><span>{{tt "invoice.sell_date"}}:</span> {{sell_date}}</p>
-					{{/if}}
+					<p id="document_selldate"><span>{{{sell_date_kind}}} :</span> {{sell_date}}</p>
 				{{/and}}
 
 				{{#if oid}}
-					<p id="document_oid"><span>{{tt 'invoice.oid'}}:</span> {{oid}}</p>
+					<p id="document_oid"><span>{{tt 'invoice.oid'}} :</span> {{oid}}</p>
 				{{/if}}
 			</p>
 		</div>
 		
 	</section>
 
-	<!-- si vous souhaitez personnaliser le contenu du document, vous pouvez les remplacer par https://github.com/vosfactures/Formats/blob/master/partials/standard2.handlebars  -->
-	{{>standard2}}
+
+	<!-- personnalisation: https://github.com/vosfactures/Formats/blob/master/partials/standard2.handlebars -->
+	{{> standard2}}
 
 
 </div> <!-- invoice_outline -->
@@ -68,8 +62,7 @@
 {{#if department.name}}
 	<section id="description_footer">
 		<div id="company_info_footer">
-        	<!-- si vous souhaitez personnaliser le pied de page, vous pouvez les remplacer par https://github.com/vosfactures/Formats/blob/master/partials/company_info_footer.handlebars  -->
-			<span>{{>company_info_footer}}</span>
+        	<span>{{>company_info_footer}}</span>
         </div>
 	</section>
 {{/if}}<!-- #company_info_footer -->
@@ -80,4 +73,5 @@
 	<div class="invoice_outline" id="extra_page" style="page-break-before:always !important;">
 		<div id="extra_page_content">{{{description_long}}}</div>
 	</div>
-{{/if}}
+{{/if}}	
+
