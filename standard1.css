@@ -85,6 +85,7 @@
 				width:auto;
 				max-width:8.4cm;
 				max-height: 3.5cm;
+				margin-bottom: 20px;
 			}
 
 
@@ -111,7 +112,7 @@
 			padding-right: 2cm;
 		}
 
-		/* BUYER'S IDENTIFICATION DATA */ 
+		/* BUYER'S IDENTIFICATION DATA */
 		#buyer {
 			display: table-cell;
 			width: 45%;
@@ -241,6 +242,7 @@
 		clear: both;
 		display: table;
 		width: 100%;
+		margin:18px 0 0 0;
 	}
 		#invoice_signatures p {margin: 0px;}
 		#invoice_signatures > div > p:first-of-type {margin-top: 1.5em;}
@@ -409,12 +411,20 @@
 
 	.invoice_payments_payment > div {
 		display: inline-block;
+		vertical-align: top;
 	}
 
-	.invoice_payments_provider::before {
-		content: '- ';
+	.invoice_payments_provider {
+		width: 66%;
 	}
 
+	.invoice_payments_date::after {
+		content: ' -';
+	}
+
+  .subtotal_row {
+    background: #DDDDDD !important;
+  }
 
 }
 
@@ -464,4 +474,3 @@
 	}
 
 }
-
