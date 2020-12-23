@@ -141,6 +141,18 @@
 		{{#if payment_to}}
 			<p><strong>{{tt "invoice.payment_to"}} :</strong> {{payment_to}} </p>
 		{{/if}}
+		
+		{{#eq kind 'estimate' }}
+				{{#if prepayment_required}}
+					<p id="prepayment_required">
+					<strong>{{tt "invoice.prepayment"}}
+					{{#not_eq prepayment_required 'Exact amount'}}
+						{{prepayment_required}}%
+					{{/not_eq}} :</strong>
+						{{prepayment_required_exact_amount}}
+					</p>
+				{{/if}}
+			{{/eq}}
 
 		{{#if show_interest_rate}}
 			<p><strong>{{tt "invoice.interest_note"}} :</strong> {{interest_rate}}</p>
