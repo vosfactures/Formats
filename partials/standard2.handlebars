@@ -117,6 +117,18 @@
 		{{#if payment_to}}
 			<p><strong>{{tt "invoice.payment_to"}} :</strong> {{payment_to}} </p>
 		{{/if}}
+		
+		{{#eq kind 'estimate' }}
+				{{#if prepayment_required}}
+					<p id="prepayment_required">
+					<strong>{{tt "invoice.prepayment"}}
+					{{#not_eq prepayment_required 'Exact amount'}}
+						{{prepayment_required}}%
+					{{/not_eq}} :</strong>
+						{{prepayment_required_exact_amount}}
+					</p>
+				{{/if}}
+			{{/eq}}
 
 		{{#or bank bank_account swift}}
 			<p id="bank_field">
@@ -194,6 +206,11 @@
 			{{#if stamp_below_sign_url}}
 				<img src="{{stamp_url}}" alt="stamp" id="custom_img" />
 			{{/if}}
+			
+			{{#if sec_stamp_url}}
+        <img style="display:inline-block;opacity:0.3;position:absolute;margin-top:-30px;margin-left:190px;height:150px" src="{{sec_stamp_url}}" />
+      {{/if}}
+      
 		</div>
 		<div id="buyer_sign">
 			{{#if show_date_and_sign}}
