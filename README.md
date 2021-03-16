@@ -42,40 +42,69 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{kind}} - Type ("vat" pour facture, "estimate" pour devis, "proforma" pour facture proforma, "correction" pour avoir, "client_order" pour bon de commande de client, "advance" pour facture d'acompte", "final" pour facture de solde, "invoice_other" pour autre type de document)
 {{number}} - Numéro du document
 {{title}} - titre
+{{created_at}}
 {{issue_date}} - Date de création du document
 {{issue_place}} - Lieu de création du document
+{{today_date}}
 {{print_option}} 
 {{sell_date}} - Date additionnelle
 {{sell_date_kind}} - Intitulé de la date additionnelle
 {{today_date}} - Date du jour
 {{invoice_category}} - Catégorie du document
 {{lang}} - Langue du document
+{{bilangual}} - Langues du document
 {{currency}} - Devise du document
 {{currency_symbol}} - Devise (symbole)
 {{currency_short}} - Devise (abrégé)
+{{cancel_reason}} - Raison de l'annulation
+{{canceled}}
+{{corrected_issue_date}}
+{{corrected_kind}}
+{{corrected_number}}
+{{correction}} - Document corrigé
+{{correction_reason}} - Motif de l'avoir
+{{corrected_content_after}} - contenu avant correction
+{{corrected_content_before}} - contenu après correction
+
 * Concernant le département vendeur :
-{{department}} - département/compagnie - les champs sont id, nom, type ... par ex: {{department.id}} {{department.name}}
+{{department}} - département/compagnie - les champs sont id, nom, type ... par ex: 
+{{department.id}} - ID du département
+{{department.kind}} - Forme juridique
+{{department.name}} - Nom du département
 {{company}} - Nom de la compagnie/département vendeur
+{{department.tax_kind}} - type de n° fiscal (ex : "TVA")
+{{seller_tax_no_kind}} - Type de numéro d'immatriculation (TVA, SIREN, CIF...)
+{{department.tax_no}} - Numéro d'immatriculation (ex: n° TVA)
+{{department.footer_kind}}
+{{department.footer_content}} - contenu du bas de page
+{{department.own_footer}} - bas de page personnalisé
+{{department.capital}}
+{{department.capital_kind}} - Capital social
+{{department.capital_currency}} - Devise du Capital social
 {{post_code}} - Code postal
 {{street}} - Rue (numéro et nom)
 {{place}} - Ville
-{{tax_no}} - Numéro d'immatriculation (ex: n° TVA)
-{{seller_tax_no_kind}} - Type de numéro d'immatriculation (TVA, SIREN, CIF...)
 {{country}} - Pays
 {{address}} - adresse complète
 {{www}} - Adresse internet
 {{email}} - Adresse email
 {{fax}} - Numéro de fax
 {{phone}} - Numéro de téléphone
-{{bank_account}} - Numéro de compte bancaire (RIB ou IBAN)
+{{department.bank_account}} - Numéro de compte bancaire (RIB ou IBAN)
+{{department.bank_iban}} - iban
 {{department.bank_swift}} - Numéro BIC
 {{department.bank_name}} - Domiciliation bancaire (nom de la banque)
 {{bank}} - Domiciliation bancaire et numéro de compte
 {{person}} - Nom/Prénom du vendeur
+
 * Concernant le contact (client) :
 {{buyer}} - Nom de l'acheteur
 {{buyer_person}} - Nom (et prénom) de l'acheteur
 {{buyer_company}} - Nom de la compagnie de l'acheteur professionnel
+{{client.email}} - e-mail
+{{client.first_name}} - Prénom
+{{client.last_name}} - Nom
+{{client.name}} - Nom de la compagnie
 {{buyer_post_code}} - Code postal de l'acheteur
 {{buyer_place}} - Ville de l'acheteur
 {{buyer_street}} - Rue (numéro et nom) de l'acheteur
@@ -87,8 +116,17 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{client.external_id}} - Réf/code de l'acheteur
 {{use_delivery_address}} - Afficher l'adresse supplémentaire (ex: adresse de livraison)
 {{delivery_address}} - Adresse supplémentaire
+{{delivery_address_name}} - Nom de l'Adresse supplémentaire
 {{show_buyer_note}} - Afficher la description additionnelle
 {{buyer_note}} - Description additionnelle
+{{client.accounting_id}} - compte comptable général
+{{client.additional_accounting_id}}  - compte comptable auxiliaire
+{{client.discount}} - Taux de réduction par défaut (en %)
+{{{client_panel_view_link}}} - Espace Facturation
+{{{client_panel_view_link_unpaid}}} - Espace Facturation (factures impayées)
+{{client.panel_url}} - lien de l'espace facturation
+
+
 * Concernant le tableau des produits/services :
 {{use_product_code}} - Afficher la colonne Référence
 {{show_product_description}} - afficher la description des produits
@@ -109,11 +147,21 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
   {{no}} - Numéro de ligne
   {{kind}} - Type de ligne (ligne de produit ou ligne de texte)
   {{code}} - Référence du produit
+  {{supplier_code}} - Référence fournisseur du produit
+  {{barcode}} - code-barre du produit
+  {{ean_code}} - code ean  du produit
   {{item}} - Nom du produit
+  {{item_url}}
   {{description}} - Description du produit
+  {{image_url}} - Photo du produit
   {{additional_info}} - Colonne additionnelle 
   {{discount}} - Réduction
+  {{has_discount}}
+  {{discount_amount_gross}} - Réduction montant TTC
+  {{discount_amount_net}} - - Réduction montant TTC
   {{quantity}} - Quantité
+  {{quantity_number}}
+  {{quantity_unit}}  - Unité
   {{positions_total_quantity}} - Total des quantités
   {{unit_price_net}} - Prix unitaire ht
   {{unit_price_gross}} - Prix unitaire ttc
@@ -124,13 +172,28 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
   {{positons_total_tax}} - Total taxe de la ligne
   {{tax}} - taux de taxe
   {{tax2}} - taux de la deuxième taxe
+{{accounting_activity_code}}
+{{accounting_code_expenses}}
+{{accounting_code_income}}
+{{accounting_code_sales}}
+{{accounting_code_tax_purchase}} - compte comptable taxe achat 
+{{accounting_code_tax_sale}} - compte comptable taxe vente
 {{/each}}
+
+
+
 * Concernant les Totaux :
 {{#each summary}} - résumé des totaux :
   {{total_price_net}} - Total HT du document
   {{total_price_gross}} - Total TTC du document
   {{tax}} - Taux de taxe
+  {{tax2}} - taux de la deuxième taxe
+  {{tax_name}} - Nom de la taxe
+ {{tax2_name}} - Nom de la 2ème taxe
   {{tax_value}} - Montant total des Taxes du document
+  {{tax_value_name}} 
+  {{tax1_value_name}} - Montant total de la 1ere Taxe du document
+  {{tax2_value_name}} - Montant total de la 2ème Taxe du document
   {{total_price_net_without_discount}} - Total HT avant réduction
   {{total_price_gross_without_discount}} - Total TTC avant réduction
   {{global_discount_net}} - Montant total HT de la réduction
@@ -162,6 +225,9 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{negative_outstanding}} - Solde en votre faveur (en chiffres)
 {{absolute_outstanding}} -  Montant total à payer en valeur absolue (en chiffres)
 {{absolute_outstanding_in_words}} - Montant total à payer en valeur absolue (en lettres)
+{{absolute_outstanding_in_exchange_currency}} - Montant total à payer converti
+{{absolute_outstanding_in_words_in_exchange_currency}} - Montant total à payer converti (en lettres)
+
 * Concernant les modalités de paiement :
 {{paid}} - Montant payé
 {{status_paid}} - Etat Payé ou non du document
@@ -176,6 +242,7 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{token}} - Code du paiement en ligne
 {{show_paid_logo}} - afficher le tampon "Payé"
 {{paid_mark_url}} - url du tampon vert "Payé"
+
 * Concernant les autres éléments du document :
 {{notes}} - informations spécifiques
 {{additional_field_name}} - titre du champ additionnel
@@ -188,8 +255,6 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{description_footer}} - Bas de page du document
 {{view_url}} - URL du lien vers l'aperçu du document
 {{view_link}} - Lien vers l'aperçu du document
-{{client_panel_view_url}} - URL de l'accès client
-{{client_panel_view_link}} - Lien vers l'accès client
 {{final}} - Facture de Solde
 {{advanced}} - Facture d'Acompte
 {{advanced_num}} - Nombre de factures d'acompte liées à une facture finale
@@ -197,7 +262,7 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{footer}} - Bas de page (des emails)
 {{client}} 
 {{sales_code}}
-{{locale}} - 
+{{locale}}
 
 ```
 
@@ -213,7 +278,7 @@ Contenu par défaut de l'email accompagnant l'envoi des factures:
 Bonjour, 
 
 Veuillez trouver en pièce jointe le document suivant: 
-{{document_type}} numéro {{number}} d’un montant total de {{total_price_gross_with_currency}}. 
+{{{document_type}}} numéro {{number}} d’un montant total de {{total_price_gross_with_currency}}. 
 
 Vous pouvez également visualiser le document en cliquant sur le lien suivant: {{{view_link}}}  
 
@@ -224,9 +289,9 @@ Contenu par défaut de l'email de relance en cas de factures impayées:
 ```htmlbars
 Bonjour, 
 
-Veuillez trouver en pièce jointe la {{document_type}} numéro {{number}} d’un montant de {{outstanding}} qui {{#if overdue}}reste à ce jour impayé.{{else}}arrive à échéance le {{payment_to}}.{{/if}}
+Veuillez trouver en pièce jointe la {{{document_type}}} numéro {{number}} d’un montant de {{outstanding}} qui {{#if overdue}}reste à ce jour impayé.{{else}}arrive à échéance le {{payment_to}}.{{/if}}
 
-Vous pouvez visualiser la {{document_type}} en cliquant sur le lien suivant: {{{view_link}}}
+Vous pouvez visualiser la {{{document_type}}} en cliquant sur le lien suivant: {{{view_link}}}
 
 Dans l’attente de votre prompt règlement,
 
