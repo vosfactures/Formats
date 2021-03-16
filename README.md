@@ -250,17 +250,26 @@ Fonctions disponibles dans les formats de factures et des e-mails
 Les formats peuvent inclure les fonctions suivantes:
 
 ```htmlbars
-  if
+ if
   for
-  eq 
+  eq
   not_eq
   lt
   gt
+  or
+  and
   tt
   include
   include_in_col
-  in 
+  in
   not_in
+  to_uppercase
+  replace
+  inc
+  dec
+  abs
+  if_created_after_date
+  inline_partial
 ```
 
 Exemple:
@@ -276,7 +285,7 @@ Exemple:
   <17
 }}
 
-{{#mt val1 17 }}
+{{#gt val1 17 }}
   >17
 {{else}}
  <17
@@ -292,6 +301,20 @@ Exemple:
 {{#for size_from size_to}}
     numéro: {{no}}
 {{/for}}
+
+{{inline_partial "partial1" "{{document_type}} {{number}}: {{total_price_gross_with_currency}} {{tt 'invoice.gross'}}<br>"}}
+{{>partial1}}
+
+{{#inline_partial "partial2"}}
+  {{#eq lang "fr"}}
+    Bonjour,
+  {{else}}
+    Hello,
+  {{/eq}}
+  {{>partial1}}
+{{/inline_partial}}
+{{>partial2}}
+
 ```
 
 <a name="import"/>
