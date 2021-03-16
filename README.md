@@ -172,12 +172,12 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
   {{positons_total_tax}} - Total taxe de la ligne
   {{tax}} - taux de taxe
   {{tax2}} - taux de la deuxième taxe
-{{accounting_activity_code}}
-{{accounting_code_expenses}}
+{{accounting_activity_code}} - Code Activité du produit 
+{{accounting_code_expenses}} - Compte comptable du produit (charges)
+{{accounting_code_sales}} - Compte comptable du produit (produits)
 {{accounting_code_income}}
-{{accounting_code_sales}}
-{{accounting_code_tax_purchase}} - compte comptable taxe achat 
-{{accounting_code_tax_sale}} - compte comptable taxe vente
+{{accounting_code_tax_purchase}} - Compte comptable taxe achat 
+{{accounting_code_tax_sale}} - Compte comptable taxe vente
 {{/each}}
 
 
