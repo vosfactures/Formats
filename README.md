@@ -111,8 +111,8 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
 {{buyer_country}} - Pays de l'acheteur
 {{buyer_tax_no}} - Numéro d'immatriculation (ex: n° TVA) de l'acheteur professionnel
 {{buyer_tax_no_kind}} - Type de numéro d'immatriculation (TVA, SIREN, CIF...) de l'acheteur professionnel
-{buyer_phone}} - Numéro de tel de l'acheteur (correspond au champ "Téléphone" du contact)
-{buyer_mobile_phone}} - Numéro de tel portable de l'acheteur (correspond au champ "Tél. portable" du contact)
+{{buyer_phone}} - Numéro de tel de l'acheteur (correspond au champ "Téléphone" du contact)
+{{buyer_mobile_phone}} - Numéro de tel portable de l'acheteur (correspond au champ "Tél. portable" du contact)
 {{client.external_id}} - Réf/code de l'acheteur
 {{use_delivery_address}} - Afficher l'adresse supplémentaire (ex: adresse de livraison)
 {{delivery_address}} - Adresse supplémentaire
