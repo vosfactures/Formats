@@ -39,7 +39,7 @@ Les principales variables qui peuvent être utilisées dans les formats sont:
  
 ```htmlbars
 {{document_type}} Type de document
-{{kind}} - Type ("vat" pour facture, "estimate" pour devis, "proforma" pour facture proforma, "correction" pour avoir, "client_order" pour bon de commande de client, "advance" pour facture d'acompte", "final" pour facture de solde, "invoice_other" pour autre type de document)
+{{kind}} - Type : "vat" pour facture, "estimate" pour devis, "proforma" pour facture proforma, "correction" pour avoir, "client_order" pour bon de commande de client, "maintenance_request" pour les bons d'intervention, "payment_receipt" pour les reçus de paiement, "advance" pour facture d'acompte", "final" pour facture de solde, "receipt" pour les reçus, "invoice_other" pour autre type de document comptable, "kw" pour versements en espèces, "kp" pour reçus en espèces.
 {{number}} - Numéro du document
 {{title}} - titre
 {{created_at}}
